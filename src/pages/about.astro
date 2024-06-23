@@ -1,13 +1,39 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
----
 
+const pageTitle = "About Me";
+
+const identity = {
+	firstName: "Sarah",
+	country: "Canada",
+	occupation: "Technical Writer",
+	hobbies: ["photography", "birdwatching", "baseball"],
+	};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skillColor = "navy";
+---
+<style define:vars={{skillColor}}>
+	h1 {
+		color: purple;
+		font-size: 4rem;
+	}
+	.skill {
+		color: green;
+		color: var(--skillColor);
+		font-weight: bold;
+	}
+</style>
 <Layout
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('August 08 2021')}
 	heroImage="/blog-placeholder-about.jpg"
 >
+	<ul class="skill">
+		{skills.map((skill) => <li>{skill}</li>)}
+	</ul>
+
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
