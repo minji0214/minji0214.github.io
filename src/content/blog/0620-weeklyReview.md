@@ -2,7 +2,7 @@
 title: "주간회고 - 6월 막주"
 description: "알고리즘의 중요성을 많이 느낀 하루"
 pubDate: "06 29 2024"
-heroImage: "/minglog.github.io/blog-placeholder-1.jpg"
+heroImage: "/minglog.github.io/heroImgs/blog-placeholder-1.jpg"
 ---
 
 #### 알고리즘의 중요성을 많이 느낀 하루..
