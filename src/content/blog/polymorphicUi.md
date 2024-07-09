@@ -15,8 +15,8 @@ heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
 
 아래 이미지는 실제 우리 제품의 사례이다.
 
-![장바구니버튼](/public/contentsImgs/1.png)
-![Untitled](/public/contentsImgs/2.png)
+![장바구니버튼](/minglog.github.io/contentImgs/1.png)
+![Untitled](/minglog.github.io/contentImgs/2.png)
 
 위와 같이 다양한 variation을 가지 버튼이 존재 한다.
 장바구니 버튼을 클릭시 addToCart와 관련된 액션이 실행된다.<br/>
