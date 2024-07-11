@@ -3,6 +3,7 @@ title: "디자인변경에 멋드러지게 대응하기(1): polymorphic한 ui"
 description: "polymorphic한 ui만들기 대작전"
 pubDate: "07 10 2024"
 heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 제품을 만들고, 스프린트를 거듭하다보면,
@@ -15,8 +16,8 @@ heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
 
 아래 이미지는 실제 우리 제품의 사례이다.
 
-![장바구니버튼](/minglog.github.io/contentImgs/1.png)
-![Untitled](/minglog.github.io/contentImgs/2.png)
+![장바구니버튼](../contentsImgs/1.png)
+![Untitled](/public/contentsImgs/2.png)
 
 위와 같이 다양한 variation을 가지 버튼이 존재 한다.
 장바구니 버튼을 클릭시 addToCart와 관련된 액션이 실행된다.<br/>
