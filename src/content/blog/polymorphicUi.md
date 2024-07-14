@@ -3,7 +3,6 @@ title: "디자인변경에 멋드러지게 대응하기(1): polymorphic한 ui"
 description: "polymorphic한 ui만들기 대작전"
 pubDate: "07 10 2024"
 heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 제품을 만들고, 스프린트를 거듭하다보면,
