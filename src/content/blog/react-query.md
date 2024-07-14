@@ -5,82 +5,124 @@ pubDate: "07 11 2024"
 heroImage: "/minglog.github.io/heroImgs/blog-placeholder-1.jpg"
 ---
 
-기존에 우리 회사의 서비스는 상태관리는 mobx로 하고, 서버의 상태는 관리하지 않고있었다.
-
-이번에 검색페이지를 개편하면서, 개선필요한 부분들을 찾은 결과.
+기존에 우리 회사의 서비스는 클라이언트 상태관리는 mobx로 하고, 서버의 상태는 try catch로 관리하였다.
+이번에 검색페이지를 개편하면서 새로운 서버 상태관리의 필요성을 느끼게 되어서 react-query를 도입하게 되었다.
 
 1. fetch 일어난뒤 여러번 fetch가 일어남.
-2. 페이지네이션 이용이 불편함.
-3. lighthouse 성능 점수 낮음.
+2. 무한 스크롤 조작에 유용한 라이브러리는 없을까
+3. 로딩상태와, 에러상태관리 필요
+4. 검색페이지 성능개선을 위한 캐싱기능 필요
 
-이런 이슈들을 발견하였고, react-query의 캐싱기능과, useInfiniteScroll 등의 api를 이용하면, 유저가 사용하기 편리한 무한스크롤을 구현가능하여 도입을 결정하게 되었다.
-
----
-
-### 주로 어떤 경우에 사용하는 걸까
-
-상태관리는 클라이언트 상태와, 서버 상태로 나눌 수 있다.
-
-클라이언트상태는 주로
-
-서버,외부 소스 데이터
-
-고용량의 데이터 소스,
-
-세션 간에 지속성 유지.
-
-인증및 암호화로 보호가능.
-
-네트어크 요청이 필요.
-
-서버상태
-
-클라이언트 데이터
-
-컴포넌트 상태, 브라우저 쿠키,
-
-왜 분리해서 관리하는 걸까 ?
-
-1. 데이터 동기화
-2. 캐싱과 최적화
-3. 상태관리의 단순화
+이런 이슈들을 발견하였고, react-query의 캐싱기능을 사용하여, 효율적으로 fetching을 하고,
+useInfiniteScroll을 이용하여, 무한스크롤을 핸들링하며,
+isLoading등이 react-query에서 제공하는 변수들을 사용하여, skeleton ui를 보여주기로 하였습니다.
 
 ---
 
-### 쿼리의 기본 개념
+서버상태관리가 익숙하지 않은 사람들은 이런 의문을 가지게 된다.
+
+### 클라이언트/서버 상태를 분리하여 관리하는 이유
+
+크게 5가지 이유로 나눌 수 있다.
+
+```
+1. 책임 분리 (Separation of Concerns)
+서버 상태는 서버에서 관리하고 클라이언트에 필요한 데이터만 전달합니다. 이는 데이터베이스에서 데이터를 가져오고, 비즈니스 로직을 수행하며, 권한을 확인하는 등의 작업을 포함합니다.
+클라이언트 상태는 사용자 인터페이스와 관련된 상태로, 사용자 입력, UI 구성 요소의 상태, 일시적인 데이터 등을 포함합니다.
+이 분리는 코드베이스를 더 이해하기 쉽게 만들고 유지보수를 용이하게 합니다.
+
+2. 데이터 일관성 (Data Consistency)
+서버는 데이터의 권위적인 출처로서 모든 클라이언트에 일관된 데이터를 제공합니다.
+클라이언트는 서버에서 받은 최신 데이터를 기반으로 상태를 관리합니다.
+데이터 일관성이 보장되며, 동기화 문제가 줄어듭니다.
+
+3. 성능 최적화 (Performance Optimization)
+서버 상태를 필요할 때만 클라이언트로 전송함으로써 네트워크 사용량을 줄일 수 있습니다.
+클라이언트는 필요한 데이터만 요청하고, 불필요한 데이터 전송을 피할 수 있습니다.
+클라이언트 상태는 로컬에서 관리하여 사용자 인터페이스의 반응성을 높일 수 있습니다.
+
+4. 스케일링 (Scalability)
+서버는 여러 클라이언트의 상태를 효율적으로 관리할 수 있습니다.
+클라이언트 상태는 각 사용자의 로컬에서 관리되므로 서버에 부하를 줄입니다.
+이 구조는 애플리케이션이 더 많은 사용자와 요청을 처리할 수 있도록 확장할 수 있게 합니다.
+
+5. 유지보수와 확장성 (Maintainability and Extensibility)
+클라이언트와 서버 코드를 분리하면, 각 부분을 독립적으로 업데이트하고 확장할 수 있습니다.
+새로운 기능 추가, 버그 수정 등이 더 쉬워집니다.
+```
+
+실제로 서버상태와, 클라이언트의 상태를 분리한 이후
+작업의 효율이 높아지고,
+서버상태를 handling하는데 훨씬 수월해졌다.
+
+---
+
+### 알고있으면 좋은 용어
 
 1. 쿼리 : use query 훅 apiendpoint , 원격 데이터소스
-2. 뮤테이션 : use mutation 훅 , 새로운 데이터 추가하거나, 기존데이터 수정하는 요청,
-3. 쿼리캐싱: query caching , 쿼리 결과를 메모리에 저장
+2. 뮤테이션 : use mutation 훅 , 새로운 데이터 추가하거나, 기존데이터 수정하는 요청
+3. 쿼리캐싱: query caching, 쿼리 결과를 메모리에 저장
 4. 쿼리 무효화 : 쿼리 무효화 하거나 오래된 상태로 표시하는 과정, 쿼리를 무효화 하거나, 오래된 상태로 표시
 
 ---
 
-다양한 상황에서 react-query 사용하기
+### 리액트쿼리에서 중요한 쿼리키
+
+용도
+
+캐시의 키 : 해당 키에 맞는 쿼리결과를 자동으로 캐싱 . 동일한 쿼리키는 이전에 캐시된 결과사용
+
+—> 중복요청 방지, 성능향상
+
+의존성 관리 : 의존하는 데이터의 변경을 감지. 데이터 변경시 해당 쿼리 재실행 —> 데이터 일관성 유지
+
+단, 변경하는 변수를 모두 포함해야 한다.
+
+```tsx
+function Todos({ todoId }) {
+  const result = useQuery({
+    queryKey: ["todos", todoId],
+    queryFn: () => fetchTodoById(todoId),
+  });
+}
+```
+
+---
+
+# 다양한 상황에서 react-query 사용하기
 
 ### 1. useInfinite scroll로 무한스크롤 구현하기
 
-[useInfinite scroll ](https://www.notion.so/useInfinite-scroll-0d724160fccf41f0b09dfa90ff66eff5?pvs=21)
+```
+	const [originData, setOriginData] = useState([])
+	const [pageParam, setPageParam] = useState(0)
+	const [initialPage, setInitialPage] = useState(0)
+	const limit = 10
+	const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} = useInfiniteQuery(
+		['posts'],
+		async ({pageParam = initialPage}) => {
+			setPageParam(pageParam)
+			const response = await fetchPosts(pageParam, limit);
+			return response;
+		},
+		{
 
-[react-query 사내 도입 회고 2편](https://develogger.kro.kr/blog/LKHcoding/153)
+			getNextPageParam: (lastPage) => lastPage.products.pagination.offset + limit,
+			onSuccess: (data) => {
+				setOriginData((prev) => [...prev, ...data.pages[pageParam / limit].products.products])
+			}
+		}
+	);
+```
+
+연결하면서 발생하게된 이슈가 뒤로가기시 fetching했던 data가 모두 초기화되는 이슈가 발생하였다.
+캐싱 이슈인가하여 option에 캐싱처리를 추가해 보았지만, 결과는 동일하였다.
+원인은 react-query에서 반환되는 data를 그자체로 사용해야했다.
+useState에 data를 할당해주는 구조로 사용할 경우, useState가 초기화 되는 이슈가 있어서, 캐싱기능을 정상적으로 이용하기 어렵다.
 
 ---
 
-### 2. ssr 환경에서 react-query 사용하기
-
----
-
-### 3. 버튼을 클릭했을때는 어떻게 useQuery를 사용할까
-
-refetch
-
-[[Next.js] React Query로 SSR 구현하기](https://tesseractjh.tistory.com/269)
-
-https://github.com/mingdolacucudas/reactquery-searching/blob/main/src/App.js
-
-[SSR 환경에서의 React Query](https://www.univdev.page/posts/react-query-ssr/)
-
-코드 리팩토링
+### 2. 버튼을 클릭했을때는 어떻게 useQuery를 사용할까
 
 원래
 
@@ -94,28 +136,6 @@ if (data.data) {
   data.data.map((item) => {
     resultStr += item.data_value;
   });
-}
-```
-
-수정후
-
-```tsx
-const data = useQuery(["dataItems"], () => getDataItems(id));
-let resultStr = "";
-if (data.data) {
-  data.data.forEach((item) => {
-    resultStr += item.data_value;
-  });
-}
-```
-
-2차 : join이 성능상의 이점이 있다.
-
-```tsx
-const data = useQuery(["dataItems"], () => getDataItems(id));
-let resultStr = "";
-if (data.data) {
-  resultStr = data.data.map((item) => item.data_value).join("");
 }
 ```
 
@@ -144,11 +164,7 @@ setuphandlers 수정해야하나 고민
 
 ### 5. 비동기 요청이 필요하다면 mutateAsync
 
-### 6. response의 모양을 바꾸고 싶다면, stale
-
 ### react query 계층정하기
-
-[[꼭꼭] React Query 계층 구조 도입하기](https://velog.io/@rat8397/꼭꼭-React-Query-계층-구조-구분하기)
 
 쿼리키 관리하기
 
@@ -156,38 +172,9 @@ The **unique key** you provide is used internally for refetching, caching, and
 
 refetching, chaching, 다른곳에서 호출 등에 사용된다.
 
-용도
-
-캐시의 키 : 해당 키에 맞는 쿼리결과를 자동으로 캐싱 . 동일한 쿼리키는 이전에 캐시된 결과사용
-
-—> 중복요청 방지, 성능향상
-
-의존성 관리 : 의존하는 데이터의 변경을 감지. 데이터 변경시 해당 쿼리 재실행 —> 데이터 일관성 유지
-
-단, 변경하는 변수를 모두 포함해야 한다.
-
-```tsx
-function Todos({ todoId }) {
-  const result = useQuery({
-    queryKey: ["todos", todoId],
-    queryFn: () => fetchTodoById(todoId),
-  });
-}
-```
-
-상세 페이지 작성할때
-
-페이지 마다 캐싱가능할듯 ?
-
-근데 그렇게 해야하나???
-
-다시 안들어갈수도 있는데???
-
 ```tsx
 const queryKey = ["userData", userId];
 ```
-
-5,140,691
 
 # ssr과 react-query
 
@@ -255,6 +242,8 @@ retry를 0으로 설정해주지 않으면 에러시 무한 요청이 날라감
 
 ### 훅으로사용할때는 비동기 처리를 해주자 async
 
+useMutateAsync
+
 ### 같은쿼리를 두번 날려야 할때는 useQueries를 사용해보자.
 
 이 모든 내용들은 대부분 독스에서 얻은지식이다.
@@ -270,3 +259,18 @@ react-query는 초보자도 이해하기 쉽도록
 [React-query 에서 isLoading이랑 isFetching은 뭐가 다르지?](https://velog.io/@himprover/React-query-에서-isLoading이랑-isFetching은-뭐가-다르지)
 
 빡취게 하는 isLoading 과 isFetching
+
+### 앞으로 ..
+
+쿼리키와 폴더 구조 및 data로직을 어떻게 분리해서 가져갈 것인지 고민필요
+[react-query 사내 도입 회고 2편](https://develogger.kro.kr/blog/LKHcoding/153)
+
+refetch
+
+[[Next.js] React Query로 SSR 구현하기](https://tesseractjh.tistory.com/269)
+
+https://github.com/mingdolacucudas/reactquery-searching/blob/main/src/App.js
+
+[SSR 환경에서의 React Query](https://www.univdev.page/posts/react-query-ssr/)
+
+코드 리팩토링
