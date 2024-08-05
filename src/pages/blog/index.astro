@@ -1,6 +1,6 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
+import Background from '../../components/astro/Background.astro';
 import Footer from '../../components/Footer.astro';
 import {SITE_TITLE, SITE_DESCRIPTION, BASE_URL} from '../../consts';
 import { getCollection } from 'astro:content';
@@ -104,6 +104,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<!--<Header />-->
 		<main>
+			<!-- <Background/> -->
 			<!--<div calss="sub-header">-->
 			<h1>Blog Posts</h1>
 			<!--</div>-->
