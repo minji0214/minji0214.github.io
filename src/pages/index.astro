@@ -4,6 +4,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Test from '../components/react/Test';
+import { Image } from 'astro:assets';
+import sampleImage from '/minglog.github.io/bgLogo.png';
+import myImportedImage from '../assets/my-local-image.png';
+
 ---
 
 <!doctype html>
@@ -12,23 +16,27 @@ import Test from '../components/react/Test';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<!-- <svg width="2111" height="1730" viewBox="0 0 2111 1730" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<rect width="2111" height="1730" fill="#E5E5E5"/>
-			<g id="triangles">
-			<rect x="0.5" y="0.5" width="2110" height="1729" fill="white"/>
-			<rect x="0.5" y="0.5" width="2110" height="1729" stroke="black"/>
-			<g id="lightGroup">
-			<path id="lightGroup_2" d="M1096.7 705.391L448.493 1102.47L454.954 297.956L1096.7 705.391Z" fill-opacity="0.7"/>
-			</g>
-			<g id="darkGroup">
-			<path id="dark1" d="M1097.7 703.391L449.493 1100.47L455.954 295.956L1097.7 703.391Z"  fill-opacity="0.7"/>
-			<path id="dark2" d="M1507.7 671.391L859.493 1068.47L865.954 263.956L1507.7 671.391Z"  fill-opacity="0.7"/>
-			</g>
-			</g>
-			</svg> -->
-		<!--<Header />-->
+
 		<main>
-			<Test/>
+			<!-- <Test/> -->
+			<Image src={myImportedImage} alt="descriptive text" />
+			<div class="overlay">
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+			</div>
+		
 			<h1>🧑‍🚀 민지의 실험실</h1>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
@@ -39,4 +47,110 @@ import Test from '../components/react/Test';
 		</main>
 		<Footer />
 	</body>
+	<style>
+		@keyframes animate {
+  0% {
+    transform: scale(0) translateY(0) rotate(70deg);
+  }
+  100% {
+    transform: scale(1.3) translateY(-100px) rotate(360deg);
+  }
+}
+		main {
+			position:relative;
+			width:100%;
+			background-color: #2AD8EB;
+		}
+		.overlay {
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+		}
+		.bubble {
+			height: 60px;
+ 			width: 60px;
+  			border: 2px solid rgba(255, 255, 255, 0.7);
+  			border-radius: 50px;
+  			position: absolute;
+  			animation: animate 10s linear infinite;
+		}
+		.bubble:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-duration: 8s;
+}
+.bubble:nth-child(2) {
+  top: 60%;
+  left: 80%;
+  animation-duration: 10s;
+}
+.bubble:nth-child(3) {
+  top: 40%;
+  left: 40%;
+  animation-duration: 3s;
+}
+.bubble:nth-child(4) {
+  top: 66%;
+  left: 30%;
+  animation-duration: 7s;
+}
+.bubble:nth-child(5) {
+  top: 90%;
+  left: 10%;
+  animation-duration: 9s;
+}
+.bubble:nth-child(6) {
+  top: 30%;
+  left: 60%;
+  animation-duration: 5s;
+}
+.bubble:nth-child(7) {
+  top: 70%;
+  left: 20%;
+  animation-duration: 8s;
+}
+.bubble:nth-child(8) {
+  top: 75%;
+  left: 60%;
+  animation-duration: 10s;
+}
+.bubble:nth-child(9) {
+  top: 50%;
+  left: 50%;
+  animation-duration: 6s;
+}
+.bubble:nth-child(10) {
+  top: 45%;
+  left: 20%;
+  animation-duration: 10s;
+}
+.bubble:nth-child(11) {
+  top: 10%;
+  left: 90%;
+  animation-duration: 9s;
+}
+.bubble:nth-child(12) {
+  top: 20%;
+  left: 70%;
+  animation-duration: 7s;
+}
+.bubble:nth-child(13) {
+  top: 20%;
+  left: 20%;
+  animation-duration: 8s;
+}
+.bubble:nth-child(14) {
+  top: 60%;
+  left: 5%;
+  animation-duration: 6s;
+}
+.bubble:nth-child(15) {
+  top: 90%;
+  left: 80%;
+  animation-duration: 9s;
+}
+
+	</style>
 </html>
