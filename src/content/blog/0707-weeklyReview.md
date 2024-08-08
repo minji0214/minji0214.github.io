@@ -2,7 +2,7 @@
 title: "주간회고 - 7월 첫째주"
 description: "얕은 복사와 깊은 복사"
 pubDate: "07 07 2024"
-heroImage: "/minglog.github.io/heroImgs/blog-placeholder-1.jpg"
+heroImage: "/minglog.github.io/heroImgs/review_thumbnail.png"
 ---
 
 ### 캐노니컬 태그
