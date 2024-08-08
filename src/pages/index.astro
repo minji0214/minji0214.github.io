@@ -18,6 +18,10 @@ import myImportedImage from '../assets/my-local-image.png';
 	<body>
 
 		<main>
+			<header>
+				<!-- <h1>🧑‍🚀 민지의 실험실</h1> -->
+			</header>
+			<section>
 			<!-- <Test/> -->
 			<Image src={myImportedImage} alt="descriptive text" />
 			<div class="overlay">
@@ -36,12 +40,10 @@ import myImportedImage from '../assets/my-local-image.png';
 				<div class="bubble"></div>
 				<div class="bubble"></div>
 			</div>
-		
-			<h1>🧑‍🚀 민지의 실험실</h1>
+		</section>
+			
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				안녕하세요 민지의 실험실에 오신것을 환영합니다. 
 			</p>
 
 		</main>
@@ -57,9 +59,15 @@ import myImportedImage from '../assets/my-local-image.png';
   }
 }
 		main {
-			position:relative;
 			width:100%;
-			background-color: #2AD8EB;
+			box-sizing:border-box;
+			background-color:#57E8F8;
+			padding: 0 80px;
+		}
+		section {
+			margin: 0 auto;
+			position:relative;
+			/* max-width: 1200px; */
 		}
 		.overlay {
 			position:absolute;
