@@ -2,7 +2,7 @@
 title: "SEO 개선기"
 description: "네이버 검색 최상단에 올리기 프로젝트 "
 pubDate: "11 10 2023"
-heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
 ---
 
 - 웹접근성
@@ -259,16 +259,16 @@ setinterval
 
 ```jsx
 useEffect(() => {
-  if (direction !== "stable" && isScrollAllowed) {
-    scrollTimer.current = setInterval(() => {
-      ref.current?.scrollBy(0, scrollSpeed * (direction === "top" ? -1 : 1));
-    }, 1);
-  }
-  return () => {
-    if (scrollTimer.current) {
-      clearInterval(scrollTimer.current);
-    }
-  };
+	if (direction !== "stable" && isScrollAllowed) {
+		scrollTimer.current = setInterval(() => {
+			ref.current?.scrollBy(0, scrollSpeed * (direction === "top" ? -1 : 1));
+		}, 1);
+	}
+	return () => {
+		if (scrollTimer.current) {
+			clearInterval(scrollTimer.current);
+		}
+	};
 }, [isScrollAllowed, direction, ref, scrollSpeed]);
 ```
 

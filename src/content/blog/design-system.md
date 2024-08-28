@@ -2,7 +2,7 @@
 title: "디자인시스템을 구축해보자 "
 description: "정말 그 해결이 최선이었을까 "
 pubDate: "07 14 2024"
-heroImage: "/minglog.github.io/heroImgs/blog-placeholder-1.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_designsystem.png"
 ---
 
 - 강의자료

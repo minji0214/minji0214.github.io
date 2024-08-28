@@ -2,7 +2,7 @@
 title: "주간회고 - 7월 첫째주"
 description: "얕은 복사와 깊은 복사"
 pubDate: "07 07 2024"
-heroImage: "/minglog.github.io/heroImgs/review_thumbnail.png"
+heroImage: "/minglog.github.io/heroImgs/thumb_weekly.png"
 ---
 
 ### 캐노니컬 태그
@@ -24,14 +24,14 @@ filterResponse 자체가 변하게 되었다.
 
 ```jsx
 const newFilterList = useMemo(() => {
-  if (!filterResponse) return {};
+	if (!filterResponse) return {};
 
-  let newFilter = filterResponse[filterParams.productType];
-  //newfilter 뿐만 아니라 filterResponse자체가 제거됨.
-  delete newFilter[SearchQueryKey.CONTENTTYPES];
-  delete newFilter[SearchQueryKey.EDITABLES];
+	let newFilter = filterResponse[filterParams.productType];
+	//newfilter 뿐만 아니라 filterResponse자체가 제거됨.
+	delete newFilter[SearchQueryKey.CONTENTTYPES];
+	delete newFilter[SearchQueryKey.EDITABLES];
 
-  return newFilter;
+	return newFilter;
 }, [filterResponse, filterParams.productType]);
 ```
 
@@ -57,15 +57,15 @@ object : 변수가 객체의 주소를 가리키는 값이기 때문에 참조�
 
 ```jsx
 const newFilterList = useMemo(() => {
-  if (!filterResponse) return {};
+	if (!filterResponse) return {};
 
-  // 깊은 복사를 수행하여 원래 객체를 변경하지 않도록 함
-  let newFilter = { ...filterResponse[filterParams.productType] };
+	// 깊은 복사를 수행하여 원래 객체를 변경하지 않도록 함
+	let newFilter = { ...filterResponse[filterParams.productType] };
 
-  delete newFilter[SearchQueryKey.CONTENTTYPES];
-  delete newFilter[SearchQueryKey.EDITABLES];
+	delete newFilter[SearchQueryKey.CONTENTTYPES];
+	delete newFilter[SearchQueryKey.EDITABLES];
 
-  return newFilter;
+	return newFilter;
 }, [filterResponse, filterParams.productType]);
 ```
 

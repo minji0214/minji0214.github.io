@@ -2,7 +2,7 @@
 title: "E2E 테스트 도입에 대한 고민"
 description: "E2E테스트를 제품에 도입하기 위한 스터디 "
 pubDate: "06 10 2023"
-heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_tdd.png"
 ---
 
 ### 프론트엔드 테스트 방식
@@ -104,64 +104,64 @@ import { expect, Page, test } from "@playwright/test";
 
 // describe는 테스트를 묶는 단위
 test.describe("하이퍼커넥트 기술블로그 테스트", () => {
-  let page: Page;
+	let page: Page;
 
-  // beforeAll hook은 최초 딱 한번 실행. initialize 작업 등을 수행
-  test.beforeAll(async ({ browser, contextOptions }) => {
-    const browserContext = await browser.newContext(contextOptions);
-    // 페이지 생성
-    page = await browserContext.newPage();
+	// beforeAll hook은 최초 딱 한번 실행. initialize 작업 등을 수행
+	test.beforeAll(async ({ browser, contextOptions }) => {
+		const browserContext = await browser.newContext(contextOptions);
+		// 페이지 생성
+		page = await browserContext.newPage();
 
-    // 기술블로그 링크로 이동
-    await page.goto("https://hyperconnect.github.io/");
-  });
+		// 기술블로그 링크로 이동
+		await page.goto("https://hyperconnect.github.io/");
+	});
 
-  test("1. document title이 올바르다", async () => {
-    // document.title이 올바른지 확인
-    await expect(page).toHaveTitle(
-      "Hyperconnect Tech Blog | 하이퍼커넥트의 기술블로그입니다."
-    );
-  });
+	test("1. document title이 올바르다", async () => {
+		// document.title이 올바른지 확인
+		await expect(page).toHaveTitle(
+			"Hyperconnect Tech Blog | 하이퍼커넥트의 기술블로그입니다."
+		);
+	});
 
-  test("2. footer의 copyright가 올바르다", async () => {
-    // footer element를 가져옴
-    const copyrightFooter = await page.locator("body > footer > div > div");
+	test("2. footer의 copyright가 올바르다", async () => {
+		// footer element를 가져옴
+		const copyrightFooter = await page.locator("body > footer > div > div");
 
-    // 올바른 copyright를 계산
-    const currentYear = new Date().getFullYear();
-    const validCopyright = `© 2013-${currentYear} Hyperconnect Inc.`;
+		// 올바른 copyright를 계산
+		const currentYear = new Date().getFullYear();
+		const validCopyright = `© 2013-${currentYear} Hyperconnect Inc.`;
 
-    // footer의 text가 올바른 copyright인지 확인
-    await expect(copyrightFooter).toHaveText(validCopyright);
-  });
+		// footer의 text가 올바른 copyright인지 확인
+		await expect(copyrightFooter).toHaveText(validCopyright);
+	});
 
-  test("3. 채용정보 버튼을 누르면, Career 페이지로 이동한다", async () => {
-    // 채용정보(Career) 버튼을 클릭
-    await page.click("body > header > div > nav > div > a:nth-child(3)");
+	test("3. 채용정보 버튼을 누르면, Career 페이지로 이동한다", async () => {
+		// 채용정보(Career) 버튼을 클릭
+		await page.click("body > header > div > nav > div > a:nth-child(3)");
 
-    // 채용 페이지로 이동했는지 확인
-    await expect(page).toHaveURL("https://career.hyperconnect.com/");
+		// 채용 페이지로 이동했는지 확인
+		await expect(page).toHaveURL("https://career.hyperconnect.com/");
 
-    console.log("채용 많은 관심 부탁드립니다 🙏");
-    console.log("Epic CPaaS Web 팀도 채용 중 입니다 🙌");
-    console.log("채용은 여기서: https://career.hyperconnect.com/");
-  });
+		console.log("채용 많은 관심 부탁드립니다 🙏");
+		console.log("Epic CPaaS Web 팀도 채용 중 입니다 🙌");
+		console.log("채용은 여기서: https://career.hyperconnect.com/");
+	});
 
-  // 일부러 추가한 실패하는 케이스
-  test("4. 배경을 100번 클릭하면, dark theme으로 바뀐다", async () => {
-    // 다시 기술블로그 페이지로 이동
-    await page.goBack();
+	// 일부러 추가한 실패하는 케이스
+	test("4. 배경을 100번 클릭하면, dark theme으로 바뀐다", async () => {
+		// 다시 기술블로그 페이지로 이동
+		await page.goBack();
 
-    // 배경을 100번 클릭
-    for (let i = 0; i < 100; i++) {
-      await page.click("body");
-    }
+		// 배경을 100번 클릭
+		for (let i = 0; i < 100; i++) {
+			await page.click("body");
+		}
 
-    const body = page.locator("body");
+		const body = page.locator("body");
 
-    // background가 검정인지 확인 (dark theme 인지 확인)
-    await expect(body).toHaveCSS("background-color", "black");
-  });
+		// background가 검정인지 확인 (dark theme 인지 확인)
+		await expect(body).toHaveCSS("background-color", "black");
+	});
 });
 ```
 
@@ -232,15 +232,15 @@ cypress의 스냅샷 테스트
 
 ```tsx
 it("리스트 페이지 스냅샷 테스트", () => {
-  cy.visit("/list"); // 리스트 페이지로 이동
+	cy.visit("/list"); // 리스트 페이지로 이동
 
-  // 썸네일을 제외한 나머지 요소 스냅샷 캡처
-  cy.get(".list-item").each((item) => {
-    cy.wrap(item).within(() => {
-      // 썸네일을 제외한 나머지 요소 스냅샷 캡처
-      cy.get(".list-item-title").snapshot({ ignore: [".thumbnail"] });
-    });
-  });
+	// 썸네일을 제외한 나머지 요소 스냅샷 캡처
+	cy.get(".list-item").each((item) => {
+		cy.wrap(item).within(() => {
+			// 썸네일을 제외한 나머지 요소 스냅샷 캡처
+			cy.get(".list-item-title").snapshot({ ignore: [".thumbnail"] });
+		});
+	});
 });
 ```
 
@@ -251,52 +251,52 @@ import { ProductDetailViewModel } from "../../modules/products/viewModels/Produc
 import { mockRouter } from "../../lib/pagination/test-utils";
 
 describe("ProductDetailViewModel", () => {
-  let viewModel;
-  const mockProduct = { id: "1", title: "Test Product", price: 10 };
-  const mockProductStore = {
-    products: {
-      product: mockProduct,
-    },
-  };
-  beforeEach(() => {
-    // 필요한 mock 객체들을 생성하고 전달합니다.
-    const authStore = jest.fn();
-    const product = mockProduct;
-    const productStore = mockProductStore;
-    const router = mockRouter;
-    const apiService = jest.fn();
+	let viewModel;
+	const mockProduct = { id: "1", title: "Test Product", price: 10 };
+	const mockProductStore = {
+		products: {
+			product: mockProduct,
+		},
+	};
+	beforeEach(() => {
+		// 필요한 mock 객체들을 생성하고 전달합니다.
+		const authStore = jest.fn();
+		const product = mockProduct;
+		const productStore = mockProductStore;
+		const router = mockRouter;
+		const apiService = jest.fn();
 
-    viewModel = ProductDetailViewModel({
-      authStore,
-      product,
-      productStore,
-      router,
-      apiService,
-    });
-  });
+		viewModel = ProductDetailViewModel({
+			authStore,
+			product,
+			productStore,
+			router,
+			apiService,
+		});
+	});
 
-  test("initialize", async () => {
-    console.log("테스트테스트테스트입니다");
-    // initialize 액션을 호출합니다.
-    await viewModel.actions.initialize({ prodId: "123" });
+	test("initialize", async () => {
+		console.log("테스트테스트테스트입니다");
+		// initialize 액션을 호출합니다.
+		await viewModel.actions.initialize({ prodId: "123" });
 
-    // 원하는 동작을 검증하는 코드를 작성합니다.
-    expect(viewModel.status.initialized).toBe(true);
-    expect(viewModel.status.loading).toBe(false);
-    // ...
-  });
+		// 원하는 동작을 검증하는 코드를 작성합니다.
+		expect(viewModel.status.initialized).toBe(true);
+		expect(viewModel.status.loading).toBe(false);
+		// ...
+	});
 
-  test("fetchProduct", async () => {
-    // fetchProduct 액션을 호출합니다.
-    await viewModel.actions.fetchProduct("123");
+	test("fetchProduct", async () => {
+		// fetchProduct 액션을 호출합니다.
+		await viewModel.actions.fetchProduct("123");
 
-    // 원하는 동작을 검증하는 코드를 작성합니다.
-    expect(viewModel.status.errors.length).toBe(0);
-    expect(viewModel.actions.currentSelectedVariant).not.toBeNull();
-    // ...
-  });
+		// 원하는 동작을 검증하는 코드를 작성합니다.
+		expect(viewModel.status.errors.length).toBe(0);
+		expect(viewModel.actions.currentSelectedVariant).not.toBeNull();
+		// ...
+	});
 
-  // 다른 테스트 케이스 작성...
+	// 다른 테스트 케이스 작성...
 });
 ```
 
@@ -412,64 +412,64 @@ import { expect, Page, test } from "@playwright/test";
 
 // describe는 테스트를 묶는 단위
 test.describe("하이퍼커넥트 기술블로그 테스트", () => {
-  let page: Page;
+	let page: Page;
 
-  // beforeAll hook은 최초 딱 한번 실행. initialize 작업 등을 수행
-  test.beforeAll(async ({ browser, contextOptions }) => {
-    const browserContext = await browser.newContext(contextOptions);
-    // 페이지 생성
-    page = await browserContext.newPage();
+	// beforeAll hook은 최초 딱 한번 실행. initialize 작업 등을 수행
+	test.beforeAll(async ({ browser, contextOptions }) => {
+		const browserContext = await browser.newContext(contextOptions);
+		// 페이지 생성
+		page = await browserContext.newPage();
 
-    // 기술블로그 링크로 이동
-    await page.goto("https://hyperconnect.github.io/");
-  });
+		// 기술블로그 링크로 이동
+		await page.goto("https://hyperconnect.github.io/");
+	});
 
-  test("1. document title이 올바르다", async () => {
-    // document.title이 올바른지 확인
-    await expect(page).toHaveTitle(
-      "Hyperconnect Tech Blog | 하이퍼커넥트의 기술블로그입니다."
-    );
-  });
+	test("1. document title이 올바르다", async () => {
+		// document.title이 올바른지 확인
+		await expect(page).toHaveTitle(
+			"Hyperconnect Tech Blog | 하이퍼커넥트의 기술블로그입니다."
+		);
+	});
 
-  test("2. footer의 copyright가 올바르다", async () => {
-    // footer element를 가져옴
-    const copyrightFooter = await page.locator("body > footer > div > div");
+	test("2. footer의 copyright가 올바르다", async () => {
+		// footer element를 가져옴
+		const copyrightFooter = await page.locator("body > footer > div > div");
 
-    // 올바른 copyright를 계산
-    const currentYear = new Date().getFullYear();
-    const validCopyright = `© 2013-${currentYear} Hyperconnect Inc.`;
+		// 올바른 copyright를 계산
+		const currentYear = new Date().getFullYear();
+		const validCopyright = `© 2013-${currentYear} Hyperconnect Inc.`;
 
-    // footer의 text가 올바른 copyright인지 확인
-    await expect(copyrightFooter).toHaveText(validCopyright);
-  });
+		// footer의 text가 올바른 copyright인지 확인
+		await expect(copyrightFooter).toHaveText(validCopyright);
+	});
 
-  test("3. 채용정보 버튼을 누르면, Career 페이지로 이동한다", async () => {
-    // 채용정보(Career) 버튼을 클릭
-    await page.click("body > header > div > nav > div > a:nth-child(3)");
+	test("3. 채용정보 버튼을 누르면, Career 페이지로 이동한다", async () => {
+		// 채용정보(Career) 버튼을 클릭
+		await page.click("body > header > div > nav > div > a:nth-child(3)");
 
-    // 채용 페이지로 이동했는지 확인
-    await expect(page).toHaveURL("https://career.hyperconnect.com/");
+		// 채용 페이지로 이동했는지 확인
+		await expect(page).toHaveURL("https://career.hyperconnect.com/");
 
-    console.log("채용 많은 관심 부탁드립니다 🙏");
-    console.log("Epic CPaaS Web 팀도 채용 중 입니다 🙌");
-    console.log("채용은 여기서: https://career.hyperconnect.com/");
-  });
+		console.log("채용 많은 관심 부탁드립니다 🙏");
+		console.log("Epic CPaaS Web 팀도 채용 중 입니다 🙌");
+		console.log("채용은 여기서: https://career.hyperconnect.com/");
+	});
 
-  // 일부러 추가한 실패하는 케이스
-  test("4. 배경을 100번 클릭하면, dark theme으로 바뀐다", async () => {
-    // 다시 기술블로그 페이지로 이동
-    await page.goBack();
+	// 일부러 추가한 실패하는 케이스
+	test("4. 배경을 100번 클릭하면, dark theme으로 바뀐다", async () => {
+		// 다시 기술블로그 페이지로 이동
+		await page.goBack();
 
-    // 배경을 100번 클릭
-    for (let i = 0; i < 100; i++) {
-      await page.click("body");
-    }
+		// 배경을 100번 클릭
+		for (let i = 0; i < 100; i++) {
+			await page.click("body");
+		}
 
-    const body = page.locator("body");
+		const body = page.locator("body");
 
-    // background가 검정인지 확인 (dark theme 인지 확인)
-    await expect(body).toHaveCSS("background-color", "black");
-  });
+		// background가 검정인지 확인 (dark theme 인지 확인)
+		await expect(body).toHaveCSS("background-color", "black");
+	});
 });
 ```
 

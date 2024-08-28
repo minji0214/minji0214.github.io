@@ -2,7 +2,7 @@
 title: "키보드 애니메이션"
 description: "polymorphic한 ui만들기 대작전"
 pubDate: "07 10 2024"
-heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
 ---
 
 프론트엔드 테스트 방식

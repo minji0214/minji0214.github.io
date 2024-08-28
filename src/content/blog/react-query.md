@@ -2,7 +2,7 @@
 title: "reactQuery 사내 도입하기"
 description: "reactQuery 도입후 6개월..."
 pubDate: "07 11 2024"
-heroImage: "/minglog.github.io/heroImgs/blog-placeholder-1.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
 ---
 
 기존에 우리 회사의 서비스는 클라이언트 상태관리는 mobx로 하고, 서버의 상태는 try catch로 관리하였다.
@@ -80,10 +80,10 @@ isLoading등이 react-query에서 제공하는 변수들을 사용하여, skelet
 
 ```tsx
 function Todos({ todoId }) {
-  const result = useQuery({
-    queryKey: ["todos", todoId],
-    queryFn: () => fetchTodoById(todoId),
-  });
+	const result = useQuery({
+		queryKey: ["todos", todoId],
+		queryFn: () => fetchTodoById(todoId),
+	});
 }
 ```
 
@@ -128,14 +128,14 @@ useState에 data를 할당해주는 구조로 사용할 경우, useState가 초�
 
 ```tsx
 const data = useQuery({
-  queryKey: ["dataItems"],
-  queryFn: () => getDataItems(id),
+	queryKey: ["dataItems"],
+	queryFn: () => getDataItems(id),
 });
 let resultStr = "";
 if (data.data) {
-  data.data.map((item) => {
-    resultStr += item.data_value;
-  });
+	data.data.map((item) => {
+		resultStr += item.data_value;
+	});
 }
 ```
 

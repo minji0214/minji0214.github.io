@@ -2,7 +2,7 @@
 title: "디자인변경에 멋드러지게 대응하기(1): polymorphic한 ui"
 description: "polymorphic한 ui만들기 대작전"
 pubDate: "07 10 2024"
-heroImage: "/minglog.github.io/heroImgs/polymorphicUi.jpg"
+heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
 ---
 
 제품을 만들고, 스프린트를 거듭하다보면,
@@ -162,13 +162,13 @@ filledLink와 filledButton으로 각각의 컴포넌트를 생성하여 사용�
 ```jsx
 //mui의 button 컴포넌트
 <Button
-  variant="outlined"
-  size="small"
-  label={slots.libraryReviewButton.text}
-  endIcon={<ArrowRight1_5px />}
-  href={slots.libraryReviewButton.link} // href를 추가하게 되면, a태그로 변경된다.
-  target="_blank"
-  onClick={handleClickPromotionButton}
+	variant="outlined"
+	size="small"
+	label={slots.libraryReviewButton.text}
+	endIcon={<ArrowRight1_5px />}
+	href={slots.libraryReviewButton.link} // href를 추가하게 되면, a태그로 변경된다.
+	target="_blank"
+	onClick={handleClickPromotionButton}
 />
 ```
 
@@ -176,8 +176,8 @@ filledLink와 filledButton으로 각각의 컴포넌트를 생성하여 사용�
 
 ```jsx
 export const Button = ({ as, ...props }) => {
-  const Element = as || "button";
-  return <Element style={{ backgroundColor: "red" }} {...props} />;
+	const Element = as || "button";
+	return <Element style={{ backgroundColor: "red" }} {...props} />;
 };
 ```
 

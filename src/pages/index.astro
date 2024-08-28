@@ -7,12 +7,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { Image } from 'astro:assets';
 import myImportedImage from '../assets/bg.png';
 import { getCollection } from 'astro:content';
-import ListItem from '../components/astro/listItem.astro';
+import ListItem from '../components/listItem.astro';
 
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+).slice(0, 4);
 ---
 
 <!doctype html>
@@ -23,7 +23,6 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 
 		<main>
-			<BubbleOverlay/>
 			<header>
 				<!-- <h1>🧑‍🚀 민지의 실험실</h1> -->
 			</header>
@@ -32,7 +31,10 @@ const posts = (await getCollection('blog')).sort(
 			<BubbleOverlay />
 		</section>
 		<section class="post-section">
-			<h2 class="post-section__header">Blogs</h2>
+			<h2 class="post-section__header">New Blogs
+			<a href="minglog.github.io/blog">전체보기</a>
+
+			</h2>
 			<ul class="post-section__list">
 				{
 					posts.map((post) => (
@@ -55,10 +57,31 @@ const posts = (await getCollection('blog')).sort(
 			background-color:#fff;
 			padding: 0 80px;
 		}
+		h2 {
+			/* color:; */
+		}
 		section {
 			margin: 0 auto;
 			position:relative;
 			/* max-width: 1200px; */
+			&.main-section {
+				margin-bottom: 4rem;
+			}
+		}
+		ul.post-section__list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			li {
+				width:100%;
+				flex:1;
+				img {
+					aspect-ratio: 384 / 300;
+				}
+			}
 		}
 	
 

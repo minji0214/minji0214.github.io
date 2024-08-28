@@ -2,7 +2,7 @@
 title: "주간회고- 7월 막주"
 description: "배포했는데 컴포넌트가 안보인다...삽질주간"
 pubDate: "07 29 2023"
-heroImage: "/minglog.github.io/heroImgs/review_thumbnail.png"
+heroImage: "/minglog.github.io/heroImgs/thumb_weekly.png"
 ---
 
 ### 마법의 height 0
@@ -95,17 +95,17 @@ https://velog.io/@th_velog/웹뷰-Fixed-가상-키보드-VisualViewport-사용
 
 ```jsx
 useEffect(() => {
-  // 뷰포트 높이를 기반으로 --vh 변수를 설정하는 함수
-  const setElementHeight = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-    window.addEventListener("resize", setElementHeight);
-  };
-  setElementHeight();
+	// 뷰포트 높이를 기반으로 --vh 변수를 설정하는 함수
+	const setElementHeight = () => {
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
+		window.addEventListener("resize", setElementHeight);
+	};
+	setElementHeight();
 
-  return () => {
-    window.removeEventListener("resize", setElementHeight);
-  };
+	return () => {
+		window.removeEventListener("resize", setElementHeight);
+	};
 }, [selectedBookList])`'calc(var(--vh, 1vh) * 100 - 450px)'};`;
 ```
 
