@@ -1,15 +1,14 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
-import Background from '../../components/astro/Background.astro';
 import Footer from '../../components/Footer.astro';
-import {SITE_TITLE, SITE_DESCRIPTION, BASE_URL} from '../../consts';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../../consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import ListItem from '../../components/astro/listItem.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-// const allPosts = await Astro.glob('./posts/*.md');
+
 ---
 
 <!doctype html>
@@ -112,18 +111,7 @@ const posts = (await getCollection('blog')).sort(
 				<ul>
 					{
 						posts.map((post) => (
-							<li>
-								<a href={`${BASE_URL}/blog/${post.slug}/`}>
-									<img width={720} height={720} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="description">
-										{post.data.description}
-									</p>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
+							<ListItem post={post} />
 						))
 					}
 				</ul>
