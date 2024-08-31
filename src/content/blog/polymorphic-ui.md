@@ -45,7 +45,6 @@ const FilledButton = styled(Button)<FillButtonProps>`
 	}
 
 	&${(props) => (props.variant === ButtonVariants.solid ? '.ant-btn-text' : '.unavailable')} {
-		background-color: ${(props) => props.theme.new.colors.sol_indigo_500};
 		color: ${(props) => props.theme.new.colors.white};
 
 		&.active,

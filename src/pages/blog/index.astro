@@ -22,7 +22,7 @@ const posts = (await getCollection('blog')).sort(
 		<main>
 			<!-- <Background/> -->
 			<!--<div calss="sub-header">-->
-			<h1>Blog Posts</h1>
+			<h1>Posts</h1>
 			<!--</div>-->
 			<section class="post-section">
 <article>
@@ -37,7 +37,7 @@ const posts = (await getCollection('blog')).sort(
 			
 		</article>
 			<aside>
-				navigation
+				<span>tags</span>
 			</aside>
 		</section>
 		</main>
@@ -57,6 +57,9 @@ const posts = (await getCollection('blog')).sort(
 			height: 100vh;
 			background-color: #f8f9fa;
 			border-radius: 8px;
+			span {
+				/* color:  */
+			}
 		}
 		article {
 			width: 100%;
@@ -90,7 +93,7 @@ const posts = (await getCollection('blog')).sort(
 					&:hover {
 					
 						h6 {
-							color: #FF6600;
+							color: #3182f6;
 							transition: all 0.3s;
 						}
 						img {
