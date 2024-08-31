@@ -1,15 +1,18 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE, BASE_URL } from '../consts';
-
+import { Image } from 'astro:assets';
+import myImportedImage from '../assets/logImg_gray.svg';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h2><a href="/">
+			<Image src={myImportedImage} alt="logo" />
+		</a></h2>
 		<div class="internal-links">
-			<HeaderLink href=`${BASE_URL}/blog`>Blog</HeaderLink>
-			<HeaderLink href=`${BASE_URL}/about`>About</HeaderLink>
+			<!-- <HeaderLink href=`${BASE_URL}/blog`>Blog</HeaderLink>
+			<HeaderLink href=`${BASE_URL}/about`>About</HeaderLink> -->
 		</div>
 		<div class="social-links">
 			<a href="https://github.com/withastro/astro" target="_blank">
@@ -50,6 +53,10 @@ import { SITE_TITLE, BASE_URL } from '../consts';
 		color: var(--black);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
+		img {
+			width: 110px;
+			height: 60px;
+		}
 	}
 	nav a.active {
 		text-decoration: none;

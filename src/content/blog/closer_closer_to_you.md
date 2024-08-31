@@ -5,8 +5,9 @@ pubDate: "08 31 2024"
 heroImage: "/minglog.github.io/heroImgs/thumb_javascript.png"
 ---
 
-https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8
-위 글을 읽고, 정리하였습니다.
+https://medium.com/dailyjs/i-never-understood-javascript-closures-
+<br/>
+I never understood Javascript closures 라는 글을 읽고, 번역 및 정리하였습니다.
 
 ---
 
