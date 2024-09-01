@@ -1,6 +1,6 @@
 ---
 title: "번역 : I never understood Javascript closures"
-description: "클로저에 대한 글을 읽고, 번역 및 정리하였습니다. 예문을 통해 클로저의 작동방식을 이해합니다."
+description: "클로저에 대한 글을 읽고, 번역 및 정리하였습니다. 예문을 통해 실행컨텍스트의 작동을 이해하고, 클로저에 깊에 알아 갈 수 있게되었습니다."
 pubDate: "08 31 2024"
 heroImage: "/minglog.github.io/heroImgs/thumb_javascript.png"
 ---
