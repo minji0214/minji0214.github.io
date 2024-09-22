@@ -1,0 +1,8 @@
+{
+	"mdsnippet": {
+		"scope": "markdown",
+		"prefix": "tttttttt",
+		"body": ["---", "title:", "description:", "pubDate:", "heroImage:", "---"],
+		"description": "md 보일러 플레이스",
+	},
+}
