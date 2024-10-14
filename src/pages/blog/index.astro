@@ -17,14 +17,10 @@ const posts = (await getCollection('blog')).sort(
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<!--<Header />-->
 		<main>
-			<!-- <Background/> -->
-			<!--<div calss="sub-header">-->
 			<h1>Posts
-				<p>블로그가 현재 공사중이라 다소 어수선합니다. 양해부탁드려요</p>
+				<p>⚠️ 공사중 입니다.</p>
 			</h1>
-			<!--</div>-->
 			<section class="post-section">
 <article>
 		
@@ -37,9 +33,6 @@ const posts = (await getCollection('blog')).sort(
 				</ul>
 			
 		</article>
-			<aside>
-				<span></span>
-			</aside>
 		</section>
 		</main>
 		<Footer />
@@ -64,6 +57,17 @@ const posts = (await getCollection('blog')).sort(
 		}
 		article {
 			width: 100%;
+			/* border-left: 2px solid rgb(92, 99, 112); */
+			position: relative;
+			&::before {
+				content:"";
+				position:absolute;
+				top:1%;
+				height: 99%;
+				border: 1px solid #dadde3;
+				border-radius: 50%;
+	
+			}
 		}
 		h1 {
 			font-family: 'LeferiPoint-BlackObliqueA';
@@ -71,29 +75,34 @@ const posts = (await getCollection('blog')).sort(
 			/* color:#FF6600; */
 			text-align: center;
 			margin-bottom: 24px;
-			height:300px;
+			/* height:300px; */
 			>p {
 				font-size: 1rem;
 			}
 		}
 		ul {
 			all: unset;
-		
-			
-			list-style: none;
-			/* border: 1px solid #e1e4e8; */
-			
-
+		list-style: none;
 			li {
-				/* color:red; */
-				/* border: 1px solid #e1e4e8; */
+				cursor: pointer;
+				position: relative;
 				
 				a {
 					text-decoration: none;
 					display: flex;
 					flex-direction: row-reverse;
 					justify-content: space-between;
-					margin: 24px 12px;
+					/* margin: 12px; */
+					&::before {
+						content:"";
+						width: 12px;
+						height: 12px;
+						top:20px;
+						left: -5px;
+						border-radius: 50%;
+						background-color:#dadde3 ;
+						position: absolute;
+					}
 					&:hover {
 					
 						h6 {
@@ -104,12 +113,18 @@ const posts = (await getCollection('blog')).sort(
 							transform: scale(1.2);
 							transition: all 0.3s;
 						}
+						&::before {
+							background-color:#3182f6 ;
+							transition: all ease-in-out 0.3s;
+
+						}
 					}
 					.contents {
 					display: flex;
 					flex-direction: column;
 					flex: 1;
 					margin:1rem;
+					margin-left: 1.5rem;
 					}
 					h6 {
 						display: inline-block;
