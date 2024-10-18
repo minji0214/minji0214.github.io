@@ -1,6 +1,6 @@
 ---
-title: "Path Variable과 Query Parameter"
-description: "restful api기반으로 Path Variable과 Query Parameter를 어떤 상황에 사용하면 좋을지 비교합니다. "
+title: "올바르게 페이지 설계하기 : Path Variable과 Query Parameter"
+description: "restful api기반으로 Path Variable과 Query Parameter를 어떤 상황에 사용하면 좋을지 비교하며 알아봅니다. "
 pubDate: "10 15 2024"
 heroImage: "/minglog/heroImgs/query.png"
 ---
