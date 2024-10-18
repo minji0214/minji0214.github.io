@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://minji0214.github.io",
-  base: "minglog.github.io",
-  integrations: [mdx(), sitemap(), react()],
+	site: "https://minji0214.github.io",
+	base: "minglog",
+	integrations: [mdx(), sitemap(), react()],
 });

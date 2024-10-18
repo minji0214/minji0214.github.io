@@ -2,7 +2,7 @@
 title: "주간회고 - 7월 셋째주"
 description: "정말 그 해결이 최선이었을까 "
 pubDate: "07 14 2024"
-heroImage: "/minglog.github.io/heroImgs/thumb_weekly.png
+heroImage: "/minglog/heroImgs/thumb_weekly.png
 "
 ---
 

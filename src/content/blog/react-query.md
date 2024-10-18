@@ -2,7 +2,7 @@
 title: "reactQuery 사내 도입하기"
 description: "reactQuery 도입후 6개월..."
 pubDate: "07 11 2024"
-heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
+heroImage: "/minglog/heroImgs/thumb_react.png"
 ---
 
 기존에 우리 회사의 서비스는 클라이언트 상태관리는 mobx로 하고, 서버의 상태는 try catch로 관리하였다.

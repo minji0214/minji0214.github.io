@@ -4,7 +4,7 @@ on:
   # 'main' 브랜치로 푸시할 때마다 워크플로를 트리거합니다.
   # 다른 브랜치 이름을 사용하시나요? `main`을 브랜치 이름으로 바꾸세요.
   push:
-    branches: [ main ]
+    branches: [main]
   # GitHub의 Actions 탭에서 이 워크플로를 수동으로 실행할 수 있습니다.
   workflow_dispatch:
 
@@ -23,7 +23,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
-          package-manager: pnpm@8.15.4  # 실제 사용 중인 pnpm 버전을 지정합니다.
+          package-manager: pnpm@8.15.4 # 실제 사용 중인 pnpm 버전을 지정합니다.
           # with:
           # path: . # 저장소 내 Astro 프로젝트의 루트 위치입니다. (선택 사항)
           # node-version: 20 # 사이트를 빌드하는 데 사용해야 하는 특정 버전의 Node입니다. 기본값은 20입니다. (선택 사항)
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: 'https://minji0214.github.io/minglog.github.io'
+      url: "https://minji0214.github.io/minglog"
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

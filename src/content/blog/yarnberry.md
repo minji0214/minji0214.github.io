@@ -2,7 +2,7 @@
 title: "yarn berry 맛있는 베리"
 description: "yarn에서 yarn2로 전환기"
 pubDate: "11 10 2023"
-heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
+heroImage: "/minglog/heroImgs/thumb_react.png"
 ---
 
 yarn berry를 이용하여 초기세팅을 하면서 알게된 점들을 정리하였습니다.

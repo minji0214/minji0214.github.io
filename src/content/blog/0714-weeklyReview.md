@@ -2,7 +2,7 @@
 title: "주간회고 - 7월 둘째주"
 description: "검색페이지 테스트코드 작성기"
 pubDate: "07 14 2024"
-heroImage: "/minglog.github.io/heroImgs/thumb_weekly.png"
+heroImage: "/minglog/heroImgs/thumb_weekly.png"
 ---
 
 첫 테스트 코드 작성 후기

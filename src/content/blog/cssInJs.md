@@ -2,7 +2,7 @@
 title: "우리는 CSS-in-JS를 왜 사용하는 걸까"
 description: "리액트를 사용하면서 styled-components를 자연스럽게 사용하게 되었고, 최근에는 emotion을 많이 사용하고 있습니다. 우리가 왜 css대신 CSS-in-JS를 사용하는지 다시한번 돌아보고 정리하려고 합니다. "
 pubDate: "09 23 2024"
-heroImage: "/minglog.github.io/heroImgs/thumb_react.png"
+heroImage: "/minglog/heroImgs/thumb_react.png"
 ---
 
 리액트를 사용하는 프론트엔드 개발자라면 styled components를 많이들 사용할 겁니다. 저또한 리액트와 함께 styled compoents를 사용해왔고, 최근에는 styled components보다 성능이 우수하고, props사용이 간편한 emotion을 많이 사용하고 있습니다.  
