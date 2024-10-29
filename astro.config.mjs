@@ -7,5 +7,11 @@ import react from "@astrojs/react";
 export default defineConfig({
 	site: "https://minji0214.github.io",
 	base: "minglog",
-	integrations: [mdx(), sitemap(), react()],
+	integrations: [
+		mdx(),
+		sitemap({
+			customUrl: (page) => `https://minji0214.github.io/minglog${page}`,
+		}),
+		react(),
+	],
 });
