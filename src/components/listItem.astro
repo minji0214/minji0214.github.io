@@ -1,10 +1,9 @@
 ---
 import  FormattedDate  from './FormattedDate.astro';
-import { BASE_URL } from '../consts';
 const { post } = Astro.props;
 ---
 <li>
-    <a href={`${BASE_URL}/blog/${post.slug}/`}>
+    <a href={`/blog/${post.slug}/`}>
      
         <!-- <div class="img-wrapper">
         <img width={720} height={720} src={post.data.heroImage} alt="" />

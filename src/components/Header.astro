@@ -1,6 +1,6 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE, BASE_URL } from '../consts';
+import { SITE_TITLE} from '../consts';
 import { Image } from 'astro:assets';
 import myImportedImage from '../assets/logImg_gray.svg';
 ---
@@ -11,8 +11,8 @@ import myImportedImage from '../assets/logImg_gray.svg';
 			<Image src={myImportedImage} alt="logo" />
 		</a></h2>
 		<div class="internal-links">
-			<!-- <HeaderLink href=`${BASE_URL}/blog`>Blog</HeaderLink>
-			<HeaderLink href=`${BASE_URL}/about`>About</HeaderLink> -->
+			<!-- <HeaderLink href=`/blog`>Blog</HeaderLink>
+			<HeaderLink href=`/about`>About</HeaderLink> -->
 		</div>
 		<div class="social-links">
 			<a href="https://github.com/withastro/astro" target="_blank">
