@@ -2,7 +2,7 @@
 title: "주간회고- 10월 첫째주"
 description: "리액트에 대해 다시 알아가는 중. "
 pubDate: "10 06 2024"
-heroImage: "/minglog/heroImgs/thumb_weekly.png"
+heroImage: "/heroImgs/thumb_weekly.png"
 ---
 
 요즘 출퇴근 시간을 이용하여 리액트 공식문서를 다시 읽고 있다.

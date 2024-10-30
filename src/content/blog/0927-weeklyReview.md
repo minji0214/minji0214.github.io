@@ -2,7 +2,7 @@
 title: "주간회고- 9월 막주"
 description: "새로운걸 많이 배우게된 한주. 그리고 다짐."
 pubDate: "09 27 2024"
-heroImage: "/minglog/heroImgs/thumb_weekly.png"
+heroImage: "/heroImgs/thumb_weekly.png"
 ---
 
 한동안 주간회고를 하지않았다.

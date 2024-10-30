@@ -2,7 +2,7 @@
 title: "SEO 개선기"
 description: "네이버 검색 최상단에 올리기 프로젝트 "
 pubDate: "11 10 2023"
-heroImage: "/minglog/heroImgs/thumb_react.png"
+heroImage: "/heroImgs/thumb_react.png"
 ---
 
 - 웹접근성

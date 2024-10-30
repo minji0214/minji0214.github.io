@@ -2,7 +2,7 @@
 title: "올바르게 페이지 설계하기 : Path Variable과 Query Parameter"
 description: "restful api기반으로 Path Variable과 Query Parameter를 어떤 상황에 사용하면 좋을지 비교하며 알아봅니다. "
 pubDate: "10 15 2024"
-heroImage: "/minglog/heroImgs/query.png"
+heroImage: "/heroImgs/query.png"
 ---
 
 웹 프론트 개발자라면 path variable과 query parameter중 어떤걸 사용할지 고민해 본 적 있으신가요?
