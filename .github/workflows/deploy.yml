@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: "https://minji0214.github.io/minglog"
+      url: "https://minglog.github.io"
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
