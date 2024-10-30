@@ -9,5 +9,6 @@ export default defineConfig({
 	integrations: [
 		mdx(),
 		react(),
+		sitemap()
 	],
 });
