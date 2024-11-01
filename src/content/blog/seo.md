@@ -1,287 +1,203 @@
 ---
-title: "SEO 개선기"
-description: "네이버 검색 최상단에 올리기 프로젝트 "
-pubDate: "11 10 2023"
-heroImage: "/heroImgs/thumb_react.png"
+title: "블로그 검색엔진 최적화 도전"
+description: "기술블로그가 구글링이 가능하게 검색엔진 최적화를 하는과정을 기록하고, SEO의 개념에 대해 정리하였습니다."
+pubDate: "11 01 2024"
+heroImage: "/heroImgs/thumb_seo.png"
 ---
 
-- 웹접근성
-- 페이지 별로 존재하지 않음. 모든페이지가 쏠북 공통, 상세페이지, 연구소
-- 구글은 웹마스터가 존재.
-- 할수 있는것: 네이버 블로그연결, 사이트맵 제출 , 사이트 로딩 속도(light house 점수), metatag 추가 , 스키마 마크업 작성 , 백링크 작업
--
-- 타깃
-  - 구글
-  - 네이버
-  - 다음
-  - 카카오
+# 1. SEO에 대하여
 
-[](https://validator.w3.org/nu/?doc=https://solvook.com/)
+SEO검색엔진 최적화를 의미합니다.
 
-[웹 접근성 진단 도구](https://velog.io/@layssingcar/웹-접근성-진단-도구)
+**웹페이지를 검색 엔진에서 더 높은 순위로 표시되게 하여 검색 결과를 통한 방문자 수를 증가시키는 기술입니다.**
 
-[가비아 라이브러리](https://library.gabia.com/contents/domain/4359/)
+**검색엔진 최적화는 세 가지의 과정으로 나뉩니다.**
 
-[사이트맵 만들기부터 제출하기: 쉬운 단계별 가이드 | TBWA 데이터랩](https://seo.tbwakorea.com/blog/how-to-create-and-submit-a-sitemap/)
+- 크롤링 : 검색엔진의 크롤러(봇)가 인터넷을 탐색하여 웹사이트의 콘텐츠(텍스트, 이미지)를 찾아내고 기록(인덱싱)합니다. 이 과정에서 크롤러 봇이 사이트를 잘 읽을 수 있도록 하기위해 서버사이드 렌더링과, meta설정이 필요합니다.
+- 인덱싱 : 크롤러가 발견한 콘텐츠를 검색 엔진의 데이터베이스에 저장하는 과정입니다. 이 데이터는 검색 쿼리가 발생했을 때 검색 결과로 나타날 수 있습니다.
+- 랭킹 : 사용자의 검색 쿼리에 가장 관련성이 높은 웹 페이지를 결정하고 순위를 매겨 검색 결과 페이지에 표시합니다. 이 과정에서 다양한 알고리즘과 기준이 적용됩니다.
 
-seo에 필요한 기반작업은 모두 되어있음.
+다음은 SEO에 중요한 요소들 입니다.
 
-더 검색어에 잘 걸리기 위한 마케팅 적인 요소가 필요함.
+### 1. 키워드
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/7a2a8644-c7ce-44f1-ba55-4558c79043fb/Untitled.png)
+- **키워드 연구**: 특정 키워드에 대한 사용자의 검색 빈도와 경쟁 정도를 파악하고, 해당 키워드를 적절하게 웹 페이지에 배치하는 것이 중요합니다.
+- **키워드 최적화**: 제목, 메타 태그, 내용의 키워드 배치가 자연스럽고, 검색 쿼리와 일치하게 조정합니다.
 
-순위를 높이기 위한 테스크
+### 2. 콘텐츠 품질
 
-[](https://pagewriter.kr/content_blog/구글-순위-높은-랭크를-차지하려면-어떻게-해야-할까/)
+- **유용성**: 콘텐츠는 명확하고, 정보적이며, 사용자의 질문에 답을 제공해야 합니다.
+- **독창성**: 고유하고 원본인 콘텐츠가 더 높은 평가를 받을 수 있습니다.
 
-구글 서치콘솔을 통한 확인 필요
+### 3. 사용자 경험(UX)
 
-ga를 심어야함.
+- **사이트 속도**: 빠르게 로딩되는 페이지가 사용자 경험을 개선하고 SEO에 긍정적인 영향을 미칩니다.
+- **모바일 친화성**: 모바일 기기에서도 웹사이트가 잘 작동해야 합니다.
 
-[](https://search.google.com/search-console/welcome?hl=ko)
+### 4. 백링크
 
-a to z
+- **품질**: 다른 관련성 높고 권위 있는 사이트로부터의 링크는 웹사이트의 신뢰도와 순위를 높이는 데 매우 중요합니다.
 
-[SEO 개선 초심자 가이드 | 카카오엔터테인먼트 FE 기술블로그](https://fe-developers.kakaoent.com/2022/221208-basic-seo-guide/)
+### 5. 기술적 SEO
 
-상품상세
+- **메타 태그 최적화**: 각 페이지의 메타 태그(제목, 설명)를 적절히 작성하여 클릭률을 높입니다.
+- **구조적 데이터**: JSON-LD와 같은 스키마 마크업을 사용하여 검색 엔진이 콘텐츠를 쉽게 파악할 수 있도록 합니다.
 
-- `<meta name="author" content="Dale Seo" />` 추가할 필요 있음
+꽤나 많은 부분들이 고려되어야 합니다.
+![짤](../../contentsImgs/107226.jpeg)
 
-* keywords `<meta name="keywords" content="HTML, CSS, JavaScript" />`추가할 필요 있음
+이제 검색엔진 최적화를 위해 필요한 요소들을 알아보았으니 직접 이 요소들을 만들어 나가보도록 하겠습니다.
 
-```jsx
- <Head>
-				<title key="title">{product?.title} - 쏠북</title>  //타이틀
-				<meta name="description" content={product?.description} /> //선생님들이 작성한 description
-
-				<meta key="og:title" property="og:title" content={`${product?.title} - 쏠북`} />
-				<meta
-					key="og:description"
-					property="og:description"
-					content={product?.description}
-				/>
-				<meta key="og:image" property="og:image" content={product?.thumb_img} />
-				<meta
-					key="og:url"
-					property="og:url"
-					content={`https://solvook.com/products/${product.id}`}
-				/>
-			</Head
-```
-
-연구소
-
-```jsx
-description: "모든 출제유형에 최적화된 서술형 완벽대비 문제 제작";
-keyword: "중간고사, 기말고사, 내신, 문제은행, 기출변형, 변형문제, 부교재, 고1영어문제집, 고2영어문제집, 부교재나라, 부스터구문독해, 부스터유형독해, 얇빠 변형문제, 얇빠, 빠바, 빠른독해바른독해, 빠바기초세우기, 빠바독해, 빠바구문독해, 빠바유형독해, 빠른독해바른독해구문독해, 빠른독해바른독해유형독해 , 빠른독해바른독해기초세우기,빠른독해바른독해종합실전편, 빠바종합실전편, 다빈출코드, 리딩잇, 맞수구문독해실전편, 능률기본영어, 더상승, THE상승, 더상승직독직해, 수능만만, 수능만만기본, 수능만만기본문법, 리딩부스터";
-title: "부교재나라 내신 전문 연구소, 최다유형 최대문항 최적자료. 저작권 걱정 없는 디지털교재 플랫폼 쏠북\r";
-```
-
-—> `최다유형 최대문항 최적자료. 저작권 걱정 없는 디지털교재 플랫폼 쏠북`
-
-마케팅에 도움되는 키워드는 아닌듯함.
-
-- title : 제목 + 키워드
-- description : 문장 형식으로 작성하되 주요 키워드를 포함한 형식이 좋습니다.
-
-조직정보 스키마.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/e9ba4072-cac4-4743-a599-c1116a37f5a1/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/1cee04c2-1851-4c95-8d7c-1cb67bfdf2e8/Untitled.png)
-
-결론 : 영양제 먹으면 몸 좋아지는 그런느낌이랄까
-
-[네이버SEO 와 구글SEO의 차이점](https://xodud2972.tistory.com/159)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/bf1ba8e3-9223-47a8-b267-76bb6f95d951/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/79dd28b1-0324-4808-bf99-e7f3f03f82ba/Untitled.png)
-
-[네이버 SEO를 위한 웹마스터도구, 애널리틱스](https://brunch.co.kr/@mobiinside/1664)
-
-프로모션의 클릭율로인해 promotion 링크가 추가된듯함.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/f5492bca-28c9-4d27-94d0-f64e2ad0517a/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/fcb792f3-e6a6-4b7a-aaa6-05e1a94b352d/Untitled.png)
-
-1차이벤트
-
-디폴트
-
-```jsx
-title : 쏠북 | 저작권 걱정 없는 디지털 교재 플랫폼
-description : 좋은 교재, 더 잘 쓰이게 - 저작권 라이선싱에서 디지털 퍼블리싱까지!
-keywords: 라이센스, 저작권, 교재, 이용권, 수업, 콘텐츠
-```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/761018c1-5adf-4597-8a45-55c73660d42d/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/8aea6064-7c80-4be6-a1b3-3d015d62d9a2/Untitled.png)
-
-네이버는 어쩌면 블로그가 더 중요할지도.
-
-다시 돌아와서 핵심
-
-어떻게 하면 우리 교재들이 최상위에 걸리게 할 수 있을까 .
-
-1. 상품상세페이지 성능개선 (국어 개편때 가능 - 라이트 하우스 점수)
-2. 키워드 추가 , description과 title 수정
-3.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/852f1d16-6362-4f88-aa1b-beff65b1a475/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/1e76f5a1-a53b-4872-a5fd-a3c145989000/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/fe44ebb4-8012-4bd0-b5f6-010e50a4dcf9/Untitled.png)
-
-교재에 특정 키워드들을 decription title, author에 잘 배치해야 할것 같다.
-
-robots.tsx
-
-### 현 상태
-
-- seo에 필요한 작업들은 되어있음.
-
-![네이버 [서치어드바이저-solvook.com](http://서치어드바이저-solvook.com)조회결과](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/7a2a8644-c7ce-44f1-ba55-4558c79043fb/Untitled.png)
-
-네이버 [서치어드바이저-solvook.com](http://서치어드바이저-solvook.com)조회결과
-
-- 해당 계정으로 조회필요
-  - 다음 검색등록https://register.search.daum.net/index.daum
-  - 구글 서치콘솔 (배포 혹은 ga를 통해 코드를 심고, 트래킹이 가능함. )
-  - 네이버 서치어드바이저
-- 현재 작업되어 있는 키워드 (실제 검색에 도움되는 키워드 들이 아닌듯함. )
-  - 디폴트
-    ```jsx
-    title : 쏠북 | 저작권 걱정 없는 디지털 교재 플랫폼
-    description : 좋은 교재, 더 잘 쓰이게 - 저작권 라이선싱에서 디지털 퍼블리싱까지!
-    keywords: 라이센스, 저작권, 교재, 이용권, 수업, 콘텐츠
-    ```
-  - 상픔상세
-  ```jsx
-  title: {상품명} - 쏠북
-  description: {선생님들이 작성한 description}
-  ```
-  - 연구소
-  ```jsx
-  title: "부교재나라 내신 전문 연구소, 최다유형 최대문항 최적자료. 저작권 걱정 없는 디지털교재 플랫폼 쏠북\r";
-  description: "모든 출제유형 최적화 서술형 완벽대비 문제 제작";
-  keyword: "중간고사, 기말고사, 내신, 문제은행, 기출변형, 변형문제, 부교재, 고1영어문제집, 고2영어문제집, 부교재나라, 부스터구문독해, 부스터유형독해, 얇빠 변형문제, 얇빠, 빠바, 빠른독해바른독해, 빠바기초세우기, 빠바독해, 빠바구문독해, 빠바유형독해, 빠른독해바른독해구문독해, 빠른독해바른독해유형독해 , 빠른독해바른독해기초세우기,빠른독해바른독해종합실전편, 빠바종합실전편, 다빈출코드, 리딩잇, 맞수구문독해실전편, 능률기본영어, 더상승, THE상승, 더상승직독직해, 수능만만, 수능만만기본, 수능만만기본문법, 리딩부스터";
-  ```
-
-### 보완 필요한 부분
-
-- 쏠북 블로그 연결
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/79dd28b1-0324-4808-bf99-e7f3f03f82ba/Untitled.png)
-
-- 사이트맵 제출 : 사이트 링크를 정리해줄것.
-- 사이트 로딩 속도(light house 점수) : 사이트 로딩 속도가 검색어 상위 노출에 영향을 미침.
-- metatag 추가 및 키워드 작업
-  - title과 description 개선 필요 + author 추가 필요
-  - keywords meta tag는 잘 사용되지 않는다고 함.
-  -
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/852f1d16-6362-4f88-aa1b-beff65b1a475/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/1e76f5a1-a53b-4872-a5fd-a3c145989000/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/fe44ebb4-8012-4bd0-b5f6-010e50a4dcf9/Untitled.png)
-
-- 조직정보 스키마 마크업 작성 및 robots.tsx 수정
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/1cee04c2-1851-4c95-8d7c-1cb67bfdf2e8/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/e9ba4072-cac4-4743-a599-c1116a37f5a1/Untitled.png)
-
-크롤링 필요없는 사이트들 제거 필요 (예 : 로그인 페이지)
-
-```jsx
-User-agent: *
-Allow: /
-```
-
-- 백링크 작업 : 사이트가 상단에 올라갈 가능성이 높아짐.
-  - 쏠북 블로그 혹은 다른 사이트들에 많이 노출될 수록 좋다.
-- 네이버 검색어 상단에는 대부분 광고, 블로그, 카페가 있기 때문에, 어쩌면 쏠북 블로그를 활성화 시키는게 답일지도………
-- alt 태그 시맨틱한 키워드 사용필요
-  이벤트가 클릭율이 높아서 올라간듯함.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/bf1ba8e3-9223-47a8-b267-76bb6f95d951/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/fcb792f3-e6a6-4b7a-aaa6-05e1a94b352d/Untitled.png)
-
-다시 돌아와서 핵심
-
-어떻게 하면 교재들이 검색시 상위에 걸리게 할 수 있을까 .
-
-1. 상품상세페이지 성능개선 (국어 개편때 가능 - 라이트 하우스 점수)
-2. 교재들의 description과 title 수정 : tags값으로 description을 변경
+저는 astro라는 프레임 워크를 기반으로 블로그를 만들었기 때문에 astro docs를 참고하여 적용하였습니다.
 
 ---
 
-til
+# 2. 나의 사이트를 크롤러가 잘 읽을 수 있도록 만들기
 
-react.fc
+우리는 클롤러 봇이 코등상에서 우리 사이트의 구조를 잘 파악하고, 어떤 사이트인지 알 수 있도록 해야합니다.
 
-지양하라.
+- robot.txt 파일 : 이 파일은 검색 엔진 크롤러에게 웹사이트의 어느 부분을 크롤링하거나 크롤링하지 말아야 하는지 알려줍니다. 검색엔진에 노출되지 않아야 할 페이지가 있다면 robot.txt파일에서 설정해 줄 수 있습니다.
 
-다양한 이유들이 있는데 그중에는
+  저는 모든 사이트의 크롤링을 허용하기 때문에 아래와 같이 설정하였습니다. 구문에 대한 자세한 설명은 https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt?hl=ko 여기서 확인할 수 있습니다.
 
-props에 children이 들어가 있다.
+  ```jsx
+  # 모든 봇이 사이트를 스캔하고 색인을 생성하도록 허용.
+  # 전체 구문: https://developers.google.com/search/docs/advanced/robots/create-robots-txt
+  User-agent: *
+  Allow: /
+  ```
 
-코드가 길어진다.
+- 메타 태그 최적화 : 페이지의 제목, 설명, 키워드 등을 명확하고 효과적으로 설정하여 검색 결과에서 사용자와 크롤러의 이해를 돕습니다.
+  저는 아래와 같이 head에 meta tag를 설정하였습니다. meta tag는 property와 name에 따라 각각의 역할이 다릅니다.
 
-default props의 사용 등이 있다.
+  ```jsx
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
 
-react의 렌더링
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.url)} />
 
-[리액트의 렌더링은 어떻게 일어나는가?](https://yceffort.kr/2022/04/deep-dive-in-react-rendering)
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-호출 스케줄링
+  ```
 
-https://ko.javascript.info/settimeout-setinterval
+  ### **`name` 속성**
 
-새로 알게된 사실
+  **`name`** 속성은 페이지에 관한 정보를 검색 엔진이나 브라우저에 제공할 때 사용됩니다. 이는 주로 문서 레벨의 메타데이터에 사용되며, 검색 엔진 최적화(SEO)에 직접적인 영향을 미칩니다. 주로 다음과 같은 정보를 포함합니다:
 
-padstart
+  - **description**: 페이지의 간단한 설명을 제공하며, 검색 결과에서 설명 텍스트로 사용될 수 있습니다.
+  - **keywords**: 페이지와 관련된 키워드를 쉼표로 구분하여 나열합니다. 과거에는 SEO에서 중요한 요소였지만, 현재는 검색 알고리즘이 훨씬 복잡해지면서 그 중요성이 감소했습니다.
+  - **robots**: 검색 엔진 크롤러가 페이지를 인덱싱하거나 링크를 따르는 것을 제어합니다 (예: **`noindex`**, **`nofollow`**).
 
-setinterval
+  ### **`property` 속성**
 
-*const formatTime = (*time*: number): string => {*
+  **`property`** 속성은 주로 Open Graph 프로토콜을 사용하여 페이지의 정보를 소셜 미디어 등의 플랫폼에서 어떻게 보여질지 제어하기 위해 사용됩니다. 이는 소셜 미디어 카드에 사용되는 정보를 정의하는 데 특히 유용합니다. 주로 다음과 같은 정보를 포함합니다:
 
-타입지정
+  - **og:title**: 콘텐츠의 제목을 지정합니다. 소셜 미디어 공유 시 사용되는 제목입니다.
+  - **og:description**: 콘텐츠의 간략한 설명을 제공합니다. 소셜 미디어에서 공유될 때 사용됩니다.
+  - **og:image**: 콘텐츠를 대표하는 이미지의 URL을 지정합니다. 소셜 미디어에서 콘텐츠를 공유할 때 표시되는 이미지입니다.
+  - **og:url**: 콘텐츠의 원본 URL을 지정합니다. 공유될 때 사용되는 주소입니다.
+  - **og:type**: 페이지 유형(e.g., website, article)을 지정합니다.
+    이러한 메타 태그들은 웹 페이지가 소셜 미디어나 검색 엔진에서 어떻게 표현되고 인식될지를 크게 좌우할 수 있으므로, 적절한 **`name`**과 **`property`**값을 사용하여 웹 페이지의 메타 데이터를 효과적으로 관리하는 것이 중요합니다. 이는 사용자의 클릭률을 향상시키고, 페이지의 접근성과 온라인 가시성을 높일 수 있는 방법입니다.
 
-실제로 사용하는 setinterval
+- **사이트맵 제출 : 사이트의 구조를 XML 파일 형식으로 만들어 구글 서치콘솔 등의 도구를 통해 제출합니다. 사이트맵은 크롤러가 웹사이트의 모든 페이지를 발견하고 인덱싱할 수 있게 도와줍니다.**
+  astro의 경우 사이트 맵 설정을 하면 사이트맵을 아래와 같이 자동으로 생성해줍니다.
+  사이트맵 생성시 아래와 같이 페이지들을 정리해줍니다.
+  ![image.png](../../contentsImgs/seo5.png)
+  사이트맵 관련 문법은 https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?sjid=9950318752227535834-AP&hl=ko#xml
+  구글 서치콘솔에서 확인하실 수 있습니다.
+- 성능개선 : SEO최적화를 위해서는 사이트의 성능도 중요합니다. 성능을 측정하는 도구로는 chrome의 라이트 하우스를 사용하여 성능 측정을 하였습니다.
+
+![image.png](../../contentsImgs/seo1.png)
+아직 컨텐츠 들이 많지 않아 쉽게 접수를 채울 수 있었습니다.
+
+---
+
+크롤러 봇이 크롤링 하는주기는 1주일 정도 소요됩니다. 위 작업을 한뒤 며칠정도 기다리는 시간이 필요합니다.
+
+# 3. 나의 컨텐츠가 검색시 최상위에 올 수 있도록 만들기
+
+![image.png](../../contentsImgs/seo2.png)
+
+![image.png](../../contentsImgs/seo3.png)
+
+테크니컬 SEO 작업을 한 덕분에 검색시 나의 게시글이 구글에 뜰 수 있게 되었습니다.
+
+타이틀을 검색했을때는 비교적 상위에 검색되었지만 키워드로 검색시에는 찾기가 어렵습니다.
+
+이부분을 좀더 개선시켜 보겠습니다.
+
+1. 키워드 : 블로그의 내용을 가장 잘 나타내는 키워드가 메타태그에 드러나야 합니다. 특히 저는 회사 프로젝트에서 이부분을 개선했을때 검색의 최상단에 올라오는데 큰영향을 미쳤습니다.
 
 ```jsx
-useEffect(() => {
-	if (direction !== "stable" && isScrollAllowed) {
-		scrollTimer.current = setInterval(() => {
-			ref.current?.scrollBy(0, scrollSpeed * (direction === "top" ? -1 : 1));
-		}, 1);
-	}
-	return () => {
-		if (scrollTimer.current) {
-			clearInterval(scrollTimer.current);
-		}
-	};
-}, [isScrollAllowed, direction, ref, scrollSpeed]);
+<title>Astro 블로그 - 최신 기술 뉴스와 트렌드</title>
+<meta name="description" content="최신 기술 블로그 Astro에서 트렌드와 팁을 알아보세요. 프론트엔드 개발, RPA, 자동화와 관련된 유용한 정보를 제공합니다." />
 ```
 
-[[TypeScript] 타입스크립트 Utility types (2) - Partial, Required, Record](https://chanhuiseok.github.io/posts/ts-4/)
+1. 백링크 설정 : 블로그가 신뢰있는 사이트임을 알려주기 위해 여러 사이트에 저의 블로그 링크를 연결해 두었습니다.
 
-되도록 이면 타입을 만들지 말고, 재사용해보는 방법을 생각해보자. 예를 들면 partial
+2. 제목에 맞는 좋은 컨텐츠 만들기 : 사실이 이부분은 블로그의 본질이라고 생각합니다. 제목을 보고 들어온 유저가 컨텐츠를 읽고 실망하지 않기 위해 깊이있는 컨텐츠를 작성해야 합니다.
 
-```jsx
-Partial<Type>
+3. 본문 내 키워드 최적화
+
+### 본문 내 키워드 배치 방법
+
+1. **첫 번째 문단**: 페이지나 게시글의 첫 번째 문단에 가장 중요한 키워드를 포함하면, 검색엔진이 페이지 주제를 빠르게 파악하는 데 도움이 됩니다.
+
+   ```html
+   <p>
+   	최신 기술 트렌드와 개발 팁을 공유하는 Astro 블로그에서 프론트엔드 개발과
+   	자동화에 대해 알아보세요.
+   </p>
+   ```
+
+2. **헤딩 태그(h1, h2, h3 등)**: 각 헤딩에 키워드를 적절히 포함하면, 검색엔진이 페이지의 구조를 이해하고 주제별로 어떤 내용을 다루는지 파악하기 쉬워집니다.
+
+   ```html
+   <h2>프론트엔드 개발과 RPA의 최신 트렌드</h2>
+   ```
+
+3. **관련 키워드 추가**: 키워드를 반복적으로 사용하기보다는, **관련된 키워드**나 **동의어**를 사용해 다양한 검색어에 노출될 수 있도록 합니다. 예를 들어 "프론트엔드 개발", "웹 개발 팁", "자동화 시스템" 등과 같은 관련 용어를 본문에 배치하면 좋습니다.
+
+### 3. 이미지 Alt 태그에 키워드 포함
+
+이미지에 **Alt 속성**을 활용해 키워드를 포함하면, 이미지 검색 결과에도 노출될 수 있습니다.
+
+```html
+html 코드 복사
+<img src="frontend-trends.jpg" alt="프론트엔드 개발 트렌드와 자동화 기술" />
 ```
 
-값을 저장할 때 모든 프로퍼티를 받았는지는 `Required`를 활용하면 손쉽게 검증 가능할 것입니다
+### 4. 링크 텍스트 최적화
 
-```jsx
-Required<Type>
+다른 글이나 관련 페이지로 연결하는 **내부 링크**와 링크 텍스트에 키워드를 활용하여, 검색엔진이 각 페이지의 주제를 이해하는 데 도움이 되도록 합니다.
+
+```html
+<a href="/latest-frontend-trends">최신 프론트엔드 트렌드</a>
 ```
+
+---
+
+# 보완하기
+
+- 모든 작업이 완료되면 구글 서치콘솔에 사이트를 등록하여, 경과를 확인할 수 있습니다. 저는 이제막 작업을 하여 실적이 있지 않지만 앞으로 실적이 증가하길 기대하며 블로그를 운영하겠습니다.
+
+![image.png](../../contentsImgs/seo4.png)
+
+---
+
+참고사이트
+
+https://developers.google.com/search/blog/2022/11/shopping-tab-with-search-console?hl=ko
