@@ -1,14 +1,13 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import {SITE_TITLE, SITE_DESCRIPTION} from '../../consts';
-import { getCollection } from 'astro:content';
-import ListItem from '../../components/listItem.astro';
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import ListItem from "../../components/listItem.astro";
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-
 ---
 
 <!doctype html>
@@ -18,33 +17,24 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<main>
-			<h1>Posts
-				<p>⚠️ 공사중 입니다.</p>
-			</h1>
+			<h1>Wiki</h1>
 			<section class="post-section">
-<article>
-		
-				<ul>
-					{
-						posts.map((post) => (
-							<ListItem post={post} />
-						))
-					}
-				</ul>
-			
-		</article>
-		</section>
+				<article>
+					<ul>
+						{posts.map((post) => <ListItem post={post} />)}
+					</ul>
+				</article>
+			</section>
 		</main>
 		<Footer />
-	</body>
-	<style>
+	</body><style>
 		main {
 			width: 960px;
 		}
 		section {
 			display: flex;
 			width: 100%;
-			gap : 24px;
+			gap: 24px;
 		}
 		aside {
 			width: 200px;
@@ -60,33 +50,32 @@ const posts = (await getCollection('blog')).sort(
 			/* border-left: 2px solid rgb(92, 99, 112); */
 			position: relative;
 			&::before {
-				content:"";
-				position:absolute;
-				top:1%;
+				content: "";
+				position: absolute;
+				top: 1%;
 				height: 99%;
 				border: 1px solid #dadde3;
 				border-radius: 50%;
-	
 			}
 		}
 		h1 {
-			font-family: 'LeferiPoint-BlackObliqueA';
+			font-family: "LeferiPoint-BlackObliqueA";
 			font-weight: 600;
 			/* color:#FF6600; */
 			text-align: center;
 			margin-bottom: 24px;
 			/* height:300px; */
-			>p {
+			> p {
 				font-size: 1rem;
 			}
 		}
 		ul {
 			all: unset;
-		list-style: none;
+			list-style: none;
 			li {
 				cursor: pointer;
 				position: relative;
-				
+
 				a {
 					text-decoration: none;
 					display: flex;
@@ -94,17 +83,16 @@ const posts = (await getCollection('blog')).sort(
 					justify-content: space-between;
 					/* margin: 12px; */
 					&::before {
-						content:"";
+						content: "";
 						width: 12px;
 						height: 12px;
-						top:20px;
+						top: 20px;
 						left: -5px;
 						border-radius: 50%;
-						background-color:#dadde3 ;
+						background-color: #dadde3;
 						position: absolute;
 					}
 					&:hover {
-					
 						h6 {
 							color: #3182f6;
 							transition: all 0.3s;
@@ -114,42 +102,39 @@ const posts = (await getCollection('blog')).sort(
 							transition: all 0.3s;
 						}
 						&::before {
-							background-color:#3182f6 ;
+							background-color: #3182f6;
 							transition: all ease-in-out 0.3s;
-
 						}
 					}
 					.contents {
-					display: flex;
-					flex-direction: column;
-					flex: 1;
-					margin:1rem;
-					margin-left: 1.5rem;
+						display: flex;
+						flex-direction: column;
+						flex: 1;
+						margin: 1rem;
+						margin-left: 1.5rem;
 					}
 					h6 {
 						display: inline-block;
 						color: rgb(25, 31, 40);
-					font-size: 20px;
-					text-decoration: unset;
-    margin-top: 0;
-    margin-bottom: 6px;
-    overflow: hidden;
-    font-weight: 700;
-    color: #191f28;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+						font-size: 20px;
+						text-decoration: unset;
+						margin-top: 0;
+						margin-bottom: 6px;
+						overflow: hidden;
+						font-weight: 700;
+						color: #191f28;
+						text-overflow: ellipsis;
+						word-break: keep-all;
+						overflow-wrap: break-word;
 					}
 					p {
 						color: rgb(92, 99, 112);
 						display: block;
-    margin: 0;
-    color: #4e5968;
-    margin-bottom: 17px;
-	font-size: 15px;
-	line-height: 1.5;
-
-
+						margin: 0;
+						color: #4e5968;
+						margin-bottom: 17px;
+						font-size: 15px;
+						line-height: 1.5;
 					}
 				}
 				.img-wrapper {
@@ -162,16 +147,14 @@ const posts = (await getCollection('blog')).sort(
 						height: 100%;
 						object-fit: cover;
 						border-radius: 8px;
-					
 					}
 				}
 			}
 			.date {
 				color: #4e5968;
-    display: inline-block;
-	font-size: 13px;
+				display: inline-block;
+				font-size: 13px;
 			}
 		}
-	
 	</style>
 </html>
