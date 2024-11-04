@@ -1,7 +1,7 @@
 ---
-title: "접근성을 고려한 탭컴포넌트 만들기(feat. React)
+title: "접근성을 고려한 탭컴포넌트 만들기(feat. React)"
 description: "웹 접근성을 공부하면서  리액트에서 탭컴포넌트를 만들어보는 과정을 기록하였습니다"
-pubDate: "11 02 2024"
+pubDate:  "11 04 2024"
 heroImage: "/heroImgs/thumb_accessibility.png"
 ---
 
@@ -93,7 +93,7 @@ JSX에서는 모든 `aria-*` HTML 어트리뷰트를 지원하고 있습니다
     3. Tab 패널: 각각의 tab 하위 콘텐츠를 가리킵니다. 사용자가 tab 중 하나를 선택할 때마다 관련된 tab 패널은 변경되며 처음 페이지 로딩 시 tab 요소 중 하나는 항상 선택된 상태이므로 하나의 tab 패널 역시 표시된 상태가 됩니다.
     
     ```jsx
-    //탭
+    <!-- 탭 -->
               <ul role='tablist'>
               <li>
     						<input
@@ -108,7 +108,7 @@ JSX에서는 모든 `aria-*` HTML 어트리뷰트를 지원하고 있습니다
     						</label>
     					</li>
     					
-    //탭 패널
+    <!-- 탭 패널 -->
     					<div
     				className="tab-content"
     				id="tabpanel-1"
@@ -182,7 +182,7 @@ import("@axe-core/react").then(
 );
 ```
 
-![image.png](../../contentsImgs/accessibility2png)
+![image.png](../../contentsImgs/accessibility2.png)
 
 - lint : 린트설정을 통해 개발단계에서 보완해나갈 수 있습니다.
 
@@ -196,7 +196,7 @@ https://github.com/infofarmer/eslint-plugin-jsx-a11y
 
 ---
 
-*<도움을 받은 자료들>*
+도움을 받은 자료들
 
 https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
 
