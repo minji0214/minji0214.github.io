@@ -130,8 +130,7 @@ html에서 for은 react에서 htmlfor로 사용해야 합니다.
 
 # 키보드로 포커스 컨트롤하기
 
-![화면-기록-2024-11-05-오전-1.02.55_1.gif](../../contentsImgs/accessibility1.gif)
-
+![화면-기록-2024-11-05-오전-1 02 55_1](https://github.com/user-attachments/assets/ce4d7b77-974c-4f8c-8bec-e3ea1faa3615)
 마우스 없이 키보드 만으로도 탭에 접근이 자유로워야 합니다. 
 
 앞서 aria- 설정을 통해 방향키로 탭 이동이 가능해지고, 탭키를 통해 패널로 이동이 가능해졌습니다. 
