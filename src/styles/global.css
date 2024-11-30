@@ -75,7 +75,7 @@ svg:hover #dark2 {
 	font-style: normal;
 	font-display: swap;
 }
-body {
+/* body {
 	font-family: "Atkinson", sans-serif;
 	margin: 0;
 	padding: 0;
@@ -87,7 +87,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
-}
+} */
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
@@ -104,7 +104,7 @@ h6 {
 	color: rgb(var(--black));
 	line-height: 1.2;
 }
-h1 {
+/* h1 {
 	font-size: 2.052em;
 }
 h2 {
@@ -122,8 +122,8 @@ h5 {
 strong,
 b {
 	font-weight: 700;
-}
-a {
+} */
+/* a {
 	color: var(--accent);
 }
 a:hover {
@@ -144,25 +144,25 @@ input {
 }
 table {
 	width: 100%;
-}
+} */
 img {
 	max-width: 100%;
 	height: auto;
 	border-radius: 8px;
 }
-code {
+/* code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
-}
-pre {
+} */
+/* pre {
 	padding: 1.5em;
 	border-radius: 8px;
 }
 pre > code {
 	all: unset;
-}
-blockquote {
+} */
+/* blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
@@ -171,7 +171,7 @@ blockquote {
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
-}
+} */
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;
@@ -198,3 +198,148 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+/* General Typography */
+body {
+	font-family: 'Inter', 'Arial', sans-serif; /* Notion uses Inter */
+	line-height: 1.8;
+	font-size: 16px;
+	color: #333; /* Soft dark gray for readability */
+	margin: 0;
+	padding: 0;
+	background-color: #fafafa; /* Light background for a clean look */
+  }
+  
+  article {
+	max-width: 800px;
+	margin: 2rem auto;
+	padding: 0 1rem;
+	background-color: #ffffff; /* White background for content area */
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Headings */
+  article h1,
+  article h2,
+  article h3,
+  article h4 {
+	font-weight: 600;
+	color: #222; /* Slightly darker for headers */
+	line-height: 1.4;
+  }
+  
+  article h1 {
+	font-size: 2.5rem;
+	margin-bottom: 1.2rem;
+  }
+  
+  article h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+  }
+  
+  article h3 {
+	font-size: 1.5rem;
+	margin-bottom: 0.8rem;
+  }
+  
+  article h4 {
+	font-size: 1.2rem;
+	margin-bottom: 0.6rem;
+  }
+  
+  /* Paragraphs */
+  article p {
+	margin: 1rem 0;
+	text-align: justify; /* Notion has justified text */
+	hyphens: auto; /* Enable word breaking for better justification */
+  }
+  
+  /* Links */
+  article a {
+	color: #3b82f6; /* Notion uses a clean blue for links */
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition: border-bottom 0.2s ease, color 0.2s ease;
+  }
+  
+  article a:hover {
+	/* border-bottom: 1px solid #3b82f6; */
+	color: #2a6bb8;
+  }
+  
+  /* Lists */
+  article ul {
+	margin: 1rem 0;
+	padding-left: 2rem;
+	list-style: disc; /* Notion-style bullet points */
+  }
+  
+  article ol {
+	margin: 1rem 0;
+	padding-left: 2rem;
+	list-style: decimal; /* Ordered list */
+  }
+  
+  article ul li,
+  article ol li {
+	margin-bottom: 0.5rem;
+  }
+  
+  /* Blockquotes */
+  article blockquote {
+	margin: 1.5rem 0;
+	padding-left: 1.5rem;
+	border-left: 4px solid #d1d5db; /* Light gray bar */
+	color: #555; /* Softer text color */
+	font-style: italic;
+	background-color: #f9f9f9; /* Light gray background for emphasis */
+  }
+  
+  /* Code Blocks */
+  article pre {
+	background-color: #f4f4f4; /* Light background for code */
+	padding: 1rem;
+	border-radius: 6px;
+	overflow-x: auto;
+	font-family: 'Fira Code', 'Courier New', monospace;
+	font-size: 0.9rem;
+  }
+  
+  article code {
+	padding: 0.2rem 0.4rem;
+	border-radius: 4px;
+	font-family: 'Fira Code', 'Courier New', monospace;
+	font-size: 0.9rem;
+	color: #d6336c; /* Subtle color for code text */
+  }
+  
+  /* Tables */
+  article table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1rem 0;
+	font-size: 0.9rem;
+  }
+  
+  article table th,
+  article table td {
+	padding: 0.8rem;
+	border: 1px solid #e5e7eb; /* Light border */
+	text-align: left;
+  }
+  
+  article table th {
+	background-color: #f3f4f6; /* Slight background for header */
+	font-weight: bold;
+  }
+  
+  /* Images */
+  article img {
+	display: block;
+	max-width: 100%;
+	margin: 1rem auto;
+	border-radius: 8px; /* Rounded corners */
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  

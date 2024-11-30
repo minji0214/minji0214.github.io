@@ -1,19 +1,19 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 
-type Props = CollectionEntry<'blog'>['data'] & {
-	keywords:string
+type Props = CollectionEntry<"blog">["data"] & {
+	keywords: string;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, keywords } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, keywords } =
+	Astro.props;
 ---
 
 <html lang="en">
 	<head>
-
 		<BaseHead title={title} description={description} keywords={keywords} />
 		<style>
 			main {
@@ -21,15 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, keywords } = Astro.
 				max-width: 100%;
 				margin: 0;
 			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
+
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
@@ -46,6 +38,10 @@ const { title, description, pubDate, updatedDate, heroImage, keywords } = Astro.
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
+			.title img {
+				max-width: 15em;
+				margin-bottom: 1em;
+			}
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
@@ -60,9 +56,6 @@ const { title, description, pubDate, updatedDate, heroImage, keywords } = Astro.
 		<!-- <Header /> -->
 		<main>
 			<article>
-				<div class="hero-image">
-					<!--{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}-->
-				</div>
 				<div class="prose">
 					<div class="title">
 						<div class="date">
@@ -75,7 +68,11 @@ const { title, description, pubDate, updatedDate, heroImage, keywords } = Astro.
 								)
 							}
 						</div>
-						{heroImage && <img width={700} height={360} src={heroImage} alt="" />}
+						{
+							heroImage && (
+								<img width={700} height={360} src={heroImage} alt="" />
+							)
+						}
 						<h2>{title}</h2>
 						<hr />
 					</div>
