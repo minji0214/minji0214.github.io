@@ -92,12 +92,13 @@ sdk v2가 잘 적용됨을 확인하고 백엔드와 본격적인 플로우 논�
 
 5번 : 이 redirectUri에 입력한 url로 인가코드를 내려줍니다.
 
-이때 url은 카카오톡에 등록이 되어있어야 합니다. 
+* 이때 url은 카카오톡에 등록이 되어있어야 합니다. 
 
 `[내 애플리케이션 > 카카오 로그인 > Redirect URI] 메뉴에 설정하신 uri를 입력하셔야 해요.`
+카카오에서 로그인이 완료되고, 인가 코드가 생성되면 redirect url로 아래와 같이 이동되게 됩니다. 
 
 ```xml
-https://developers.kakao.com/tool/demo/oauth?codoe={인가코드}
+https://developers.kakao.com/tool/demo/oauth?code={인가코드}
 ```
 
 여기서 redirectUri를 클라언트로 받아서 code를 서버로 전송하여 로그인 하는 방식과 
