@@ -4,10 +4,5 @@ const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
 
-Sitemap: ${sitemapURL.href}
+Sitemap: 'https://minji0214.github.io/sitemap.xml
 `;
-
-export const GET: APIRoute = ({ site }) => {
-	const sitemapURL = new URL("sitemap-index.xml", site);
-	return new Response(getRobotsTxt(sitemapURL));
-};

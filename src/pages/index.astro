@@ -1,60 +1,51 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import BubbleOverlay from '../components/BubbleOverlay.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { Image } from 'astro:assets';
-import myImportedImage from '../assets/bg.png';
-import { getCollection } from 'astro:content';
-import ListItem from '../components/listItem.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import BubbleOverlay from "../components/BubbleOverlay.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { Image } from "astro:assets";
+import myImportedImage from "../assets/bg.png";
+import { getCollection } from "astro:content";
+import ListItem from "../components/listItem.astro";
 
-
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-).slice(0, 4);
+const posts = (await getCollection("blog"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 4);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<link rel="sitemap" href="/sitemap.xml" />
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-
 		<main>
 			<header>
 				<!-- <h1>🧑‍🚀 민지의 실험실</h1> -->
 			</header>
-			<section class='main-section'>
-			<Image src={myImportedImage} alt="bg image" />
-			<BubbleOverlay />
-		</section>
-		<section class="post-section">
-			<h2 class="post-section__header">New Blogs
-			<a href="/blog">전체보기</a>
-
-			</h2>
-			<ul class="post-section__list">
-				{
-					posts.map((post) => (
-						<ListItem post={post}/>
-					))
-				}
-			</ul>
-		</section>	
-			<p>
-				안녕하세요 민지의 실험실에 오신것을 환영합니다. 
-			</p>
-
+			<section class="main-section">
+				<Image src={myImportedImage} alt="bg image" />
+				<BubbleOverlay />
+			</section>
+			<section class="post-section">
+				<h2 class="post-section__header">
+					New Blogs
+					<a href="/blog">전체보기</a>
+				</h2>
+				<ul class="post-section__list">
+					{posts.map((post) => <ListItem post={post} />)}
+				</ul>
+			</section>
+			<p>안녕하세요 민지의 실험실에 오신것을 환영합니다.</p>
 		</main>
 		<Footer />
-	</body>
-	<style>
+	</body><style>
 		main {
-			width:100%;
-			box-sizing:border-box;
-			background-color:#fff;
+			width: 100%;
+			box-sizing: border-box;
+			background-color: #fff;
 			padding: 0 80px;
 		}
 		h2 {
@@ -62,7 +53,7 @@ const posts = (await getCollection('blog')).sort(
 		}
 		section {
 			margin: 0 auto;
-			position:relative;
+			position: relative;
 			/* max-width: 1200px; */
 			&.main-section {
 				margin-bottom: 4rem;
@@ -76,14 +67,12 @@ const posts = (await getCollection('blog')).sort(
 			margin: 0;
 			padding: 0;
 			li {
-				width:100%;
-				flex:1;
+				width: 100%;
+				flex: 1;
 				img {
 					aspect-ratio: 384 / 300;
 				}
 			}
 		}
-	
-
 	</style>
 </html>
