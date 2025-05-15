@@ -18,17 +18,14 @@ const posts = (await getCollection("blog"))
 <html lang="en">
 	<head>
 		<link rel="sitemap" href="/sitemap.xml" />
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} keywords="" />
 	</head>
 	<body>
 		<main>
-			<header>
-				<!-- <h1>🧑‍🚀 민지의 실험실</h1> -->
-			</header>
-			<section class="main-section">
+			<!-- <section class="main-section">
 				<Image src={myImportedImage} alt="bg image" />
 				<BubbleOverlay />
-			</section>
+			</section> -->
 			<section class="post-section">
 				<h2 class="post-section__header">
 					New Blogs
@@ -38,7 +35,6 @@ const posts = (await getCollection("blog"))
 					{posts.map((post) => <ListItem post={post} />)}
 				</ul>
 			</section>
-			<p>안녕하세요 민지의 실험실에 오신것을 환영합니다.</p>
 		</main>
 		<Footer />
 	</body><style>
