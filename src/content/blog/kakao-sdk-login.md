@@ -4,6 +4,7 @@ description: "이 글은 인앱브라우저 이슈로 인해 카카오 로그인
 pubDate: "12 01 2024"
 heroImage: "/heroImgs/kakao.png"
 keywords: "카카오톡, 로그인, 프론트엔드"
+tags: ["FE"]
 ---
 이 글은 인앱브라우저 이슈로 인해 카카오 로그인 sdk version1에서 version2로 업그레이드한 내용을 담고 있습니다. 
 

@@ -3,6 +3,7 @@ title: "양파같은 서버사이드렌더링 이슈 해결기"
 description: "seo meta에 오류가 발생하여 서버사이트렌더링을 디버깅하면서 이슈를 해결한 과정을 기록하였습니다. "
 pubDate: "11 18 2024"
 heroImage: "/heroImgs/thumb_yangpa.jpeg"
+tags: ["FE"]
 ---
 ---
 

@@ -2,8 +2,8 @@
 title: "주간회고 - 7월 셋째주"
 description: "정말 그 해결이 최선이었을까 "
 pubDate: "07 14 2024"
-heroImage: "/heroImgs/thumb_weekly.png
-"
+heroImage: "/heroImgs/thumb_weekly.png"
+tags: ["주간회고"]
 ---
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2fc50c45-d830-4bf0-a19c-122e444c1b64/a24cacee-63ec-470f-92b5-07a5ccf9d0ee/Untitled.png)

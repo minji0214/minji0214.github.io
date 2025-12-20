@@ -3,6 +3,7 @@ title: "번역 : I never understood Javascript closures"
 description: "클로저는 백팩이다. 이거면 정리끝. 이해완."
 pubDate: "08 31 2024"
 heroImage: "/heroImgs/thumb_javascript.png"
+tags: ["FE", "CS"]
 ---
 
 https://medium.com/dailyjs/i-never-understood-javascript-closures-

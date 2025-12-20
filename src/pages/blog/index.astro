@@ -1,13 +1,18 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
-import ListItem from "../../components/listItem.astro";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// Get all unique tags
+const allTags = Array.from(
+	new Set(posts.flatMap((post) => post.data.tags || []).filter(Boolean))
+).sort();
 ---
 
 <!doctype html>
@@ -15,282 +20,302 @@ const posts = (await getCollection("blog")).sort(
 	<head>
 		<link rel="sitemap" href="/sitemap.xml" />
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="blog-list-content">
+				<div class="blog-list-container">
+					<div class="blog-header">
+						<h1 class="blog-title">BLOG</h1>
+						<p class="blog-subtitle">Articles & Stories</p>
+						{
+							allTags.length > 0 && (
+								<div class="blog-filter">
+									<button
+										class="filter-tag filter-tag--all active"
+										data-tag="all"
+									>
+										전체
+									</button>
+									{allTags.map((tag) => (
+										<button class="filter-tag" data-tag={tag}>
+											{tag}
+										</button>
+									))}
+								</div>
+							)
+						}
+					</div>
+					<ul class="blog-posts-list">
+						{
+							posts.map((post) => (
+								<li
+									class="blog-post-item"
+									data-tags={post.data.tags?.join(",") || ""}
+								>
+									<a href={`/blog/${post.slug}/`} class="blog-post-link">
+										<span class="blog-post-date">
+											{post.data.pubDate.getFullYear()}년{" "}
+											{post.data.pubDate.getMonth() + 1}월{" "}
+											{post.data.pubDate.getDate()}일
+										</span>
+										<h3 class="blog-post-title">{post.data.title}</h3>
+										{post.data.tags && post.data.tags.length > 0 && (
+											<div class="blog-post-tags">
+												{post.data.tags.map((tag) => (
+													<span class="blog-post-tag">{tag}</span>
+												))}
+											</div>
+										)}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</section>
+		</main>
+		<Footer />
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const filterButtons = document.querySelectorAll(".filter-tag");
+				const postItems = document.querySelectorAll(".blog-post-item");
+
+				filterButtons.forEach((button) => {
+					button.addEventListener("click", () => {
+						const selectedTag = button.getAttribute("data-tag");
+
+						// Update active state
+						filterButtons.forEach((btn) => btn.classList.remove("active"));
+						button.classList.add("active");
+
+						// Filter posts
+						postItems.forEach((item) => {
+							const itemTags = item.getAttribute("data-tags") || "";
+							const tags = itemTags.split(",").filter(Boolean);
+
+							if (selectedTag === "all" || tags.includes(selectedTag)) {
+								item.style.display = "";
+							} else {
+								item.style.display = "none";
+							}
+						});
+					});
+				});
+			});
+		</script>
 		<style>
-			@font-face {
-				font-family: "ThinRounded";
-				src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2")
-					format("woff2");
-				font-weight: normal;
-				font-display: swap;
-			}
-		</style>
-		<style is:global>
 			:root {
-				/* Pixel Art Color Palette */
-				--color-bg: #87ceeb;
-				--color-bg-alt: #a8d5e2;
-				--color-card: #ffffff;
-				--color-primary: #2c3e50;
-				--color-accent: #ff6b6b;
-				--color-secondary: #4ecdc4;
-				--color-title: #1a1a1a;
-				--color-text: #1a1a1a;
+				--color-bg: #ffffff;
+				--color-text: #000000;
 				--color-sub: #666666;
-				--pixel-border: #2c3e50;
-				--pixel-shadow: #1a2632;
-				--shadow: 4px 4px 0 var(--pixel-shadow);
-				--shadow-hover: 6px 6px 0 var(--pixel-shadow);
+				--color-border: #e5e5e5;
 			}
 
 			html,
 			body {
 				margin: 0;
 				padding: 0;
-				width: 100%;
-				min-height: 100vh;
-				overflow-x: hidden;
 				background: var(--color-bg);
-				background-image: repeating-linear-gradient(
-						0deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					),
-					repeating-linear-gradient(
-						90deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					);
-				background-size: 32px 32px;
 				color: var(--color-text);
-				font-family:
-					"ThinRounded",
-					-apple-system,
-					BlinkMacSystemFont,
-					"Segoe UI",
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter",
 					sans-serif;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
 			}
 
-			body main {
+			main {
 				width: 100%;
-				max-width: 1000px;
-				margin: 0 auto;
 				padding: 80px 40px;
 			}
 
-			body .blog-header {
-				text-align: center;
-				margin-bottom: 48px;
+			.blog-list-content {
+				width: 100%;
 			}
 
-			body .blog-title {
-				font-family: "ThinRounded", sans-serif;
+			.blog-list-container {
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.blog-header {
+				text-align: center;
+				margin-bottom: 60px;
+			}
+
+			.blog-title {
 				font-size: 2.5rem;
-				font-weight: 600;
-				color: var(--color-title);
-				text-align: center;
+				font-weight: 700;
+				color: var(--color-text);
 				margin: 0 0 12px 0;
-				letter-spacing: 2px;
-				text-transform: uppercase;
+				letter-spacing: -0.5px;
 			}
 
-			body .blog-subtitle {
-				font-size: 1.2rem;
+			.blog-subtitle {
+				font-size: 1rem;
 				color: var(--color-sub);
-				margin: 0;
-				letter-spacing: 2px;
+				margin: 0 0 32px 0;
+				font-weight: 400;
 			}
 
-			body section {
+			.blog-filter {
 				display: flex;
-				width: 100%;
+				flex-wrap: wrap;
+				gap: 6px;
+				justify-content: center;
+				align-items: center;
 			}
 
-			body .posts-container {
-				width: 100%;
-				position: relative;
-				padding: 0;
+			.filter-tag {
+				padding: 4px 12px;
+				font-size: 0.8rem;
+				font-weight: 400;
+				color: var(--color-sub);
 				background: transparent;
 				border: none;
-				box-shadow: none;
-			}
-
-			body .posts-list {
-				all: unset;
-				list-style: none;
-				display: flex;
-				flex-direction: column;
-				gap: 28px;
-			}
-
-			body .posts-list li {
 				cursor: pointer;
+				transition: all 0.2s ease;
+				letter-spacing: 0.01em;
 				position: relative;
 			}
 
-			body .posts-list li a {
-				text-decoration: none !important;
-				display: block !important;
-				padding: 32px 32px !important;
-				background: #fffaf0 !important;
-				border: 4px solid var(--pixel-border) !important;
-				box-shadow: var(--shadow) !important;
-				transition: all 0.1s ease;
-				color: inherit;
-				position: relative;
-			}
-
-			body .posts-list li a:hover {
-				box-shadow: var(--shadow-hover) !important;
-				transform: translate(-2px, -2px);
-				background: #ffffff !important;
-				border-color: var(--color-accent) !important;
-				z-index: 10;
-			}
-
-			body .posts-list li a::after {
-				content: "▶";
+			.filter-tag::after {
+				content: "";
 				position: absolute;
-				right: 32px;
-				bottom: 32px;
-				color: var(--color-accent);
-				font-size: 1.2rem;
-				opacity: 0.3;
-				transition: opacity 0.1s ease;
-				font-family: monospace;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 0;
+				height: 1px;
+				background: var(--color-text);
+				transition: width 0.2s ease;
 			}
 
-			body .posts-list li a:hover::after {
-				opacity: 1;
+			.filter-tag:hover {
+				color: var(--color-text);
 			}
 
-			body .posts-list li a:active {
-				box-shadow: 1px 1px 0 var(--pixel-shadow) !important;
-				transform: translate(2px, 2px);
+			.filter-tag:hover::after {
+				width: 80%;
 			}
 
-			body .posts-list li a .contents {
-				display: flex;
-				flex-direction: column;
-				gap: 0;
-				position: relative;
-				z-index: 1;
-				padding-right: 40px;
+			.filter-tag.active {
+				color: var(--color-text);
+				font-weight: 500;
 			}
 
-			body .posts-list li a .date {
-				color: var(--color-accent) !important;
-				display: inline-block;
-				font-size: 0.75rem !important;
-				font-weight: 600 !important;
-				text-transform: uppercase;
-				letter-spacing: 1.5px;
-				margin-bottom: 10px;
+			.filter-tag.active::after {
+				width: 80%;
 			}
 
-			body .posts-list li a .title {
-				display: block;
-				color: var(--color-title) !important;
-				font-size: 1.75rem !important;
+			.blog-posts-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.blog-post-item {
+				margin-bottom: 32px;
+				padding-bottom: 32px;
+				border-bottom: 1px solid var(--color-border);
+			}
+
+			.blog-post-item:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			.blog-post-link {
 				text-decoration: none;
-				margin: 0 0 12px 0 !important;
-				font-weight: 600 !important;
-				font-family: "ThinRounded", sans-serif;
+				color: inherit;
+				display: block;
+				transition: opacity 0.2s ease;
+			}
+
+			.blog-post-link:hover {
+				opacity: 0.6;
+			}
+
+			.blog-post-date {
+				display: block;
+				font-size: 0.9rem;
+				color: var(--color-sub);
+				margin-bottom: 8px;
+				font-weight: 400;
+			}
+
+			.blog-post-title {
+				display: block;
+				font-size: 1.5rem;
+				font-weight: 400;
+				color: var(--color-text);
+				margin: 0 0 12px 0;
 				line-height: 1.4;
 				letter-spacing: -0.3px;
 			}
 
-			body .posts-list li a:hover .title {
-				color: var(--color-accent) !important;
+			.blog-post-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-top: 10px;
 			}
 
-			body .posts-list li a .description {
-				display: block;
-				margin: 0;
-				color: #666666 !important;
-				font-size: 0.9rem !important;
-				line-height: 1.6;
-				letter-spacing: 0.1px;
+			.blog-post-tag {
+				display: inline-block;
+				font-size: 0.75rem;
+				font-weight: 400;
+				color: var(--color-sub);
+				letter-spacing: 0.01em;
+			}
+
+			.blog-post-tag:not(:last-child)::after {
+				content: "·";
+				margin-left: 8px;
+				color: var(--color-border);
 			}
 
 			@media (max-width: 900px) {
-				body main {
+				main {
 					padding: 60px 24px;
 				}
 
-				body .blog-title {
+				.blog-title {
 					font-size: 2rem;
 				}
 
-				body .posts-list {
-					gap: 28px;
+				.blog-post-item {
+					margin-bottom: 28px;
+					padding-bottom: 28px;
 				}
 
-				body .posts-list li a {
-					padding: 32px 28px !important;
-				}
-
-				body .posts-list li a .title {
-					font-size: 1.5rem !important;
+				.blog-post-title {
+					font-size: 1.3rem;
 				}
 			}
 
 			@media (max-width: 600px) {
-				body main {
+				main {
 					padding: 40px 16px;
 				}
 
-				body .blog-title {
-					font-size: 1.75rem;
-					letter-spacing: 1px;
-				}
-
-				body .blog-subtitle {
-					font-size: 1rem;
-				}
-
-				body .blog-header {
+				.blog-header {
 					margin-bottom: 40px;
 				}
 
-				body .posts-list {
-					gap: 20px;
+				.blog-title {
+					font-size: 1.75rem;
 				}
 
-				body .posts-list li a {
-					padding: 28px 24px !important;
+				.blog-post-item {
+					margin-bottom: 24px;
+					padding-bottom: 24px;
 				}
 
-				body .posts-list li a .title {
-					font-size: 1.3rem !important;
-				}
-
-				body .posts-list li a .description {
-					font-size: 0.85rem !important;
+				.blog-post-title {
+					font-size: 1.2rem;
 				}
 			}
 		</style>
-	</head>
-	<body>
-		<main>
-			<div class="blog-header">
-				<h1 class="blog-title">📝 BLOG</h1>
-				<p class="blog-subtitle">Articles & Stories</p>
-			</div>
-			<section class="post-section">
-				<article class="posts-container">
-					<ul class="posts-list">
-						{posts.map((post) => <ListItem post={post} />)}
-					</ul>
-				</article>
-			</section>
-		</main>
-		<Footer />
 	</body>
 </html>

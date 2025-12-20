@@ -3,6 +3,7 @@ title: "주간회고- 11월 첫째주 Batching, immutable, userAgent"
 description: "리액트 독스를 다시 읽으면서 Queueing React, state as Object에 대해 공부하였습니다. 업무 중 userAgent에 대해 자세히 알게 되었습니다. "
 pubDate: "11 02 2024"
 heroImage: "/heroImgs/thumb_weekly.png"
+tags: ["주간회고"]
 ---
 
 ### state as a sanpshot 

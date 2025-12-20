@@ -3,6 +3,7 @@ title: "접근성을 고려한 탭컴포넌트 만들기(feat. React)"
 description: "웹 접근성을 공부하면서  리액트에서 탭컴포넌트를 만들어보는 과정을 기록하였습니다"
 pubDate:  "11 04 2024"
 heroImage: "/heroImgs/thumb_accessibility.png"
+tags: ["FE"]
 ---
 
 # 접근성이 필요한 이유

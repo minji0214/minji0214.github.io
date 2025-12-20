@@ -3,6 +3,7 @@ title: "E2E 테스트 도입에 대한 고민"
 description: "E2E테스트를 제품에 도입하기 위한 스터디 "
 pubDate: "06 10 2023"
 heroImage: "/heroImgs/thumb_tdd.png"
+tags: ["FE"]
 ---
 
 ### 프론트엔드 테스트 방식

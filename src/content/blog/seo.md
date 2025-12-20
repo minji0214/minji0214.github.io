@@ -3,6 +3,7 @@ title: "블로그 검색엔진 최적화 도전"
 description: "기술블로그가 구글링이 가능하게 검색엔진 최적화를 하는과정을 기록하고, SEO의 개념에 대해 정리하였습니다."
 pubDate: "11 01 2024"
 heroImage: "/heroImgs/thumb_seo.png"
+tags: ["FE"]
 ---
 
 # 1. SEO에 대하여

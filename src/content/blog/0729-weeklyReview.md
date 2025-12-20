@@ -3,6 +3,7 @@ title: "주간회고- 7월 막주"
 description: "배포했는데 컴포넌트가 안보인다...삽질주간"
 pubDate: "07 29 2023"
 heroImage: "/heroImgs/thumb_weekly.png"
+tags: ["주간회고"]
 ---
 
 ### 마법의 height 0

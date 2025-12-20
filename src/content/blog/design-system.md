@@ -3,6 +3,7 @@ title: "디자인시스템을 구축해보자(작성중) "
 description: "정말 그 해결이 최선이었을까 "
 pubDate: "07 14 2024"
 heroImage: "/heroImgs/thumb_designsystem.png"
+tags: ["FE"]
 ---
 
 - 강의자료

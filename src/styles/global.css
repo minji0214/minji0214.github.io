@@ -1,186 +1,36 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+/* Minimal Global CSS - Only essential reset and base styles */
 
 :root {
-	--accent: #686d76;
-	--accent-dark: #ff6600;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%),
-		0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
-	--bg-light: #feffd2;
-	--bg-dark: #ffeea9;
-	--dark-color: #635bff;
-	--light-color: #80e9ff;
-}
-svg {
-	cursor: pointer;
-}
-#darkGroup {
-	fill: var(--dark-color);
-}
-#lightGroup {
-	fill: var(--light-color);
-}
-#dark,
-#light,
-#dark2 {
-	transition: all 1s ease;
-}
-#dark2 {
-	transform: translateX(-100%);
-}
-svg:hover #light1 {
-	transform: translateX(20%);
-}
-svg:hover #dark1 {
-	transform: translateX(40%);
-	opacity: 0;
-}
-svg:hover #dark2 {
-	transform: translateX(0%);
-}
-@font-face {
-	font-family: "LeferiPoint-BlackObliqueA";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff")
-		format("woff");
-	font-weight: normal;
-	font-style: normal;
+	--accent: #000000;
+	--black: 0, 0, 0;
+	--gray: 102, 102, 102;
+	--gray-light: 229, 229, 229;
 }
 
-@font-face {
-	font-family: "ChosunGs";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff")
-		format("woff");
-	font-weight: normal;
-	font-style: normal;
+/* Base reset */
+* {
+	box-sizing: border-box;
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-/* body {
-	font-family: "Atkinson", sans-serif;
+
+body {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	line-height: 1.7;
+	font-size: 16px;
+	color: #000000;
 	margin: 0;
 	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
-} */
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-/* h1 {
-	font-size: 2.052em;
-}
-h2 {
-	font-size: 1.441em;
-}
-h3 {
-	font-size: 0.953em;
-}
-h4 {
-	font-size: 0.563em;
-}
-h5 {
-	font-size: 0.25em;
-}
-strong,
-b {
-	font-weight: 700;
-} */
-/* a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-} */
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-/* code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-} */
-/* pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-} */
-/* blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-} */
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+	background-color: #ffffff;
 }
 
+/* Reset headings - no default styles */
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+/* Utility class */
 .sr-only {
 	border: 0;
 	padding: 0;
@@ -189,157 +39,8 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
-/* General Typography */
-body {
-	font-family: 'Inter', 'Arial', sans-serif; /* Notion uses Inter */
-	line-height: 1.8;
-	font-size: 16px;
-	color: #333; /* Soft dark gray for readability */
-	margin: 0;
-	padding: 0;
-	background-color: #fafafa; /* Light background for a clean look */
-  }
-  
-  article {
-	max-width: 800px;
-	margin: 2rem auto;
-	padding: 0 1rem;
-	background-color: #ffffff; /* White background for content area */
-	border-radius: 8px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Headings */
-  article h1,
-  article h2,
-  article h3,
-  article h4 {
-	font-weight: 600;
-	color: #222; /* Slightly darker for headers */
-	line-height: 1.4;
-  }
-  
-  article h1 {
-	font-size: 2.5rem;
-	margin-bottom: 1.2rem;
-  }
-  
-  article h2 {
-	font-size: 2rem;
-	margin-bottom: 1rem;
-  }
-  
-  article h3 {
-	font-size: 1.5rem;
-	margin-bottom: 0.8rem;
-  }
-  
-  article h4 {
-	font-size: 1.2rem;
-	margin-bottom: 0.6rem;
-  }
-  
-  /* Paragraphs */
-  article p {
-	margin: 1rem 0;
-	text-align: justify; /* Notion has justified text */
-	hyphens: auto; /* Enable word breaking for better justification */
-  }
-  
-  /* Links */
-  article a {
-	color: #3b82f6; /* Notion uses a clean blue for links */
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	transition: border-bottom 0.2s ease, color 0.2s ease;
-  }
-  
-  article a:hover {
-	/* border-bottom: 1px solid #3b82f6; */
-	color: #2a6bb8;
-  }
-  
-  /* Lists */
-  article ul {
-	margin: 1rem 0;
-	padding-left: 2rem;
-	list-style: disc; /* Notion-style bullet points */
-  }
-  
-  article ol {
-	margin: 1rem 0;
-	padding-left: 2rem;
-	list-style: decimal; /* Ordered list */
-  }
-  
-  article ul li,
-  article ol li {
-	margin-bottom: 0.5rem;
-  }
-  
-  /* Blockquotes */
-  article blockquote {
-	margin: 1.5rem 0;
-	padding-left: 1.5rem;
-	border-left: 4px solid #d1d5db; /* Light gray bar */
-	color: #555; /* Softer text color */
-	font-style: italic;
-	background-color: #f9f9f9; /* Light gray background for emphasis */
-  }
-  
-  /* Code Blocks */
-  article pre {
-	background-color: #f4f4f4; /* Light background for code */
-	padding: 1rem;
-	border-radius: 6px;
-	overflow-x: auto;
-	font-family: 'Fira Code', 'Courier New', monospace;
-	font-size: 0.9rem;
-  }
-  
-  article code {
-	padding: 0.2rem 0.4rem;
-	border-radius: 4px;
-	font-family: 'Fira Code', 'Courier New', monospace;
-	font-size: 0.9rem;
-	color: #d6336c; /* Subtle color for code text */
-  }
-  
-  /* Tables */
-  article table {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 1rem 0;
-	font-size: 0.9rem;
-  }
-  
-  article table th,
-  article table td {
-	padding: 0.8rem;
-	border: 1px solid #e5e7eb; /* Light border */
-	text-align: left;
-  }
-  
-  article table th {
-	background-color: #f3f4f6; /* Slight background for header */
-	font-weight: bold;
-  }
-  
-  /* Images */
-  article img {
-	display: block;
-	max-width: 100%;
-	margin: 1rem auto;
-	border-radius: 8px; /* Rounded corners */
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  

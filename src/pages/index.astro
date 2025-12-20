@@ -1,17 +1,14 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import BubbleOverlay from "../components/BubbleOverlay.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { Image } from "astro:assets";
-import myImportedImage from "../assets/bg.png";
 import { getCollection } from "astro:content";
 import ListItem from "../components/listItem.astro";
 
 const posts = (await getCollection("blog"))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 4);
+	.slice(0, 10);
 ---
 
 <!doctype html>
@@ -26,1626 +23,307 @@ const posts = (await getCollection("blog"))
 	</head>
 	<body>
 		<main>
-			<section class="hero-section fade-in">
-				<div class="hero-content">
-					<h1>
-						👋 Hi, I'm Minji!<br />
-						<span class="hero-highlight">Frontend Developer</span> & Blogger
-					</h1>
-					<p>
-						최신 웹 트렌드, 개발 성장기, 그리고 책을 기록하는 공간입니다.<br />
-						<span class="hero-desc">React · TypeScript · UI/UX · Growth</span>
-					</p>
-					<a href="/blog" class="hero-cta">블로그 전체보기 →</a>
-				</div>
-			</section>
-			<section class="pixel-art-section fade-in">
-				<div class="pixel-art-section__container">
-					<div class="pixel-art-section__game">
-						<h3 class="pixel-art-section__game-title">🐰 토끼 러너 게임</h3>
-						<p class="pixel-art-section__game-instructions">
-							스페이스바를 눌러 점프하세요!
-						</p>
-						<div class="pixel-game-container">
-							<canvas id="pixel-game-canvas" class="pixel-game-canvas"></canvas>
+			<section class="main-content fade-in">
+				<div class="main-content__container">
+					<div class="about-section">
+						<div class="about-section__name">MINJI</div>
+						<div class="about-section__role">
+							Product-Focused Frontend Engineer
+						</div>
+						<div class="about-section__description">3+ Years Experience</div>
+
+						<div class="experience-section">
+							<h2 class="experience-section__title">EXPERIENCE</h2>
+							<ul class="experience-section__list">
+								<li class="experience-item">
+									<span class="experience-item__date">2024.01 - Present</span>
+									<div class="experience-item__content">
+										<span class="experience-item__role">Frontend Engineer</span>
+										<a href="#" class="experience-item__company">@Sweetspot</a>
+									</div>
+								</li>
+								<li class="experience-item">
+									<span class="experience-item__date">2022.11 - 2024.12</span>
+									<div class="experience-item__content">
+										<span class="experience-item__role">Frontend Engineer</span>
+										<a href="#" class="experience-item__company">@북아이피스</a>
+									</div>
+								</li>
+							</ul>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section class="recent-blog-section fade-in">
-				<h2 class="recent-blog-section__title">Recent Blog Posts</h2>
-				<div class="recent-blog-section__container">
-					<button
-						class="recent-blog-section__nav recent-blog-section__nav--prev"
-						aria-label="Previous posts"
-					>
-						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M15 18L9 12L15 6"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"></path>
-						</svg>
-					</button>
-					<div class="recent-blog-section__carousel">
-						<div class="recent-blog-section__track">
+
+					<div class="recent-posts-section">
+						<h2 class="recent-posts-section__title">Recent Posts</h2>
+						<ul class="recent-posts-section__list">
 							{
 								posts.map((post) => (
-									<div class="recent-blog-section__item">
+									<li class="recent-post-item">
 										<a
 											href={`/blog/${post.slug}/`}
-											class="recent-blog-section__link"
+											class="recent-post-item__link"
 										>
-											<div class="recent-blog-section__year">
-												{post.data.pubDate.getFullYear()}
-											</div>
-											<div class="recent-blog-section__title-wrapper">
-												<svg
-													class="recent-blog-section__laurel recent-blog-section__laurel--left"
-													width="32"
-													height="32"
-													viewBox="0 0 24 24"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														d="M4 8C4 6 6 4 8 4C10 4 12 6 12 8C12 10 10 12 8 12C6 12 4 10 4 8Z"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														fill="none"
-													/>
-													<path
-														d="M4 16C4 14 6 12 8 12C10 12 12 14 12 16C12 18 10 20 8 20C6 20 4 18 4 16Z"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														fill="none"
-													/>
-													<path
-														d="M8 4L8 8"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-													/>
-													<path
-														d="M8 12L8 20"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-													/>
-												</svg>
-												<h3 class="recent-blog-section__post-title">
-													{post.data.title}
-												</h3>
-												<svg
-													class="recent-blog-section__laurel recent-blog-section__laurel--right"
-													width="32"
-													height="32"
-													viewBox="0 0 24 24"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														d="M20 8C20 6 18 4 16 4C14 4 12 6 12 8C12 10 14 12 16 12C18 12 20 10 20 8Z"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														fill="none"
-													/>
-													<path
-														d="M20 16C20 14 18 12 16 12C14 12 12 14 12 16C12 18 14 20 16 20C18 20 20 18 20 16Z"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														fill="none"
-													/>
-													<path
-														d="M16 4L16 8"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-													/>
-													<path
-														d="M16 12L16 20"
-														stroke="currentColor"
-														stroke-width="1.2"
-														stroke-linecap="round"
-													/>
-												</svg>
-											</div>
-											<div class="recent-blog-section__description">
-												{post.data.description}
-											</div>
+											<span class="recent-post-item__date">
+												{post.data.pubDate.getFullYear()}년{" "}
+												{post.data.pubDate.getMonth() + 1}월{" "}
+												{post.data.pubDate.getDate()}일
+											</span>
+											<h3 class="recent-post-item__title">{post.data.title}</h3>
 										</a>
-									</div>
+									</li>
 								))
 							}
-						</div>
+						</ul>
 					</div>
-					<button
-						class="recent-blog-section__nav recent-blog-section__nav--next"
-						aria-label="Next posts"
-					>
-						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M9 18L15 12L9 6"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"></path>
-						</svg>
-					</button>
 				</div>
-			</section>
-			<section class="book-section fade-in">
-				<div class="book-section__header">
-					<h2 class="book-section__title">Novels & Books</h2>
-					<p class="book-section__subtitle">Keep The Story Going</p>
-				</div>
-				<div class="book-section__grid" id="book-row"></div>
 			</section>
 		</main>
 		<Footer />
 		<script type="module">
-			const books = [
-				{
-					title: "불멸의 지혜",
-					author: "월리스 D.와틀스",
-					img: "/heroImgs/book1.jpg",
-				},
-				{ title: "일의 감각", author: "조수용", img: "/heroImgs/book2.jpeg" },
-				{ title: "제로투원", author: "피터틸", img: "/heroImgs/book3.jpeg" },
-				{
-					title: "요즘 개발자",
-					author: "임동준 외",
-					img: "/heroImgs/book4.jpeg",
-				},
-				{
-					title: "백살까지 유쾌하게 사는법",
-					author: "",
-					img: "/heroImgs/book5.jpeg",
-				},
-				{
-					title: "달리기를 말할때 내가 하고싶은 이야기",
-					author: "무라카미 하루키",
-					img: "/heroImgs/book6.jpg",
-				},
-			];
-
 			// Fade-in 애니메이션
 			window.addEventListener("DOMContentLoaded", () => {
-				const row = document.getElementById("book-row");
-
-				function createCard({ title, author, img }) {
-					const div = document.createElement("div");
-					div.className = "book-card";
-					div.innerHTML = `
-						<div class="book-cover-wrapper">
-							<img src="${img}" alt="${title} 표지" class="book-cover" onerror="this.onerror=null;this.src='/default-cover.png'" />
-						</div>
-						<div class="book-meta">
-							<div class="book-title">${title}</div>
-							${author ? `<div class="book-author">${author}</div>` : ""}
-							<a href="#" class="book-buy-link">Buy Now ($99)</a>
-						</div>
-					`;
-					return div;
-				}
-
-				// 책 카드 생성
-				books.forEach((book) => {
-					const card = createCard(book);
-					row.appendChild(card);
-				});
 				document.querySelectorAll(".fade-in").forEach((el, i) => {
 					el.style.opacity = 0;
-					el.style.transform = "translateY(40px)";
+					el.style.transform = "translateY(20px)";
 					setTimeout(
 						() => {
-							el.style.transition =
-								"opacity 0.7s cubic-bezier(.4,2,.3,1), transform 0.7s cubic-bezier(.4,2,.3,1)";
+							el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
 							el.style.opacity = 1;
 							el.style.transform = "none";
 						},
-						200 + i * 120
+						100 + i * 100
 					);
 				});
-
-				// 3D 애니메이션 - Blog Cards
-				const blogCards = document.querySelectorAll("ul.post-section__list li");
-				blogCards.forEach((card) => {
-					card.addEventListener("mouseenter", () => {
-						card.style.transition = "transform 0.1s ease-out";
-					});
-
-					card.addEventListener("mouseleave", () => {
-						card.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
-						card.style.transform = "";
-					});
-
-					card.addEventListener("mousemove", (e) => {
-						const rect = card.getBoundingClientRect();
-						const x = e.clientX - rect.left;
-						const y = e.clientY - rect.top;
-
-						const centerX = rect.width / 2;
-						const centerY = rect.height / 2;
-
-						const rotateX = (y - centerY) / 10;
-						const rotateY = (centerX - x) / 10;
-
-						card.style.transform = `
-							perspective(1000px) 
-							translateY(-12px) 
-							scale(1.02)
-							rotateX(${rotateX}deg) 
-							rotateY(${rotateY}deg)
-						`;
-					});
-				});
-
-				// Recent Blog Carousel
-				const carouselTrack = document.querySelector(
-					".recent-blog-section__track"
-				);
-				const carouselItems = document.querySelectorAll(
-					".recent-blog-section__item"
-				);
-				const prevButton = document.querySelector(
-					".recent-blog-section__nav--prev"
-				);
-				const nextButton = document.querySelector(
-					".recent-blog-section__nav--next"
-				);
-
-				if (carouselTrack && carouselItems.length > 0) {
-					let currentIndex = 0;
-
-					function getItemsPerView() {
-						if (window.innerWidth <= 600) return 1;
-						if (window.innerWidth <= 900) return 2;
-						return 3;
-					}
-
-					function updateCarousel() {
-						const itemsPerView = getItemsPerView();
-						const totalItems = carouselItems.length;
-						const maxIndex = Math.max(0, totalItems - itemsPerView);
-
-						// If all items fit, don't show navigation
-						if (totalItems <= itemsPerView) {
-							carouselTrack.style.transform = `translateX(0px)`;
-							if (prevButton) prevButton.style.display = "none";
-							if (nextButton) nextButton.style.display = "none";
-							return;
-						}
-
-						if (prevButton) prevButton.style.display = "flex";
-						if (nextButton) nextButton.style.display = "flex";
-
-						const carouselWidth =
-							carouselTrack.parentElement?.offsetWidth || 1200;
-						const gap =
-							window.innerWidth <= 600
-								? 20
-								: window.innerWidth <= 900
-									? 24
-									: 40;
-						const itemWidth =
-							(carouselWidth - gap * (itemsPerView - 1)) / itemsPerView;
-
-						// Set item width
-						carouselItems.forEach((item) => {
-							item.style.width = `${itemWidth}px`;
-						});
-
-						const translateX = -(currentIndex * (itemWidth + gap));
-						carouselTrack.style.transform = `translateX(${translateX}px)`;
-
-						// Update button states
-						if (prevButton) {
-							prevButton.disabled = currentIndex === 0;
-						}
-						if (nextButton) {
-							nextButton.disabled = currentIndex >= maxIndex;
-						}
-					}
-
-					if (prevButton) {
-						prevButton.addEventListener("click", () => {
-							if (currentIndex > 0) {
-								currentIndex--;
-								updateCarousel();
-							}
-						});
-					}
-
-					if (nextButton) {
-						nextButton.addEventListener("click", () => {
-							const itemsPerView = getItemsPerView();
-							const totalItems = carouselItems.length;
-							const maxIndex = Math.max(0, totalItems - itemsPerView);
-							if (currentIndex < maxIndex) {
-								currentIndex++;
-								updateCarousel();
-							}
-						});
-					}
-
-					// Handle window resize
-					let resizeTimeout;
-					window.addEventListener("resize", () => {
-						clearTimeout(resizeTimeout);
-						resizeTimeout = setTimeout(() => {
-							const newItemsPerView = getItemsPerView();
-							const totalItems = carouselItems.length;
-							const newMaxIndex = Math.max(0, totalItems - newItemsPerView);
-							if (currentIndex > newMaxIndex) {
-								currentIndex = Math.max(0, newMaxIndex);
-							}
-							updateCarousel();
-						}, 250);
-					});
-
-					// Initialize after a short delay to ensure layout is ready
-					setTimeout(() => {
-						updateCarousel();
-					}, 100);
-				}
-
-				// Pixel Art Game
-				const canvas = document.getElementById("pixel-game-canvas");
-				if (canvas) {
-					const ctx = canvas.getContext("2d");
-
-					// Set canvas size with responsive handling
-					function setCanvasSize() {
-						const container = canvas.parentElement;
-						const maxWidth = Math.min(800, container.offsetWidth - 40);
-						const aspectRatio = 800 / 300;
-						canvas.width = maxWidth;
-						canvas.height = maxWidth / aspectRatio;
-						canvas.style.width = maxWidth + "px";
-						canvas.style.height = maxWidth / aspectRatio + "px";
-					}
-
-					setCanvasSize();
-					window.addEventListener("resize", setCanvasSize);
-
-					// Game state
-					let gameState = {
-						running: true,
-						rabbit: {
-							x: 100,
-							y: 0,
-							width: 40,
-							height: 40,
-							velocityY: 0,
-							onGround: false,
-							animationFrame: 0,
-						},
-						camera: {
-							x: 0,
-						},
-						obstacles: [],
-						frameCount: 0,
-					};
-
-					// Initialize rabbit position
-					gameState.rabbit.y = getGroundY();
-
-					// Jump physics
-					const GRAVITY = 0.8;
-					const JUMP_STRENGTH = -15;
-
-					// Get ground Y based on canvas height
-					function getGroundY() {
-						return canvas.height - 60;
-					}
-
-					// Draw pixel art rabbit with walking animation
-					function drawRabbit(x, y, width, height, frame) {
-						const pixelSize = Math.max(4, width / 8);
-
-						// Walking animation - two frames
-						const isFrame1 = Math.floor(frame / 8) % 2 === 0;
-						const legOffset = isFrame1 ? 0 : 1;
-
-						// Rabbit body (pink/white)
-						const rabbitPixels = [
-							[0, 0, 0, 1, 1, 0, 0, 0],
-							[0, 0, 1, 2, 2, 1, 0, 0],
-							[0, 1, 2, 2, 2, 2, 1, 0],
-							[1, 2, 2, 2, 2, 2, 2, 1],
-							[1, 2, 2, 2, 2, 2, 2, 1],
-							[1, 2, 2, 2, 2, 2, 2, 1],
-							[0, 1, 2, 2, 2, 2, 1, 0],
-							[0, 0, 1, 1, 1, 1, 0, 0],
-						];
-
-						// Colors: 0 = transparent, 1 = white, 2 = pink
-						const colors = {
-							0: "transparent",
-							1: "#ffffff",
-							2: "#ffc0cb",
-						};
-
-						for (let row = 0; row < 8; row++) {
-							for (let col = 0; col < 8; col++) {
-								const pixel = rabbitPixels[row][col];
-								if (pixel !== 0) {
-									ctx.fillStyle = colors[pixel];
-									ctx.fillRect(
-										x + col * pixelSize,
-										y + row * pixelSize,
-										pixelSize,
-										pixelSize
-									);
-								}
-							}
-						}
-
-						// Ears
-						ctx.fillStyle = "#ffc0cb";
-						ctx.fillRect(
-							x + 2 * pixelSize,
-							y - 2 * pixelSize,
-							pixelSize,
-							pixelSize * 2
-						);
-						ctx.fillRect(
-							x + 5 * pixelSize,
-							y - 2 * pixelSize,
-							pixelSize,
-							pixelSize * 2
-						);
-
-						// Eyes
-						ctx.fillStyle = "#000000";
-						ctx.fillRect(
-							x + 2 * pixelSize,
-							y + 2 * pixelSize,
-							pixelSize / 2,
-							pixelSize / 2
-						);
-						ctx.fillRect(
-							x + 5.5 * pixelSize,
-							y + 2 * pixelSize,
-							pixelSize / 2,
-							pixelSize / 2
-						);
-
-						// Legs with animation
-						ctx.fillStyle = "#ffc0cb";
-						// Front legs
-						ctx.fillRect(
-							x + 1.5 * pixelSize,
-							y + 7 * pixelSize,
-							pixelSize,
-							pixelSize + (isFrame1 ? 0 : pixelSize)
-						);
-						ctx.fillRect(
-							x + 5.5 * pixelSize,
-							y + 7 * pixelSize,
-							pixelSize,
-							pixelSize + (isFrame1 ? pixelSize : 0)
-						);
-						// Back legs
-						ctx.fillRect(
-							x + 0.5 * pixelSize,
-							y + 8 * pixelSize,
-							pixelSize,
-							pixelSize
-						);
-						ctx.fillRect(
-							x + 6.5 * pixelSize,
-							y + 8 * pixelSize,
-							pixelSize,
-							pixelSize
-						);
-					}
-
-					// Draw ground
-					function drawGround() {
-						const groundY = getGroundY();
-						const groundHeight = 60;
-
-						// Grass
-						ctx.fillStyle = "#4a7c59";
-						ctx.fillRect(0, groundY, canvas.width, groundHeight);
-
-						// Ground pattern
-						ctx.fillStyle = "#5a8c69";
-						for (let i = 0; i < canvas.width; i += 20) {
-							ctx.fillRect(
-								i - (gameState.camera.x % 20),
-								groundY,
-								10,
-								groundHeight
-							);
-						}
-					}
-
-					// Draw clouds
-					function drawClouds() {
-						ctx.fillStyle = "#ffffff";
-
-						const clouds = [
-							{ x: 200 - gameState.camera.x * 0.1, y: 50 },
-							{ x: 500 - gameState.camera.x * 0.1, y: 80 },
-							{ x: 700 - gameState.camera.x * 0.1, y: 40 },
-						];
-
-						clouds.forEach((cloud) => {
-							ctx.beginPath();
-							ctx.arc(cloud.x, cloud.y, 20, 0, Math.PI * 2);
-							ctx.arc(cloud.x + 25, cloud.y, 30, 0, Math.PI * 2);
-							ctx.arc(cloud.x + 50, cloud.y, 20, 0, Math.PI * 2);
-							ctx.fill();
-						});
-					}
-
-					// Update game
-					function updateGame() {
-						if (!gameState.running) return;
-
-						gameState.frameCount++;
-
-						// Apply gravity
-						gameState.rabbit.velocityY += GRAVITY;
-						gameState.rabbit.y += gameState.rabbit.velocityY;
-
-						// Ground collision
-						const groundY = getGroundY();
-						if (gameState.rabbit.y >= groundY) {
-							gameState.rabbit.y = groundY;
-							gameState.rabbit.velocityY = 0;
-							gameState.rabbit.onGround = true;
-						} else {
-							gameState.rabbit.onGround = false;
-						}
-
-						// Move camera/background
-						gameState.camera.x += 2;
-
-						// Update animation frame for walking
-						if (gameState.rabbit.onGround) {
-							gameState.rabbit.animationFrame++;
-						}
-					}
-
-					// Render game
-					function render() {
-						// Clear canvas
-						ctx.fillStyle = "#87ceeb";
-						ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-						// Draw clouds
-						drawClouds();
-
-						// Draw ground
-						drawGround();
-
-						// Draw rabbit
-						drawRabbit(
-							gameState.rabbit.x,
-							gameState.rabbit.y,
-							gameState.rabbit.width,
-							gameState.rabbit.height,
-							gameState.rabbit.animationFrame
-						);
-					}
-
-					// Game loop
-					function gameLoop() {
-						updateGame();
-						render();
-						requestAnimationFrame(gameLoop);
-					}
-
-					// Jump function
-					function jump() {
-						if (gameState.rabbit.onGround) {
-							gameState.rabbit.velocityY = JUMP_STRENGTH;
-							gameState.rabbit.onGround = false;
-						}
-					}
-
-					// Keyboard controls
-					const keys = {};
-					window.addEventListener("keydown", (e) => {
-						keys[e.code] = true;
-						if (e.code === "Space") {
-							e.preventDefault();
-							jump();
-						}
-					});
-
-					window.addEventListener("keyup", (e) => {
-						keys[e.code] = false;
-					});
-
-					// Touch/Mouse controls for mobile
-					canvas.addEventListener("click", jump);
-					canvas.addEventListener("touchstart", (e) => {
-						e.preventDefault();
-						jump();
-					});
-
-					// Start game loop
-					gameLoop();
-				}
 			});
 		</script>
 		<style>
-			@font-face {
-				font-family: "ThinRounded";
-				src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2")
-					format("woff2");
-				font-weight: normal;
-				font-display: swap;
-			}
 			:root {
-				/* Pixel Art Color Palette */
-				--color-bg: #87ceeb;
-				--color-bg-alt: #a8d5e2;
-				--color-card: #fff9e6;
-				--color-primary: #2c3e50;
-				--color-accent: #ff6b6b;
-				--color-secondary: #4ecdc4;
-				--color-title: #2c3e50;
-				--color-text: #2c3e50;
-				--color-sub: #5a6c7d;
-				--pixel-border: #2c3e50;
-				--pixel-shadow: #1a2632;
-				--radius: 0;
-				--shadow: 4px 4px 0 var(--pixel-shadow);
-				--shadow-hover: 6px 6px 0 var(--pixel-shadow);
+				--color-bg: #ffffff;
+				--color-text: #000000;
+				--color-sub: #666666;
+				--color-border: #e5e5e5;
+				--color-hover: #f5f5f5;
 			}
 			html,
 			body {
 				background: var(--color-bg);
-				background-image: repeating-linear-gradient(
-						0deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					),
-					repeating-linear-gradient(
-						90deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					);
-				background-size: 32px 32px;
 				color: var(--color-text);
-				font-family:
-					"ThinRounded",
-					-apple-system,
-					BlinkMacSystemFont,
-					"Segoe UI",
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter",
 					sans-serif;
 				margin: 0;
 				padding: 0;
 				min-height: 100vh;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
 			}
 			main {
 				width: 100%;
 				box-sizing: border-box;
-				background: transparent;
-				padding: 0 0 80px 0;
-			}
-			.hero-section {
-				width: 100%;
-				min-height: 420px;
-				background: var(--color-card);
-				padding: 120px 0 80px 0;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border-radius: 0;
-				border-bottom: 4px solid var(--pixel-border);
-				box-shadow: 0 4px 0 var(--pixel-shadow);
-				margin-bottom: 64px;
-				position: relative;
-				overflow: hidden;
-				background-image: repeating-linear-gradient(
-					0deg,
-					transparent,
-					transparent 20px,
-					rgba(44, 62, 80, 0.05) 20px,
-					rgba(44, 62, 80, 0.05) 21px
-				);
-			}
-			.hero-content {
-				max-width: 700px;
-				text-align: center;
-				position: relative;
-				z-index: 1;
-				background: #ffffff;
-				border-radius: 0;
-				padding: 3rem 2.5rem;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
-			}
-			.hero-content h1 {
-				font-size: 3rem;
-				font-weight: 500;
-				margin-bottom: 1.5rem;
-				color: var(--color-title);
-				letter-spacing: -1.5px;
-				line-height: 1.3;
-			}
-			.hero-highlight {
-				color: var(--color-primary);
-				font-weight: 600;
-				letter-spacing: -1px;
-			}
-			.hero-desc {
-				color: var(--color-sub);
-				font-size: 1rem;
-				letter-spacing: 0.5px;
-			}
-			.hero-content p {
-				font-size: 1.1rem;
-				color: var(--color-sub);
-				margin-bottom: 2.8rem;
-				line-height: 1.8;
-				font-weight: 400;
-			}
-			.hero-cta {
-				display: inline-block;
-				background: var(--color-accent);
-				color: #ffffff;
-				font-weight: 500;
-				font-size: 1rem;
-				padding: 1em 2.8em;
-				border-radius: 0;
-				text-decoration: none;
-				box-shadow: var(--shadow);
-				transition: all 0.1s ease;
-				border: 4px solid var(--pixel-border);
-				position: relative;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-			}
-			.hero-cta:hover {
-				box-shadow: var(--shadow-hover);
-				transform: translate(-2px, -2px);
-				background: #ff5252;
-			}
-			.hero-cta:active {
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-				transform: translate(2px, 2px);
-			}
-			.section-title {
-				font-size: 1.8rem;
-				font-weight: 500;
-				color: var(--color-title);
-				margin-bottom: 2.5rem;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				letter-spacing: -0.8px;
-			}
-			/* Pixel Art Section */
-			.pixel-art-section {
-				background: var(--color-card);
-				padding: 80px 40px;
-				margin: 0 auto 72px auto;
-				max-width: 1400px;
-				border-radius: 0;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
-				position: relative;
-				overflow: hidden;
-			}
-			.pixel-art-section::before {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background-image: radial-gradient(
-						circle at 20% 30%,
-						rgba(255, 255, 255, 0.3) 0%,
-						transparent 50%
-					),
-					radial-gradient(
-						circle at 80% 70%,
-						rgba(255, 255, 255, 0.2) 0%,
-						transparent 50%
-					);
-				pointer-events: none;
-			}
-			.pixel-art-section__container {
-				position: relative;
-				z-index: 1;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.pixel-art-section__header {
-				text-align: center;
-				margin-bottom: 50px;
-			}
-			.pixel-art-section__title {
-				font-size: 2.5rem;
-				font-weight: 600;
-				color: var(--color-title);
-				margin: 0 0 12px 0;
-				letter-spacing: -1px;
-				font-family: "ThinRounded", sans-serif;
-				text-transform: uppercase;
-			}
-			.pixel-art-section__subtitle {
-				font-size: 1.1rem;
-				font-weight: 400;
-				color: #4a5568;
-				margin: 0;
-				letter-spacing: 0.5px;
-			}
-			.pixel-art-section__image-wrapper {
-				width: 100%;
-				max-width: 1000px;
-				margin-bottom: 40px;
-				position: relative;
-				border-radius: 0;
-				overflow: hidden;
-				box-shadow: var(--shadow);
-				transition: all 0.1s ease;
-				background: #ffffff;
-				padding: 20px;
-				border: 4px solid var(--pixel-border);
-			}
-			.pixel-art-section__image-wrapper:hover {
-				box-shadow: var(--shadow-hover);
-				transform: translate(-2px, -2px);
-			}
-			.pixel-art-section__image {
-				width: 100%;
-				height: auto;
-				display: block;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
-				border-radius: 0;
-				border: 2px solid var(--pixel-border);
-			}
-			.pixel-art-section__description {
-				max-width: 700px;
-				text-align: center;
-			}
-			.pixel-art-section__description p {
-				font-size: 1.05rem;
-				color: #2d3748;
-				line-height: 1.8;
-				margin: 0;
-				font-weight: 400;
-			}
-			/* CSS Pixel Art Examples */
-			.pixel-art-section__css-art {
-				width: 100%;
-				max-width: 800px;
-				margin: 60px 0 40px 0;
-				text-align: center;
-			}
-			.pixel-art-section__css-title {
-				font-size: 1.5rem;
-				font-weight: 600;
-				color: #1a1a1a;
-				margin: 0 0 40px 0;
-				font-family: "Sora", sans-serif;
-			}
-			.pixel-art-examples {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 30px;
-				justify-items: center;
-			}
-			.pixel-art-example {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 16px;
-			}
-			.pixel-art-label {
-				font-size: 0.9rem;
-				color: #4a5568;
-				margin: 0;
-				font-weight: 500;
-			}
-			/* Pixel Art using CSS Grid */
-			.pixel-heart,
-			.pixel-star,
-			.pixel-tree,
-			.pixel-coin {
-				width: 64px;
-				height: 64px;
-				display: grid;
-				grid-template-columns: repeat(8, 1fr);
-				grid-template-rows: repeat(8, 1fr);
-				gap: 1px;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
-			}
-			.pixel-heart > span,
-			.pixel-star > span,
-			.pixel-tree > span,
-			.pixel-coin > span {
-				background: transparent;
-			}
-			/* Pixel Heart - 8x8 grid */
-			.pixel-heart > span:nth-child(5),
-			.pixel-heart > span:nth-child(6),
-			.pixel-heart > span:nth-child(11),
-			.pixel-heart > span:nth-child(12),
-			.pixel-heart > span:nth-child(14),
-			.pixel-heart > span:nth-child(15),
-			.pixel-heart > span:nth-child(19),
-			.pixel-heart > span:nth-child(20),
-			.pixel-heart > span:nth-child(21),
-			.pixel-heart > span:nth-child(22),
-			.pixel-heart > span:nth-child(25),
-			.pixel-heart > span:nth-child(26),
-			.pixel-heart > span:nth-child(27),
-			.pixel-heart > span:nth-child(28),
-			.pixel-heart > span:nth-child(30),
-			.pixel-heart > span:nth-child(35),
-			.pixel-heart > span:nth-child(36),
-			.pixel-heart > span:nth-child(37),
-			.pixel-heart > span:nth-child(42),
-			.pixel-heart > span:nth-child(43),
-			.pixel-heart > span:nth-child(51),
-			.pixel-heart > span:nth-child(52) {
-				background: #ff6b6b;
-			}
-			/* Pixel Star - 8x8 grid */
-			.pixel-star > span:nth-child(4),
-			.pixel-star > span:nth-child(5),
-			.pixel-star > span:nth-child(12),
-			.pixel-star > span:nth-child(13),
-			.pixel-star > span:nth-child(14),
-			.pixel-star > span:nth-child(15),
-			.pixel-star > span:nth-child(18),
-			.pixel-star > span:nth-child(19),
-			.pixel-star > span:nth-child(20),
-			.pixel-star > span:nth-child(21),
-			.pixel-star > span:nth-child(22),
-			.pixel-star > span:nth-child(23),
-			.pixel-star > span:nth-child(25),
-			.pixel-star > span:nth-child(26),
-			.pixel-star > span:nth-child(27),
-			.pixel-star > span:nth-child(28),
-			.pixel-star > span:nth-child(29),
-			.pixel-star > span:nth-child(30),
-			.pixel-star > span:nth-child(33),
-			.pixel-star > span:nth-child(34),
-			.pixel-star > span:nth-child(35),
-			.pixel-star > span:nth-child(36),
-			.pixel-star > span:nth-child(37),
-			.pixel-star > span:nth-child(38),
-			.pixel-star > span:nth-child(40),
-			.pixel-star > span:nth-child(41),
-			.pixel-star > span:nth-child(42),
-			.pixel-star > span:nth-child(43),
-			.pixel-star > span:nth-child(51),
-			.pixel-star > span:nth-child(52) {
-				background: #ffd93d;
-			}
-			/* Pixel Tree - 8x8 grid */
-			.pixel-tree > span:nth-child(13),
-			.pixel-tree > span:nth-child(14),
-			.pixel-tree > span:nth-child(18),
-			.pixel-tree > span:nth-child(19),
-			.pixel-tree > span:nth-child(20),
-			.pixel-tree > span:nth-child(21),
-			.pixel-tree > span:nth-child(22),
-			.pixel-tree > span:nth-child(25),
-			.pixel-tree > span:nth-child(26),
-			.pixel-tree > span:nth-child(27),
-			.pixel-tree > span:nth-child(28),
-			.pixel-tree > span:nth-child(29),
-			.pixel-tree > span:nth-child(30),
-			.pixel-tree > span:nth-child(33),
-			.pixel-tree > span:nth-child(34),
-			.pixel-tree > span:nth-child(35),
-			.pixel-tree > span:nth-child(36),
-			.pixel-tree > span:nth-child(42),
-			.pixel-tree > span:nth-child(43),
-			.pixel-tree > span:nth-child(50),
-			.pixel-tree > span:nth-child(51),
-			.pixel-tree > span:nth-child(58),
-			.pixel-tree > span:nth-child(59) {
-				background: #27ae60;
-			}
-			.pixel-tree > span:nth-child(42),
-			.pixel-tree > span:nth-child(43),
-			.pixel-tree > span:nth-child(50),
-			.pixel-tree > span:nth-child(51),
-			.pixel-tree > span:nth-child(58),
-			.pixel-tree > span:nth-child(59) {
-				background: #8b4513;
-			}
-			/* Pixel Coin - 8x8 grid */
-			.pixel-coin > span:nth-child(n + 9):nth-child(-n + 16),
-			.pixel-coin > span:nth-child(n + 17):nth-child(-n + 24),
-			.pixel-coin > span:nth-child(n + 25):nth-child(-n + 32),
-			.pixel-coin > span:nth-child(n + 33):nth-child(-n + 40),
-			.pixel-coin > span:nth-child(n + 41):nth-child(-n + 48),
-			.pixel-coin > span:nth-child(n + 49):nth-child(-n + 56) {
-				background: #d4af37;
-			}
-			.pixel-coin > span:nth-child(n + 18):nth-child(-n + 23),
-			.pixel-coin > span:nth-child(n + 26):nth-child(-n + 31),
-			.pixel-coin > span:nth-child(n + 34):nth-child(-n + 39),
-			.pixel-coin > span:nth-child(n + 42):nth-child(-n + 47) {
-				background: #f1c40f;
-			}
-			/* Pixel Art Game */
-			.pixel-art-section__game {
-				width: 100%;
-				max-width: 800px;
-				margin: 60px 0 40px 0;
-				text-align: center;
-			}
-			.pixel-art-section__game-title {
-				font-size: 1.5rem;
-				font-weight: 600;
-				color: var(--color-title);
-				margin: 0 0 12px 0;
-				font-family: "ThinRounded", sans-serif;
-				text-transform: uppercase;
-			}
-			.pixel-art-section__game-instructions {
-				font-size: 1rem;
-				color: #4a5568;
-				margin: 0 0 24px 0;
-				font-weight: 400;
-			}
-			.pixel-game-container {
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				background: #ffffff;
-				border-radius: 0;
-				padding: 20px;
-				box-shadow: var(--shadow);
-				border: 4px solid var(--pixel-border);
-			}
-			.pixel-game-canvas {
-				width: 100%;
-				max-width: 800px;
-				height: auto;
-				border: 3px solid var(--pixel-border);
-				border-radius: 0;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
-				cursor: pointer;
-				transition: all 0.1s ease;
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-			}
-			.pixel-game-canvas:hover {
-				box-shadow: 4px 4px 0 var(--pixel-shadow);
-				transform: translate(-2px, -2px);
-			}
-			.pixel-game-canvas:active {
-				box-shadow: 1px 1px 0 var(--pixel-shadow);
-				transform: translate(2px, 2px);
-			}
-			/* Recent Blog Section - Pixel Art Theme Carousel */
-			.recent-blog-section {
-				background: var(--color-card);
-				padding: 80px 40px;
-				margin: 0 auto 72px auto;
-				max-width: 1400px;
-				border-radius: 0;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
-				position: relative;
-			}
-			.recent-blog-section__title {
-				text-align: center;
-				font-size: 2.5rem;
-				font-weight: 500;
-				color: var(--color-title);
-				margin: 0 0 60px 0;
-				letter-spacing: -1px;
-				text-transform: uppercase;
-			}
-			.recent-blog-section__container {
-				position: relative;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 20px;
-			}
-			.recent-blog-section__carousel {
-				overflow: hidden;
-				width: 100%;
-				max-width: 1200px;
-			}
-			.recent-blog-section__track {
-				display: flex;
-				gap: 40px;
-				transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-				will-change: transform;
-			}
-			.recent-blog-section__item {
-				flex: 0 0 auto;
-				text-align: center;
-				padding: 0 10px;
-			}
-			.recent-blog-section__link {
-				text-decoration: none;
-				color: inherit;
-				display: block;
-			}
-			.recent-blog-section__year {
-				font-size: 0.95rem;
-				color: var(--color-sub);
-				margin-bottom: 20px;
-				font-weight: 400;
-				letter-spacing: 0.5px;
-			}
-			.recent-blog-section__title-wrapper {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 12px;
-				margin-bottom: 16px;
-			}
-			.recent-blog-section__laurel {
-				color: var(--color-accent);
-				flex-shrink: 0;
-				width: 24px;
-				height: 24px;
-				opacity: 1;
-			}
-			.recent-blog-section__post-title {
-				font-size: 1.5rem;
-				font-weight: 600;
-				color: var(--color-title);
-				margin: 0;
-				line-height: 1.4;
-				letter-spacing: -0.5px;
-			}
-			.recent-blog-section__description {
-				font-size: 0.95rem;
-				color: var(--color-sub);
-				line-height: 1.6;
-				margin-top: 12px;
-			}
-			.recent-blog-section__nav {
-				width: 48px;
-				height: 48px;
-				border-radius: 0;
-				background: var(--color-secondary);
-				border: 4px solid var(--pixel-border);
-				color: #ffffff;
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				transition: all 0.1s ease;
-				flex-shrink: 0;
-				box-shadow: var(--shadow);
-			}
-			.recent-blog-section__nav:hover {
-				background: #3dd5cc;
-				box-shadow: var(--shadow-hover);
-				transform: translate(-2px, -2px);
-			}
-			.recent-blog-section__nav:active {
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-				transform: translate(2px, 2px);
-			}
-			.recent-blog-section__nav:disabled {
-				opacity: 0.5;
-				cursor: not-allowed;
-				background: var(--color-sub);
-			}
-			.recent-blog-section__nav:disabled:hover {
-				transform: none;
-				box-shadow: var(--shadow);
-			}
-			.view-all {
-				font-size: 0.95rem;
-				color: #ffffff;
-				text-decoration: none;
-				font-weight: 400;
-				margin-left: 1rem;
-				transition: all 0.1s ease;
-				padding: 0.5em 1.2em;
-				border-radius: 0;
-				background: var(--color-accent);
-				border: 3px solid var(--pixel-border);
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-				text-transform: uppercase;
-			}
-			.view-all:hover {
-				background: #ff5252;
-				box-shadow: 4px 4px 0 var(--pixel-shadow);
-				transform: translate(-2px, -2px);
-			}
-			section {
-				margin: 0 auto 72px auto;
-				position: relative;
-				max-width: 1200px;
-				padding: 0 40px;
-			}
-			ul.post-section__list {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2.5rem;
-				list-style-type: none;
-				margin: 0;
+				background: var(--color-bg);
 				padding: 0;
 			}
-			ul.post-section__list li {
+			.main-content {
 				width: 100%;
-				flex: 1 1 320px;
-				min-width: 280px;
-				max-width: 340px;
-				background: rgba(255, 255, 255, 0.8);
-				backdrop-filter: blur(20px) saturate(180%);
-				-webkit-backdrop-filter: blur(20px) saturate(180%);
-				border-radius: var(--radius);
-				box-shadow: var(--shadow);
-				transition:
-					box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-					border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-				margin-bottom: 0;
-				padding: 0;
-				will-change: transform, box-shadow;
-				overflow: hidden;
-				border: 1px solid rgba(0, 0, 0, 0.08);
-				transform-style: preserve-3d;
-				perspective: 1000px;
-			}
-			ul.post-section__list li:hover {
-				box-shadow: var(--shadow-hover);
-				border-color: rgba(0, 0, 0, 0.15);
-			}
-			ul.post-section__list li a {
-				text-decoration: none;
-				color: inherit;
-				display: block;
-				width: 100%;
-				height: 100%;
-			}
-			ul.post-section__list li .contents {
-				padding: 2rem 1.8rem;
-				display: flex;
-				flex-direction: column;
-				gap: 0.8rem;
-			}
-			ul.post-section__list li .date {
-				font-size: 0.85rem;
-				color: var(--color-sub);
-				font-weight: 400;
-				letter-spacing: 0.3px;
-			}
-			ul.post-section__list li .title {
-				font-size: 1.3rem;
-				font-weight: 500;
-				color: var(--color-title);
-				margin: 0;
-				line-height: 1.4;
-				letter-spacing: -0.5px;
-				transition: color 0.3s ease;
-			}
-			ul.post-section__list li:hover .title {
-				color: var(--color-title);
-			}
-			ul.post-section__list li .description {
-				font-size: 0.95rem;
-				color: var(--color-sub);
-				line-height: 1.6;
-				margin: 0;
-				display: -webkit-box;
-				-webkit-line-clamp: 3;
-				-webkit-box-orient: vertical;
-				overflow: hidden;
-			}
-			/* Book Section - Pixel Art Theme Grid */
-			.book-section {
-				background: var(--color-card);
 				padding: 80px 40px;
-				margin: 0 auto 72px auto;
-				max-width: 1400px;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
 			}
-			.book-section__header {
-				text-align: center;
-				margin-bottom: 60px;
+			.main-content__container {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				flex-direction: row;
+				gap: 80px;
+				align-items: flex-start;
 			}
-			.book-section__title {
+			.about-section {
+				flex: 0 0 50%;
+			}
+			.recent-posts-section {
+				flex: 0 0 50%;
+			}
+			/* About Section */
+			.about-section {
+				position: sticky;
+				top: 100px;
+			}
+			.about-section__name {
 				font-size: 2.5rem;
-				font-weight: 500;
-				color: var(--color-title);
-				margin: 0 0 12px 0;
+				font-weight: 700;
+				color: var(--color-text);
+				margin-bottom: 8px;
 				letter-spacing: -1px;
-				text-transform: uppercase;
 			}
-			.book-section__subtitle {
+			.about-section__role {
 				font-size: 1.2rem;
 				font-weight: 400;
+				color: var(--color-text);
+				margin-bottom: 4px;
+			}
+			.about-section__description {
+				font-size: 1rem;
+				font-weight: 300;
 				color: var(--color-sub);
-				margin: 0;
-				letter-spacing: 0.5px;
+				margin-bottom: 60px;
 			}
-			.book-section__grid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 50px 40px;
+			.experience-section {
+				margin-top: 40px;
+			}
+			.experience-section__title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: var(--color-text);
+				margin-bottom: 24px;
+				letter-spacing: -0.5px;
+			}
+			.experience-section__list {
+				list-style: none;
 				padding: 0;
+				margin: 0;
 			}
-			.book-card {
+			.experience-item {
+				margin-bottom: 24px;
+			}
+			.experience-item__date {
+				display: block;
+				font-size: 0.9rem;
+				color: var(--color-sub);
+				margin-bottom: 8px;
+				font-weight: 300;
+			}
+			.experience-item__content {
 				display: flex;
 				flex-direction: column;
-				align-items: flex-start;
-				position: relative;
-				cursor: pointer;
+				gap: 4px;
 			}
-			.book-cover-wrapper {
-				width: 100%;
-				position: relative;
-				margin-bottom: 12px;
-				aspect-ratio: 2 / 3;
-				overflow: hidden;
-			}
-			.book-cover {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				border-radius: 0;
-				display: block;
-				background: #ffffff;
-				border: 3px solid var(--pixel-border);
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-			}
-			.book-meta {
-				width: 100%;
-				text-align: left;
-				color: var(--color-text);
-			}
-			.book-title {
+			.experience-item__role {
 				font-size: 1rem;
-				font-weight: 600;
-				margin-bottom: 4px;
-				color: var(--color-title);
-				font-family: "ThinRounded", sans-serif;
-				line-height: 1.4;
+				color: var(--color-text);
+				font-weight: 400;
 			}
-			.book-author {
+			.experience-item__company {
+				font-size: 0.95rem;
+				color: var(--color-text);
+				text-decoration: underline;
+				text-underline-offset: 2px;
+				transition: opacity 0.2s ease;
+			}
+			.experience-item__company:hover {
+				opacity: 0.6;
+			}
+			/* Recent Posts Section */
+			.recent-posts-section {
+			}
+			.recent-posts-section__title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: var(--color-text);
+				margin-bottom: 32px;
+				letter-spacing: -0.5px;
+			}
+			.recent-posts-section__list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.recent-post-item {
+				margin-bottom: 32px;
+				padding-bottom: 32px;
+				border-bottom: 1px solid var(--color-border);
+			}
+			.recent-post-item:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+			.recent-post-item__link {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+				transition: opacity 0.2s ease;
+			}
+			.recent-post-item__link:hover {
+				opacity: 0.6;
+			}
+			.recent-post-item__date {
+				display: block;
 				font-size: 0.85rem;
 				color: var(--color-sub);
+				margin-bottom: 12px;
+				font-weight: 300;
+			}
+			.recent-post-item__title {
+				font-size: 1.1rem;
 				font-weight: 400;
-				margin-bottom: 8px;
-			}
-			.book-buy-link {
-				font-size: 0.9rem;
-				color: var(--color-accent);
-				text-decoration: underline;
-				text-underline-offset: 4px;
-				transition: color 0.1s ease;
-				display: inline-block;
-				font-weight: 500;
-			}
-			.book-buy-link:hover {
-				color: #ff5252;
+				color: var(--color-text);
+				margin: 0;
+				line-height: 1.5;
+				letter-spacing: -0.2px;
 			}
 			@media (max-width: 900px) {
-				section {
-					padding: 0 24px;
-				}
-				.hero-content h1 {
-					font-size: 2.2rem;
-				}
-				.hero-section {
-					min-height: 360px;
-					padding: 100px 0 60px 0;
-				}
-				.pixel-art-section {
+				.main-content {
 					padding: 60px 24px;
 				}
-				.pixel-art-section__title {
+				.main-content__container {
+					flex-direction: column;
+					gap: 60px;
+				}
+				.about-section {
+					flex: 1 1 100%;
+				}
+				.recent-posts-section {
+					flex: 1 1 100%;
+				}
+				.about-section {
+					position: static;
+				}
+				.about-section__name {
 					font-size: 2rem;
 				}
-				.pixel-art-section__subtitle {
-					font-size: 1rem;
+				.experience-section__title {
+					font-size: 1.3rem;
 				}
-				.pixel-art-section__header {
-					margin-bottom: 40px;
-				}
-				.pixel-art-examples {
-					grid-template-columns: repeat(2, 1fr);
-					gap: 40px;
-				}
-				.pixel-art-section__css-art {
-					margin: 40px 0 30px 0;
-				}
-				.pixel-art-section__game {
-					margin: 40px 0 30px 0;
-				}
-				.pixel-game-canvas {
-					width: 100%;
-					max-width: 100%;
-				}
-				.book-section__grid {
-					grid-template-columns: repeat(3, 1fr);
-					gap: 30px 20px;
-				}
-				.book-section__title {
-					font-size: 2rem;
-				}
-				.book-section__subtitle {
-					font-size: 1.1rem;
-				}
-				ul.post-section__list {
-					gap: 1.8rem;
-				}
-				.section-title {
-					font-size: 1.5rem;
-				}
-				.recent-blog-section {
-					padding: 60px 24px;
-				}
-				.recent-blog-section__title {
-					font-size: 2rem;
-					margin-bottom: 40px;
-				}
-				.recent-blog-section__container {
-					gap: 12px;
-				}
-				.recent-blog-section__nav {
-					width: 40px;
-					height: 40px;
-				}
-				.recent-blog-section__track {
-					gap: 24px;
+				.recent-posts-section__title {
+					font-size: 1.3rem;
 				}
 			}
 			@media (max-width: 600px) {
-				.hero-section {
-					padding: 80px 0 40px 0;
-					min-height: 300px;
+				.main-content {
+					padding: 40px 16px;
 				}
-				.hero-content h1 {
+				.main-content__container {
+					flex-direction: column;
+					gap: 40px;
+				}
+				.about-section {
+					flex: 1 1 100%;
+				}
+				.recent-posts-section {
+					flex: 1 1 100%;
+				}
+				.about-section__name {
 					font-size: 1.8rem;
 				}
-				.pixel-art-section {
-					padding: 50px 16px;
-				}
-				.pixel-art-section__title {
-					font-size: 1.8rem;
-				}
-				.pixel-art-section__subtitle {
-					font-size: 0.95rem;
-				}
-				.pixel-art-section__description p {
-					font-size: 0.95rem;
-				}
-				.pixel-art-section__header {
-					margin-bottom: 30px;
-				}
-				.pixel-art-examples {
-					grid-template-columns: repeat(2, 1fr);
-					gap: 30px;
-				}
-				.pixel-art-section__css-title {
-					font-size: 1.3rem;
-					margin-bottom: 30px;
-				}
-				.pixel-art-section__css-art {
-					margin: 40px 0 30px 0;
-				}
-				.pixel-art-section__game {
-					margin: 40px 0 30px 0;
-				}
-				.pixel-art-section__game-title {
-					font-size: 1.3rem;
-				}
-				.pixel-art-section__game-instructions {
-					font-size: 0.9rem;
-				}
-				.pixel-game-canvas {
-					width: 100%;
-					max-width: 100%;
-				}
-				.hero-content p {
-					font-size: 1rem;
-					margin-bottom: 2rem;
-				}
-				.hero-cta {
-					font-size: 0.9rem;
-					padding: 0.9em 2.2em;
-				}
-				.section-title {
-					font-size: 1.3rem;
-					margin-bottom: 1.8rem;
-				}
-				section {
-					padding: 0 16px;
-					margin-bottom: 56px;
-				}
-				.book-section {
-					padding: 50px 16px;
-				}
-				.book-section__grid {
-					grid-template-columns: repeat(2, 1fr);
-					gap: 24px 16px;
-				}
-				.book-section__title {
-					font-size: 1.8rem;
-				}
-				.book-section__subtitle {
+				.about-section__role {
 					font-size: 1rem;
 				}
-				.book-section__header {
+				.about-section__description {
+					font-size: 0.9rem;
 					margin-bottom: 40px;
 				}
-				ul.post-section__list {
-					gap: 1.5rem;
+				.experience-section__title {
+					font-size: 1.2rem;
+					margin-bottom: 20px;
 				}
-				ul.post-section__list li .contents {
-					padding: 1.5rem 1.3rem;
+				.experience-item {
+					margin-bottom: 20px;
 				}
-				ul.post-section__list li .title {
-					font-size: 1.1rem;
+				.recent-posts-section__title {
+					font-size: 1.2rem;
+					margin-bottom: 24px;
 				}
-				.recent-blog-section {
-					padding: 50px 16px;
+				.recent-post-item {
+					margin-bottom: 24px;
+					padding-bottom: 24px;
 				}
-				.recent-blog-section__title {
-					font-size: 1.8rem;
-					margin-bottom: 30px;
-				}
-				.recent-blog-section__item {
-					min-width: 100%;
-				}
-				.recent-blog-section__post-title {
-					font-size: 1.3rem;
-				}
-				.recent-blog-section__laurel {
-					width: 16px;
-					height: 16px;
-				}
-				.recent-blog-section__nav {
-					width: 36px;
-					height: 36px;
-				}
-				.recent-blog-section__nav svg {
-					width: 18px;
-					height: 18px;
+				.recent-post-item__title {
+					font-size: 1rem;
 				}
 			}
 		</style>

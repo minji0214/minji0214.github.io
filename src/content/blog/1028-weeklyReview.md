@@ -3,6 +3,7 @@ title: "주간회고- 10월 셋째주"
 description: "이터레이터와 URLSearchParams"
 pubDate: "10 28 2024"
 heroImage: "/heroImgs/thumb_weekly.png"
+tags: ["주간회고"]
 ---
 
 남은 연차를 소진할겸 부산여행을 다녀왔다. 이번 여행에서는 마음도 정리하고, 내가 앞으로 나아가야할 길에 대해서도 정리할 수 있었다.
