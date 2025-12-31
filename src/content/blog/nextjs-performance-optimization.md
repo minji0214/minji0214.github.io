@@ -26,6 +26,10 @@ tags: ["FE", "Next.js"]
 
 ### 초기 Lighthouse 점수
 
+![초기 Lighthouse 점수](../../contentsImgs/image.png)
+
+![초기 Lighthouse 점수 상세](../../contentsImgs/image%201.png)
+
 - **LCP (Largest Contentful Paint)**: 개선 필요
 - **CLS (Cumulative Layout Shift)**: 개선 필요
 
@@ -37,6 +41,8 @@ tags: ["FE", "Next.js"]
 
 **Chrome Performance 탭**에서 분석해 보면 어디서 병목이 생기는지 더 자세하게 알아볼 수 있습니다. 최근에 **AI Debug**가 가능해져서 가장 큰 LCP 방해 요소를 찾을 수 있었습니다.
 
+![LCP Breakdown 분석](../../contentsImgs/image%202.png)
+
 ```
 Time to first byte (TTFB): 137ms (41.6%)
 Resource load delay: 102ms (30.8%)
@@ -46,7 +52,11 @@ Resource load duration: 0.1ms (0.0%)
 
 #### 핵심 발견 사항
 
-**가장 큰 문제는 TTFB (Time to First Byte)**였으며, LCP 요소는 **썸네일 이미지**였습니다. 결국엔 썸네일 이미지 영역이었습니다. 캐러셀 영역이 이미지 사이즈에 비해 큰 용량을 가지고 있어 생긴 이슈였습니다.
+**가장 큰 문제는 TTFB (Time to First Byte)**였으며, LCP 요소는 **썸네일 이미지**였습니다.
+
+![LCP 요소 확인](../../contentsImgs/image%203.png)
+
+결국엔 썸네일 이미지 영역이었습니다. 캐러셀 영역이 이미지 사이즈에 비해 큰 용량을 가지고 있어 생긴 이슈였습니다.
 
 ---
 
@@ -84,6 +94,8 @@ Resource load duration: 0.1ms (0.0%)
   fetchPriority="low"
 />
 ```
+
+![이미지 최적화 후](../../contentsImgs/image%204.png)
 
 ---
 
@@ -142,6 +154,8 @@ const PromotionTermsModal = dynamic(
 
 **analyze bundle**을 통해 가장 많은 부분을 차지하는 라이브러리를 찾았고, **`heic2any`**의 최적화 방법을 고민하였습니다. 같은 고민을 하는 사람들이 많더라구요.
 
+![Bundle Analyzer 결과](../../contentsImgs/image%205.png)
+
 - size는 줄었지만 firstload는 오히려 증가하였습니다. 그래서 스크립트를 루트 레이아웃에서 import 하는 것이 아닌 사용하는 페이지에서 동적 import 하는 방식으로 변경하였습니다.
 
 ```jsx
@@ -164,9 +178,23 @@ import { heic2any } from 'heic2any';
 
 1. 전역에서 사용하지 않는 다른 스크립트들도 사용하는 페이지로 이동해주었고, 스크립트에 **`loading="lazy"`** 옵션을 추가해 주었습니다.
 
+![스크립트 lazy 옵션 적용](../../contentsImgs/image%206.png)
+
 기존에 콘솔에 뜨던 오류도 함께 해결되었습니다.
 
 1. 안쓰는 라이브러리 정리 (**`embla-carousel`**)
+
+변경 후 dev
+
+![변경 후 dev 빌드 결과](../../contentsImgs/image%207.png)
+
+prd 배포 후
+
+![prd 배포 후 Lighthouse 점수](../../contentsImgs/image%208.png)
+
+![prd 배포 후 성능 지표](../../contentsImgs/image%209.png)
+
+![prd 배포 후 성능 지표 상세](../../contentsImgs/image%2010.png)
 
 변경 후 dev와 prd 배포 후 결과:
 
@@ -201,6 +229,14 @@ After:
 2. **최신 정보 API**: **`useQueries`**로 묶어서 병렬 처리
 3. **인증 상태 확인**: **`isAuthenticated`** 옵션 추가
 
+**as-is**
+
+![홈 페이지 fetch 호출 as-is](../../contentsImgs/image%2011.png)
+
+**to-be**
+
+![홈 페이지 fetch 호출 to-be](../../contentsImgs/image%2012.png)
+
 ```
 ƒ /    22.5 kB    341 kB
 ```
@@ -211,16 +247,24 @@ After:
 - **`isAuthenticated` 스토어 추가**
 - **`/list/popup` prefetch 제거**
 
+![팝업 리스트 페이지 최적화 1](../../contentsImgs/image%2013.png)
+
+![팝업 리스트 페이지 최적화 2](../../contentsImgs/image%2014.png)
+
 ```
 ├ ƒ /list/popup    18.9 kB    327 kB
 ```
 
 ### 팝업 상세 페이지 최적화
 
-1. **Review 관련 prefetch 제거**
+1. **Review 관련 prefetch 제거**: 탭으로 숨겨져 있는 리뷰 영역이므로 초기 로딩 시 불필요한 prefetch 제거
 2. **Dynamic import 추가**: 관련 팝업, 지도 컴포넌트를 dynamic import로 변경
 3. **지연 로딩**: 하단 추천 영역 API들은 하단으로 스크롤 내렸을때 호출
 4. **이미지 lazy 처리**: 모든 이미지에 **`loading="lazy"`** 적용
+
+![팝업 상세 페이지 최적화 1](../../contentsImgs/image%2015.png)
+
+![팝업 상세 페이지 최적화 2](../../contentsImgs/image%2016.png)
 
 ```
 ├ ƒ /popup/[id]    36.4 kB    353 kB
@@ -229,6 +273,14 @@ After:
 ```
 
 **JS 청크 개수**도 **56개**로 감소했습니다.
+
+![팝업 상세 페이지 추가 최적화 1](../../contentsImgs/image%2017.png)
+
+![팝업 상세 페이지 추가 최적화 2](../../contentsImgs/image%2018.png)
+
+![팝업 상세 페이지 추가 최적화 3](../../contentsImgs/image%2019.png)
+
+![팝업 상세 페이지 추가 최적화 4](../../contentsImgs/image%2020.png)
 
 ---
 
@@ -242,6 +294,8 @@ https://developer.chrome.com/docs/devtools/performance?hl=ko
 
 - **FPS 차트**: 빨간색이 있는 경우 프레임 속도가 느려서 사용자 환경에 영향을 미침
 - **CPU 차트**: 메인 스레드 사용량을 확인
+
+![FPS 차트](../../contentsImgs/image%2021.png)
 
 ### CPU 4× 기준 분석 결과
 
@@ -298,116 +352,24 @@ https://developer.chrome.com/docs/devtools/performance?hl=ko
 > 
 > → 스크롤은 "움직이지만 손에 안 붙는 느낌"
 
-### CPU 4×에서 특히 위험한 신호들
+### CPU 4×에서 발견한 문제들
 
-#### 애니메이션이 메인 스레드에 묶여 있음
+Performance 탭에서 확인한 결과, 애니메이션이 메인 스레드에 묶여 있어서 스크롤 중에도 계속 실행되고 있었습니다. transform이나 opacity를 사용하더라도 JS로 트리거되면 layout → paint 과정을 거치게 되어 성능에 영향을 줍니다.
 
-`Animations` 트랙에 **보라색 블록이 반복적으로 등장**
+또한 Insights에서 나오는 경고들을 보면:
+- Optimize DOM size
+- Improve image delivery (26MB)
+- Use efficient cache lifetimes (21MB)
 
-- 스크롤 중에도 애니메이션 실행
-- transform / opacity라도
-    **JS 트리거 → layout → paint 루트** 가능성 높음
-
-👉 저사양 기기에서 바로 체감됨
-
-#### DOM 사이즈 + 리스트 구조
-
-Insights에 이미 뜨는 경고:
-- **Optimize DOM size**
-- **Improve image delivery (26MB)**
-- **Use efficient cache lifetimes (21MB)**
-
-CPU 감속 상태에서 이건 사실상:
-
-> "지금 구조는 PC에서만 괜찮고, 모바일에선 한계"
+이런 경고들이 나오는 상태였습니다.
 
 ### 왜 LCP / CLS / INP는 괜찮은데 체감은 안 좋을까?
 
-이게 핵심 질문인데, 답은 명확해.
+LCP는 초기 1번만 빠르면 통과하고, CLS는 레이아웃 안정성만 봅니다. INP도 대표 상호작용 1회만 측정합니다.
 
-- **LCP**: 초기 1번만 빠르면 통과
-- **CLS**: 레이아웃 안정성만 봄
-- **INP**: "대표 상호작용 1회"
-
-하지만 팝가 문제는:
-
-> ❌ "지속적인 상호작용 비용"
-> 
-> - 무한 스크롤
-> - 리스트 이미지 로딩
-> - 상태 변경
-> - analytics / observer / effect
-
-👉 **Core Web Vitals로는 안 걸리는 영역**
+하지만 실제 문제는 지속적인 상호작용 비용이었습니다. 무한 스크롤, 리스트 이미지 로딩, 상태 변경, analytics나 observer 같은 것들이 계속 실행되면서 성능에 영향을 주고 있었는데, 이건 Core Web Vitals로는 측정되지 않는 영역이었습니다.
 
 ---
-
-## 8. 지금 구조에서 가장 의심되는 원인 TOP 5
-
-CPU 4× 기준으로 우선순위 정리해줄게.
-
-### 1순위 — 리스트 렌더링 전략
-
-- windowing / virtualization 없음 or 불충분
-- 이미지 + 텍스트 카드가 전부 DOM에 존재
-
-👉 **react-window / virtua / flash-list 급 필요**
-
-### 2순위 — 스크롤 연동 JS
-
-- scroll listener
-- intersection observer 다중 등록
-- analytics 이벤트
-
-👉 observer 수 **확인 필수**
-
-### 3순위 — 이미지 디코딩 타이밍
-
-- WebP / PNG 대량
-- decode가 메인 스레드에서 발생
-
-👉 **`decoding="async"`** / 사이즈 명시 / LQIP 필요
-
-### 4순위 — 불필요한 re-render
-
-- Zustand selector 미최적화
-- 리스트 아이템이 상태 변경에 같이 리렌더
-
-👉 React DevTools "Highlight updates"로 바로 보임
-
-### 5순위 — 애니메이션 설계
-
-- JS-driven animation
-- layout 영향 애니메이션
-
-👉 **CSS-only + compositor layer**로 밀어야 함
-
-## 지금 당장 하면 효과 큰 액션 3개
-
-### 1. 리스트 virtualization 적용
-
-> CPU 4×에서 가장 큰 체감 개선
-
-### 2. 이미지 전략 변경
-
-- 썸네일: 더 작은 사이즈
-- LQIP + lazy
-- width/height 고정
-
-### 3. 스크롤 중 JS 실행 차단
-
-- 스크롤 중 analytics defer
-- observer 최소화
-
----
-
-## 9. 한 문장으로 정리하면
-
-> 팝가는 "처음은 빠르지만, 계속 쓰면 피곤해지는 앱" 구조
-> 
-> CPU 4× 기준에서 이미 한계 신호가 명확히 보임
-> 
-> → 지금 최적화하면 **저사양 모바일 체감이 크게 좋아질 타이밍**
 
 ### 개선 성과 요약
 
@@ -416,12 +378,10 @@ CPU 4× 기준으로 우선순위 정리해줄게.
 - **LCP 개선**: 이미지 lazy loading으로 초기 로딩 시간 감소
 - **Fetch 호출 최소화**: 불필요한 prefetch 제거로 네트워크 사용량 감소
 
-### 배운 점
+---
 
-1. **측정이 먼저**: Lighthouse와 Performance 탭을 통해 정확한 병목 지점 파악
-2. **점진적 개선**: 한 번에 모든 것을 바꾸지 않고, 하나씩 적용하며 효과 확인
-3. **런타임 성능도 중요**: 빌드타임 성능뿐만 아니라 실제 사용자 경험도 고려해야 함
-4. **Core Web Vitals의 한계**: 초기 로딩 지표만으로는 부족하며, 지속적인 상호작용 비용도 측정해야 함
+## 참고하면 좋은 글
 
-성능 최적화는 끝이 없는 여정입니다. 하지만 사용자 경험을 개선하기 위한 노력은 반드시 필요한 투자입니다.
+- [우아한형제들 기술블로그 - Next.js 성능 최적화 경험기](https://techblog.woowahan.com/20228/)
+- [Chrome DevTools - Performance 패널 가이드](https://developer.chrome.com/docs/devtools/performance?hl=ko)
 
