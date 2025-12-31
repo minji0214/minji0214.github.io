@@ -2,7 +2,6 @@
 title: "주간회고- 10월 셋째주"
 description: "이터레이터와 URLSearchParams"
 pubDate: "10 28 2024"
-heroImage: "/heroImgs/thumb_weekly.png"
 tags: ["주간회고"]
 ---
 

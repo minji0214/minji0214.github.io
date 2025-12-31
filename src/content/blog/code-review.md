@@ -2,7 +2,6 @@
 title: "좋은 코드리뷰어 되기"
 description: "코드리뷰 어떻게 해야할지 모르겠어요"
 pubDate: "08 07 2023"
-heroImage: "/heroImgs/thumb_culture.png"
 tags: ["FE"]
 ---
 

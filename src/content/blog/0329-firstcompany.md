@@ -2,7 +2,6 @@
 title: "이직후 3개월 뒤 쓰는 첫 스타트업 회고"
 description: "어린아이가 부모로부터 세상의 모든것을 배우듯 첫 회사에서 스타트업에 대한 거의 모든것을 배웠다. "
 pubDate: "2025-03-29"
-heroImage: "/heroImgs/IMG_3567.jpeg"
 tags: ["스타트업"]
 ---
 

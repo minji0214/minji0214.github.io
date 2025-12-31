@@ -2,7 +2,6 @@
 title: "React톺아보기 1 : useState 동작원리와 클로저"
 description: "리액트의 가장 대표적인 훅인 useState의 동작원리를 직접 useState 구현을 통해 알아보고 이해하는 과정입니다."
 pubDate: "08 24 2024"
-heroImage: "/heroImgs/thumb_react.png"
 tags: ["FE"]
 ---
 

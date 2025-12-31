@@ -54,7 +54,10 @@ const posts = (await getCollection("blog"))
 					</div>
 
 					<div class="recent-posts-section">
-						<h2 class="recent-posts-section__title">Recent Posts</h2>
+						<div class="recent-posts-section__header">
+							<h2 class="recent-posts-section__title">Recent Posts</h2>
+							<a href="/blog/" class="recent-posts-section__view-all">전체보기 →</a>
+						</div>
 						<ul class="recent-posts-section__list">
 							{
 								posts.map((post) => (
@@ -113,16 +116,24 @@ const posts = (await getCollection("blog"))
 				margin: 0;
 				padding: 0;
 				min-height: 100vh;
+				overflow-x: hidden;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			* {
+				box-sizing: border-box;
 			}
 			main {
 				width: 100%;
 				box-sizing: border-box;
 				background: var(--color-bg);
 				padding: 0;
+				overflow-x: hidden;
 			}
 			.main-content {
 				width: 100%;
 				padding: 80px 40px;
+				box-sizing: border-box;
 			}
 			.main-content__container {
 				max-width: 1200px;
@@ -131,12 +142,18 @@ const posts = (await getCollection("blog"))
 				flex-direction: row;
 				gap: 80px;
 				align-items: flex-start;
+				width: 100%;
+				box-sizing: border-box;
 			}
 			.about-section {
-				flex: 0 0 50%;
+				flex: 1 1 50%;
+				min-width: 0;
 			}
 			.recent-posts-section {
-				flex: 0 0 50%;
+				flex: 1 1 50%;
+				min-width: 0;
+				width: 100%;
+				box-sizing: border-box;
 			}
 			/* About Section */
 			.about-section {
@@ -209,13 +226,44 @@ const posts = (await getCollection("blog"))
 			}
 			/* Recent Posts Section */
 			.recent-posts-section {
+				width: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.recent-posts-section__header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 32px;
+				gap: 16px;
+				flex-wrap: nowrap;
+				width: 100%;
+				box-sizing: border-box;
 			}
 			.recent-posts-section__title {
 				font-size: 1.5rem;
 				font-weight: 700;
 				color: var(--color-text);
-				margin-bottom: 32px;
+				margin: 0;
 				letter-spacing: -0.5px;
+				word-break: keep-all;
+				overflow-wrap: break-word;
+				flex: 1;
+				min-width: 0;
+			}
+			.recent-posts-section__view-all {
+				font-size: 0.9rem;
+				color: var(--color-sub);
+				text-decoration: none;
+				transition: all 0.2s ease;
+				font-weight: 400;
+				white-space: nowrap;
+				flex-shrink: 0;
+			}
+			.recent-posts-section__view-all:hover {
+				color: var(--color-text);
+				text-decoration: underline;
+				text-underline-offset: 2px;
 			}
 			.recent-posts-section__list {
 				list-style: none;
@@ -255,10 +303,14 @@ const posts = (await getCollection("blog"))
 				margin: 0;
 				line-height: 1.5;
 				letter-spacing: -0.2px;
+				word-break: keep-all;
+				overflow-wrap: break-word;
 			}
 			@media (max-width: 900px) {
 				.main-content {
 					padding: 60px 24px;
+					width: 100%;
+					box-sizing: border-box;
 				}
 				.main-content__container {
 					flex-direction: column;
@@ -279,13 +331,40 @@ const posts = (await getCollection("blog"))
 				.experience-section__title {
 					font-size: 1.3rem;
 				}
+				.recent-posts-section__header {
+					margin-bottom: 24px;
+					flex-wrap: nowrap;
+				}
 				.recent-posts-section__title {
 					font-size: 1.3rem;
+					flex: 1;
+					min-width: 0;
+				}
+				.recent-posts-section__view-all {
+					font-size: 0.85rem;
+					white-space: nowrap;
+					flex-shrink: 0;
 				}
 			}
 			@media (max-width: 600px) {
 				.main-content {
 					padding: 40px 16px;
+					width: 100%;
+					box-sizing: border-box;
+				}
+				.recent-posts-section__header {
+					flex-wrap: nowrap;
+					gap: 12px;
+				}
+				.recent-posts-section__title {
+					font-size: 1.2rem;
+					flex: 1;
+					min-width: 0;
+				}
+				.recent-posts-section__view-all {
+					font-size: 0.8rem;
+					white-space: nowrap;
+					flex-shrink: 0;
 				}
 				.main-content__container {
 					flex-direction: column;
@@ -314,9 +393,14 @@ const posts = (await getCollection("blog"))
 				.experience-item {
 					margin-bottom: 20px;
 				}
+				.recent-posts-section__header {
+					margin-bottom: 20px;
+				}
 				.recent-posts-section__title {
 					font-size: 1.2rem;
-					margin-bottom: 24px;
+				}
+				.recent-posts-section__view-all {
+					font-size: 0.8rem;
 				}
 				.recent-post-item {
 					margin-bottom: 24px;

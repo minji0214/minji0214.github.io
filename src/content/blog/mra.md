@@ -2,7 +2,6 @@
 title: "CRA대신 MRA만들어보기"
 description: "리액트의 cra를 직접 구현해보며, 작동방식과 기능들을 이해하고 개선점을 찾아보았습니다. "
 pubDate: "09 09 2024"
-heroImage: "/heroImgs/thumb_react.png"
 tags: ["FE"]
 ---
 

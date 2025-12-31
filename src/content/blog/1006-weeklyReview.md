@@ -2,7 +2,6 @@
 title: "주간회고- 10월 첫째주"
 description: "리액트에 대해 다시 알아가는 중. "
 pubDate: "10 06 2024"
-heroImage: "/heroImgs/thumb_weekly.png"
 tags: ["주간회고"]
 ---
 

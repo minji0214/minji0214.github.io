@@ -1,0 +1,18 @@
+{
+	"Blog Post Template": {
+		"prefix": "/blog",
+		"body": [
+			"---",
+			"title: \"${1:제목을 입력하세요}\"",
+			"description: \"${2:설명을 입력하세요}\"",
+			"pubDate: \"MM DD YYYY\"",
+			"tags: [\"${3:FE}\"]",
+			"---",
+			"",
+			"${4:# 제목}",
+			"",
+			"${5:내용을 작성하세요}"
+		],
+		"description": "블로그 포스트 템플릿"
+	}
+}

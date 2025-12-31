@@ -2,7 +2,6 @@
 title: "디자인변경에 멋드러지게 대응하기(1): polymorphic한 ui"
 description: "polymorphic한 ui만들기 대작전"
 pubDate: "07 10 2024"
-heroImage: "/heroImgs/thumb_react.png"
 tags: ["FE"]
 ---
 

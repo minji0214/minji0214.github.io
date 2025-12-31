@@ -2,7 +2,6 @@
 title: "reactQuery 사내 도입하기"
 description: "reactQuery 도입후 6개월..."
 pubDate: "07 11 2024"
-heroImage: "/heroImgs/thumb_react.png"
 tags: ["FE"]
 ---
 

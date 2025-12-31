@@ -73,15 +73,6 @@ const allItems = [
 						<div class="items-grid">
 							{categories.projects.slice(0, 5).map((item) => (
 								<a href={`/blog/${item.slug}/`} class="pixel-card">
-									{item.data.heroImage && (
-										<div class="pixel-card__image">
-											<img
-												src={item.data.heroImage}
-												alt={item.data.title}
-												loading="lazy"
-											/>
-										</div>
-									)}
 									<div class="pixel-card__content">
 										<span class="pixel-card__category">PROJECTS</span>
 										<h3 class="pixel-card__title">{item.data.title}</h3>
