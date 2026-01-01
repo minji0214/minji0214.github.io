@@ -1,365 +1,981 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Footer from "../../components/Footer.astro";
-import { getCollection } from "astro:content";
-
-const posts = (await getCollection("blog"))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-// 카테고리별로 포스트 분류
-const categories = {
-	projects: posts.filter((post) => 
-		post.slug.includes("react") || 
-		post.slug.includes("design") || 
-		post.slug.includes("polymorphic") ||
-		post.slug.includes("query") ||
-		post.slug.includes("test")
-	),
-	articles: posts.filter((post) => 
-		post.slug.includes("weekly") || 
-		post.slug.includes("review") ||
-		post.slug.includes("seo") ||
-		post.slug.includes("accessibility")
-	),
-	others: posts.filter((post) => 
-		!post.slug.includes("react") && 
-		!post.slug.includes("design") && 
-		!post.slug.includes("polymorphic") &&
-		!post.slug.includes("query") &&
-		!post.slug.includes("test") &&
-		!post.slug.includes("weekly") && 
-		!post.slug.includes("review") &&
-		!post.slug.includes("seo") &&
-		!post.slug.includes("accessibility")
-	),
-};
-
-const allItems = [
-	...categories.projects.slice(0, 5),
-	...categories.articles.slice(0, 4),
-	...categories.others.slice(0, 3),
-];
+// Resume page with isolated styles - no global CSS imports
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 	<head>
-		<BaseHead title="Portfolio" description="My Work Portfolio" keywords="" />
-		<style>
-			@font-face {
-				font-family: "ThinRounded";
-				src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2")
-					format("woff2");
-				font-weight: normal;
-				font-display: swap;
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>전민지 - Product-Focused Frontend Engineer</title>
+		<style is:global>
+			@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+			@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+
+			/* Reset all styles for resume page */
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			:root {
+				--ink: #000000;
+				--charcoal: #1a1a1a;
+				--dark-gray: #333333;
+				--medium-gray: #666666;
+				--stone: #999999;
+				--light-gray: #e5e5e5;
+				--pale-gray: #f5f5f5;
+				--white: #ffffff;
+				--accent: #000000;
+				--border: #e0e0e0;
+			}
+
+			@media print {
+				/* 🔥 배경색 출력 강제 */
+				* {
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+			}
+
+			.resume-page * {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			.resume-page {
+				font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+				font-weight: 400 !important;
+				line-height: 1.6 !important;
+				color: var(--ink) !important;
+				background: var(--pale-gray) !important;
+				min-height: 100vh !important;
+				margin: 0 !important;
+				padding: 0 !important;
+			}
+
+			.resume-page .container {
+				max-width: 1000px;
+				margin: 0 auto;
+				background: var(--white);
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+				overflow: hidden;
+			}
+
+			/* Header with Split Design */
+			.resume-page .header {
+				display: grid;
+				grid-template-columns: 1fr 270px;
+				min-height: 280px;
+			}
+
+			.resume-page .header-left {
+				padding: 60px;
+				background: var(--ink);
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			/* Minimal Pattern */
+			.resume-page .header-left::before {
+				content: '';
+				position: absolute;
+				bottom: 40px;
+				right: 40px;
+				width: 120px;
+				height: 120px;
+				border: 2px solid rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+			}
+
+			.resume-page .name {
+				font-family: 'Archivo', sans-serif;
+				font-size: 48px;
+				font-weight: 800;
+				color: var(--white);
+				letter-spacing: -0.02em;
+				margin-bottom: 12px;
+				position: relative;
+				z-index: 1;
+			}
+
+			.resume-page .title {
+				font-size: 18px;
+				font-weight: 400;
+				color: var(--white);
+				opacity: 0.8;
+				letter-spacing: 0.04em;
+				position: relative;
+				z-index: 1;
+			}
+
+			.resume-page .years-indicator {
+				margin-top: 24px;
+				display: inline-flex;
+				align-items: center;
+				gap: 12px;
+				position: relative;
+				z-index: 1;
+			}
+
+			.resume-page .years-dot {
+				width: 8px;
+				height: 8px;
+				background: var(--white);
+				border-radius: 50%;
+			}
+
+			.resume-page .years-text {
+				color: var(--white);
+				font-size: 14px;
+				font-weight: 400;
+				letter-spacing: 0.02em;
+				opacity: 0.7;
+			}
+
+			.resume-page .header-right {
+				padding: 60px 40px;
+				background: var(--pale-gray);
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				position: relative;
+			}
+
+			.resume-page .contact-list {
+				display: flex;
+				flex-direction: column;
+				gap: 18px;
+			}
+
+			.resume-page .contact-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 14px;
+				color: var(--charcoal);
+				position: relative;
+			}
+
+			.resume-page .contact-icon {
+				width: 36px;
+				height: 36px;
+				background: var(--white);
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				border: 1px solid var(--light-gray);
+			}
+
+			.resume-page .contact-icon svg {
+				width: 18px;
+				height: 18px;
+				stroke: var(--dark-gray);
+			}
+
+			.resume-page .contact-text {
+				color: var(--charcoal);
+				text-decoration: none;
+				transition: color 0.2s ease;
+				font-size: 13px;
+			}
+
+			.resume-page .contact-text:hover {
+				color: var(--ink);
+			}
+
+			/* Main Content */
+			.resume-page .content {
+				padding: 30px;
+			}
+
+			/* About Section with Background */
+			.resume-page .about-section {
+				margin-bottom: 56px;
+				padding: 32px;
+				background: var(--pale-gray);
+				border-left: 3px solid var(--ink);
+				position: relative;
+			}
+
+			.resume-page .about-text {
+				font-size: 15px;
+				line-height: 1.8;
+				color: var(--charcoal);
+				position: relative;
+				z-index: 1;
+			}
+
+			.resume-page .about-list {
+				list-style: none;
+				padding: 0;
+				margin-top: 16px;
+			}
+
+			.resume-page .about-list li {
+				position: relative;
+				padding-left: 20px;
+				margin-bottom: 8px;
+				font-size: 14px;
+				color: var(--charcoal);
+			}
+
+			.resume-page .about-list li::before {
+				content: '•';
+				position: absolute;
+				left: 0;
+				color: var(--medium-gray);
+			}
+
+			/* Section Headers */
+			.resume-page .section {
+				margin-bottom: 56px;
+			}
+
+			.resume-page .section-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 36px;
+				position: relative;
+			}
+
+			.resume-page .section-number {
+				width: 40px;
+				height: 40px;
+				background: var(--ink);
+				color: var(--white);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 700;
+				font-size: 16px;
+				margin-right: 16px;
+			}
+
+			.resume-page .section-title {
+				font-family: 'Archivo', sans-serif;
+				font-size: 20px;
+				font-weight: 700;
+				color: var(--ink);
+				text-transform: uppercase;
+				letter-spacing: 0.02em;
+			}
+
+			/* Experience Cards */
+			.resume-page .experience-item {
+				display: grid;
+				grid-template-columns: 160px 1fr;
+				gap: 32px;
+				margin-bottom: 32px;
+				padding: 24px;
+				background: var(--white);
+				border: 1px solid var(--light-gray);
+				transition: all 0.3s ease;
+			}
+
+			.resume-page .experience-item:hover {
+				transform: translateX(4px);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+			}
+
+			.resume-page .experience-period {
+				padding-top: 4px;
+			}
+
+			.resume-page .experience-date {
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--medium-gray);
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+			}
+
+			.resume-page .experience-duration {
+				font-size: 12px;
+				color: var(--stone);
+				margin-top: 4px;
+			}
+
+			.resume-page .experience-content {
+				padding-top: 0;
+			}
+
+			.resume-page .experience-title {
+				font-size: 18px;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 4px;
+			}
+
+			.resume-page .experience-company {
+				font-size: 18px;
+				color: var(--dark-gray);
+				font-weight: 700;
+				margin-bottom: 12px;
+			}
+
+			.resume-page .experience-description {
+				font-size: 14px;
+				color: var(--charcoal);
+				margin-bottom: 12px;
+				line-height: 1.6;
+			}
+
+			.resume-page .experience-list {
+				list-style: none;
+				padding: 0;
+			}
+
+			.resume-page .experience-list li {
+				position: relative;
+				padding-left: 20px;
+				margin-bottom: 10px;
+				font-size: 14px;
+				line-height: 1.7;
+				color: var(--charcoal);
+			}
+
+			.resume-page .experience-list li::before {
+				content: '•';
+				position: absolute;
+				left: 0;
+				color: var(--medium-gray);
+				font-weight: 700;
+			}
+
+			/* Skills Grid with Monochrome */
+			.resume-page .skills-container {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 20px;
+			}
+
+			.resume-page .skill-card {
+				padding: 24px;
+				background: var(--white);
+				border: 1px solid var(--light-gray);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.resume-page .skill-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: var(--ink);
+			}
+
+			.resume-page .skill-card-title {
+				font-size: 14px;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 16px;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+
+			.resume-page .skill-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+
+			.resume-page .skill-tag {
+				padding: 6px 12px;
+				background: var(--pale-gray);
+				color: var(--charcoal);
+				border-radius: 4px;
+				font-size: 13px;
+				font-weight: 500;
+				transition: all 0.2s ease;
+			}
+
+			.resume-page .skill-tag:hover {
+				background: var(--ink);
+				color: var(--white);
+				transform: translateY(-2px);
+			}
+
+			/* Projects with Visual Elements */
+			.resume-page .project-item {
+				padding: 24px;
+				background: var(--pale-gray);
+				margin-bottom: 20px;
+				position: relative;
+				border-left: 3px solid var(--ink);
+			}
+
+			.resume-page .project-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 12px;
+			}
+
+			.resume-page .project-title {
+				font-size: 17px;
+				font-weight: 700;
+				color: var(--ink);
+			}
+
+			.resume-page .project-period {
+				font-size: 13px;
+				color: var(--stone);
+				font-weight: 500;
+			}
+
+			.resume-page .project-tech {
+				display: inline-block;
+				font-size: 12px;
+				color: var(--medium-gray);
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.02em;
+				margin-bottom: 12px;
+			}
+
+			.resume-page .project-description {
+				font-size: 14px;
+				color: var(--charcoal);
+				line-height: 1.7;
+			}
+
+			/* Education */
+			.resume-page .education-item {
+				padding: 24px;
+				background: var(--white);
+				border: 1px solid var(--light-gray);
+				display: flex;
+				align-items: center;
+				gap: 32px;
+			}
+
+			.resume-page .education-icon {
+				width: 56px;
+				height: 56px;
+				background: var(--ink);
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+
+			.resume-page .education-icon svg {
+				width: 28px;
+				height: 28px;
+				stroke: var(--white);
+			}
+
+			.resume-page .education-content {
+				flex: 1;
+			}
+
+			.resume-page .education-degree {
+				font-size: 16px;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 4px;
+			}
+
+			.resume-page .education-school {
+				font-size: 14px;
+				color: var(--charcoal);
+				margin-bottom: 4px;
+			}
+
+			.resume-page .education-date {
+				font-size: 13px;
+				color: var(--stone);
+			}
+
+			/* Activities Section */
+			.resume-page .activities-list {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 16px;
+			}
+
+			.resume-page .activity-item {
+				padding: 16px;
+				background: var(--pale-gray);
+				border-left: 2px solid var(--ink);
+				font-size: 14px;
+				color: var(--charcoal);
+			}
+
+			/* Testimonials Section */
+			.resume-page .testimonials-section {
+				margin-bottom: 56px;
+			}
+
+			.resume-page .testimonial-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 20px;
+			}
+
+			.resume-page .testimonial-card {
+				padding: 24px;
+				background: var(--white);
+				border: 1px solid var(--light-gray);
+				border-left: 3px solid var(--ink);
+				position: relative;
+			}
+
+			.resume-page .testimonial-card::before {
+				content: '"';
+				position: absolute;
+				top: 16px;
+				right: 24px;
+				font-size: 48px;
+				color: var(--light-gray);
+				font-family: 'Archivo', sans-serif;
+				line-height: 1;
+			}
+
+			.resume-page .testimonial-content {
+				font-size: 13px;
+				line-height: 1.7;
+				color: var(--charcoal);
+				margin-bottom: 16px;
+				font-style: italic;
+			}
+
+			.resume-page .testimonial-author {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.resume-page .testimonial-role {
+				font-size: 13px;
+				font-weight: 700;
+				color: var(--ink);
+			}
+
+			.resume-page .testimonial-company {
+				font-size: 12px;
+				color: var(--stone);
+			}
+
+			.resume-page .testimonial-divider {
+				width: 20px;
+				height: 1px;
+				background: var(--light-gray);
+			}
+
+			/* Responsive */
+			@media (max-width: 768px) {
+				.resume-page .experience-item {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+
+				.resume-page .skills-container {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="portfolio-container">
-			<div class="portfolio-header">
-				<h1 class="portfolio-title">PORTFOLIO</h1>
-				<p class="portfolio-subtitle">My Work Collection</p>
-			</div>
-
-			<div class="portfolio-content">
-				{/* Projects Section */}
-				{categories.projects.length > 0 && (
-					<section class="portfolio-section">
-						<div class="section-header">
-							<h2 class="section-title">🎮 PROJECTS</h2>
-							<div class="section-divider"></div>
+		<div class="resume-page">
+			<div class="container">
+				<!-- Header -->
+				<header class="header">
+					<div class="header-left">
+						<h1 class="name">전민지</h1>
+						<div class="title">Product-Focused Frontend Engineer</div>
+						<div class="years-indicator">
+							<div class="years-dot"></div>
+							<span class="years-text">3+ Years Experience</span>
 						</div>
-						<div class="items-grid">
-							{categories.projects.slice(0, 5).map((item) => (
-								<a href={`/blog/${item.slug}/`} class="pixel-card">
-									<div class="pixel-card__content">
-										<span class="pixel-card__category">PROJECTS</span>
-										<h3 class="pixel-card__title">{item.data.title}</h3>
-										<p class="pixel-card__description">{item.data.description}</p>
-										<span class="pixel-card__link">VIEW →</span>
-									</div>
-								</a>
-							))}
+					</div>
+					
+					<div class="header-right">
+						<div class="contact-list">
+							<div class="contact-item">
+								<div class="contact-icon">
+									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+									</svg>
+								</div>
+								<a href="mailto:minji0214@gmail.com" class="contact-text">minji0214@gmail.com</a>
+							</div>
+							<div class="contact-item">
+								<div class="contact-icon">
+									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+									</svg>
+								</div>
+								<span class="contact-text">010-4829-6952</span>
+							</div>
+							<div class="contact-item">
+								<div class="contact-icon">
+									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+									</svg>
+								</div>
+								<a href="https://github.com/minji0214" class="contact-text" target="_blank" rel="noopener noreferrer">github.com/minji0214</a>
+							</div>
+							<div class="contact-item">
+								<div class="contact-icon">
+									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+									</svg>
+								</div>
+								<a href="https://minji0214.github.io" class="contact-text" target="_blank" rel="noopener noreferrer">minji0214.github.io/blog</a>
+							</div>
+						</div>
+					</div>
+				</header>
+
+				<!-- Main Content -->
+				<main class="content">
+					<!-- About & Values -->
+					<section class="about-section">
+						<p class="about-text">
+							프로덕트 엔지니어 전민지입니다.
+						</p>
+						<ul class="about-list">
+							<li>한 가지 기술에 구애받지 않고, 프로젝트에 필요한 기술이라면 적극적으로 시도하고 완료합니다.</li>
+							<li>디자인·기획 단계부터 참여하며, 사용자 흐름과 비즈니스 목표를 함께 고려해 기능을 설계합니다.</li>
+							<li>사용자 행동을 분석하고 3개월간 20개의 기능 배포를 진행하며, 빠른 피드백과 실행력을 강점으로 삼고 있습니다.</li>
+							<li>한달만에 WYSIWYG Editor POC를 만들어 내어, 시리즈A 투자에 기여하였습니다.</li>
+							<li>mixpanel, GTM, sentry 등의 툴을 사용하여, 데이터 기반 개발 문화를 정착시켰습니다.</li>
+						</ul>
+					</section>
+
+					<!-- Experience -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">01</div>
+							<h2 class="section-title">Experience</h2>
+						</div>
+						
+						<div class="experience-item">
+							<div class="experience-period">
+								<div class="experience-date">2024.01 - Present</div>
+								<div class="experience-duration">1 year</div>
+							</div>
+							<div class="experience-content">
+								<div class="experience-company">Sweetspot · 플랫폼 본부</div>
+								<p class="experience-description">
+									O2O 커머스 플랫폼 및 팝업스토어 예약 시스템 개발
+								</p>
+								<ul class="experience-list">
+									<li>삼성전자 F&B 팝업 사이렌오더 시스템 구축 및 운영</li>
+									<li>React Native 기반 매장 관리 앱 개발 (웹뷰, 실시간 푸시알림, 영수증 출력)</li>
+									<li>팝업 사전예약 기능 기획 및 개발, 대규모 트래픽 대응</li>
+									<li>Sentry 에러로깅 및 GTM 데이터 트래킹 시스템 구축</li>
+									<li>Core Web Vitals 개선 과정에서 main thread 병목을 분석하여
+										불필요한 JavaScript 실행을 줄이고 TBT/LCP를 개선</li>
+									<li>Naver Maps API 활용 지도 기능 및 개인화 추천 기능 개발</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="experience-item">
+							<div class="experience-period">
+								<div class="experience-date">2022.11 - 2024.12</div>
+								<div class="experience-duration">2 years 2 months</div>
+							</div>
+							<div class="experience-content">
+								<div class="experience-company">북아이피스 · 마켓플레이스 스쿼드 / FE Chapter</div>
+								<p class="experience-description">
+									초중고 교재 저작권 중계 및 저자들이 직접 교재를 제작, 판매할 수 있는 B2C 마켓플레이스 플랫폼 개발
+								</p>
+								<ul class="experience-list">
+									<li>커머스 프로덕트 Next.js 마이그레이션</li>
+									<li>서버 상태를 단일 source of truth로 관리하기 위해
+										TanStack Query를 도입하고 검색 기능의 캐시 및 invalidation 구조를 개선 및 검색 기능 개편</li>
+									<li>Sentry 에러 트래킹 환경 구축</li>
+									<li>Mixpanel, GA 데이터 로깅 환경 구축</li>
+									<li>SSR을 이용한 SEO 개선</li>
+									<li>디자인 시스템 개발 및 npm 배포를 통한 버전관리</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="experience-item">
+							<div class="experience-period">
+								<div class="experience-date">2019.09 - 2022.03</div>
+								<div class="experience-duration">2 year 7 months</div>
+							</div>
+							<div class="experience-content">
+								<div class="experience-company">천안북부신협 · 은행원</div>
+								<p class="experience-description">
+									금융 서비스 운영 및 고객 상담
+								</p>
+								<ul class="experience-list">
+									<li>금융 상품 상담 및 고객 서비스 업무 수행</li>
+									<li>정확한 데이터 처리와 규정 준수를 통한 업무 처리</li>
+									<li>다양한 고객과의 소통 경험으로 커뮤니케이션 능력 향상</li>
+								</ul>
+							</div>
 						</div>
 					</section>
-				)}
 
+					<!-- Projects -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">02</div>
+							<h2 class="section-title">Key Projects</h2>
+						</div>
+						
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">팝가 - 팝업스토어 예약 기능</h3>
+								<span class="project-period">2024.07 - Present</span>
+							</div>
+							<span class="project-tech">Next.js · TanStack Query · Naver Maps API · GTM</span>
+							<p class="project-description">
+								사용자 행동 데이터 분석 기반으로 3개월간 20번의 기능 배포 진행.
+								팝업 사전예약 기능 기획 및 개발로 대규모 트래픽 대응 시스템 구축.
+								Core Web Vitals 최적화로 TBT/LCP 개선, 재방문율 30% 상승 기여.
+								빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트 개선.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">샵앳피소드 - 삼성전자 F&B 사이렌오더</h3>
+								<span class="project-period">2024.01 - 2024.06</span>
+							</div>
+							<span class="project-tech">React Native · WebView · Expo · Push Notification</span>
+							<p class="project-description">
+								React Native를 새롭게 학습하여 모바일 앱 출시.
+								삼성전자 F&B 팝업스토어 사이렌오더 시스템 구축 및 운영.
+								실시간 주문 푸시알림, 영수증 출력 기능을 갖춘 매장 관리 앱 개발.
+								기술 제약에 구애받지 않고 최적의 솔루션을 구현한 사례.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">쏠북 스튜디오 - WYSIWYG Editor POC</h3>
+								<span class="project-period">2023</span>
+							</div>
+							<span class="project-tech">React · HTML to PDF · Editor Library</span>
+							<p class="project-description">
+								저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터 POC 제작. 
+								4주간의 짧은 기간에 편집부터 출력까지 필수기능을 모두 구현하여 시리즈A 투자유치에 기여.
+								Chromium 기반 서버사이드 HTML to PDF 변환으로 스타일링 한계 극복.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">검색 기능 개편 및 성능 최적화</h3>
+								<span class="project-period">2023</span>
+							</div>
+							<span class="project-tech">TanStack Query · IntersectionObserver · RequestAnimationFrame</span>
+							<p class="project-description">
+								URLSearchParam 기반의 필터 핸들링 훅 개발로 재사용성 확보.
+								무한 스크롤 구현 및 requestAnimationFrame을 활용한 스크롤 이벤트 최적화.
+								뒤로가기 시에도 스크롤 위치 유지되도록 캐시 관리.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">쏠북 대시보드</h3>
+								<span class="project-period">2023</span>
+							</div>
+							<span class="project-tech">React · ErrorBoundary · Suspense</span>
+							<p class="project-description">
+								B2B 출판사 고객 대상 대시보드 서비스 초기세팅부터 배포까지 1주일 내 완성.
+								하나의 form 컴포넌트에서 CRUD 모두 가능하도록 추상화하여 개발 비용 최소화.
+								ErrorBoundary와 Suspense를 활용한 공통 에러/로딩 처리.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">그로스 툴 도입 및 데이터 기반 개선</h3>
+								<span class="project-period">2024</span>
+							</div>
+							<span class="project-tech">Mixpanel · GA · GTM · Sentry</span>
+							<p class="project-description">
+								Mixpanel 구매 퍼널 구축으로 데이터 기반 의사결정 지원.
+								믹스패널 데이터 기반 홈 개편 후 구매 전환율 40%에서 60%로 향상.
+								Sentry 에러 트래킹으로 안정성 향상.
+							</p>
+						</div>
+					</section>
+
+					<!-- Skills -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">03</div>
+							<h2 class="section-title">Skills</h2>
+						</div>
+						
+						<div class="skills-container">
+							<div class="skill-card">
+								<h3 class="skill-card-title">Frontend Core</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">React</span>
+									<span class="skill-tag">Next.js</span>
+									<span class="skill-tag">React Native</span>
+									<span class="skill-tag">TypeScript</span>
+									<span class="skill-tag">JavaScript</span>
+								</div>
+							</div>
+							
+							<div class="skill-card">
+								<h3 class="skill-card-title">상태관리 & 데이터</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Zustand</span>
+									<span class="skill-tag">TanStack Query</span>
+									<span class="skill-tag">Redux</span>
+									<span class="skill-tag">MobX</span>
+								</div>
+							</div>
+							
+							<div class="skill-card">
+								<h3 class="skill-card-title">스타일링 & UI</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Styled-components</span>
+									<span class="skill-tag">Emotion</span>
+									<span class="skill-tag">Tailwind CSS</span>
+									<span class="skill-tag">MUI</span>
+									<span class="skill-tag">Storybook</span>
+								</div>
+							</div>
+							<div class="skill-card">
+								<h3 class="skill-card-title">모바일 & 앱</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">React Native</span>
+									<span class="skill-tag">Expo</span>
+									<span class="skill-tag">WebView</span>
+									<span class="skill-tag">Firebase Notification</span>
+								</div>
+							</div>
+							<div class="skill-card">
+								<h3 class="skill-card-title">도구 & DevOps</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Git</span>
+									<span class="skill-tag">pnpm</span>
+									<span class="skill-tag">Monorepo</span>
+									<span class="skill-tag">Azure DevOps</span>
+									<span class="skill-tag">Vercel</span>
+								</div>
+							</div>
+							<div class="skill-card">
+								<h3 class="skill-card-title">분석 & 모니터링</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Sentry</span>
+									<span class="skill-tag">GTM</span>
+									<span class="skill-tag">Google Analytics</span>
+									<span class="skill-tag">Mixpanel</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Activities -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">04</div>
+							<h2 class="section-title">Activities</h2>
+						</div>
+						
+						<div class="activities-list">
+							<div class="activity-item">오픈소스 커뮤니티 기여 (antd korea 사이트)</div>
+							<div class="activity-item">자바스크립트 딥다이브 스터디</div>
+							<div class="activity-item">사내 독서모임: 아이디어 불패의 법칙</div>
+							<div class="activity-item">프론트 시크릿: 프론트엔드 동아리</div>
+							<div class="activity-item">개발도서 학습: 타입스크립트</div>
+						</div>
+					</section>
+
+					<!-- Testimonials -->
+					<section class="section testimonials-section">
+						<div class="section-header">
+							<div class="section-number">05</div>
+							<h2 class="section-title">Testimonials</h2>
+						</div>
+						
+						<div class="testimonial-grid">
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"책임감이 강하고 동료를 이해하고 배려하는 분입니다. 기획 과정에서 놓치는 부분들에 대해 먼저 알려주시고, 이슈가 생길 때에도 침착하게 원인을 파악해주십니다. 기대하지 않았던 부가적인 기능들까지 고객에게 필요하다고 판단되면 빠르게 작업해주십니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Product Owner</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+							
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"데드라인 준수에 매우 탁월합니다. 문제 발생시 투명하게 소통하며 적절한 솔루션을 함께 찾을 수 있는 동료입니다. 기획/디자인 단에서 미쳐 파악하지 못한 부분도 미리 찾아내시고 소통하여 리스크를 최소화할 수 있었습니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Designer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+							
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"업무 파악이 빠르고, 빠르게 기능을 만들어내는 편입니다. 성장에 대한 욕구가 강해서 더 개발하기 좋은, 유지보수하기 좋은 코드를 위해 고민합니다. 묵묵하게 자기 일을 멋지게 소화해내는 동료입니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Frontend Developer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+							
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"조용하지만 강합니다. 커뮤니케이션이 편한 개발자입니다. 새로운 피처를 개발하는데 있어서 기획과 디자인을 깊이 이해하고 철저히 분석합니다. 가장 오래 마켓을 유지보수해왔기 때문에 도메인 지식이 깊고, 문제가 발생했을 때 신속하게 원인을 파악하고 해결합니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Backend Developer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Education -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">06</div>
+							<h2 class="section-title">Education</h2>
+						</div>
+						
+						<div class="education-item">
+							<div class="education-icon">
+								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+								</svg>
+							</div>
+							<div class="education-content">
+								<div class="education-degree">환경자원경제학과</div>
+								<div class="education-school">단국대학교</div>
+								<div class="education-date">2016.3</div>
+							</div>
+						</div>
+					</section>
+				</main>
 			</div>
 		</div>
-		<Footer />
-
-		<style>
-			:root {
-				/* Pixel Art Color Palette */
-				--color-bg: #87ceeb;
-				--color-bg-alt: #a8d5e2;
-				--color-card: #fff9e6;
-				--color-primary: #2c3e50;
-				--color-accent: #ff6b6b;
-				--color-secondary: #4ecdc4;
-				--color-title: #2c3e50;
-				--color-text: #2c3e50;
-				--color-sub: #5a6c7d;
-				--pixel-border: #2c3e50;
-				--pixel-shadow: #1a2632;
-				--shadow: 4px 4px 0 var(--pixel-shadow);
-				--shadow-hover: 6px 6px 0 var(--pixel-shadow);
-			}
-
-			* {
-				box-sizing: border-box;
-			}
-
-			html,
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				min-height: 100vh;
-				overflow-x: hidden;
-				background: var(--color-bg);
-				background-image: repeating-linear-gradient(
-						0deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					),
-					repeating-linear-gradient(
-						90deg,
-						transparent,
-						transparent 8px,
-						var(--color-bg-alt) 8px,
-						var(--color-bg-alt) 16px
-					);
-				background-size: 32px 32px;
-				color: var(--color-text);
-				font-family: "ThinRounded", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
-			}
-
-			.portfolio-container {
-				width: 100%;
-				min-height: 100vh;
-				padding: 80px 40px;
-				max-width: 1400px;
-				margin: 0 auto;
-			}
-
-			.portfolio-header {
-				text-align: center;
-				margin-bottom: 80px;
-			}
-
-			.portfolio-title {
-				font-size: 4rem;
-				font-weight: 600;
-				color: var(--color-title);
-				margin: 0 0 16px 0;
-				letter-spacing: 4px;
-				text-transform: uppercase;
-				font-family: "ThinRounded", sans-serif;
-			}
-
-			.portfolio-subtitle {
-				font-size: 1.2rem;
-				color: var(--color-sub);
-				margin: 0;
-				letter-spacing: 2px;
-			}
-
-			.portfolio-content {
-				display: flex;
-				flex-direction: column;
-				gap: 80px;
-			}
-
-			.portfolio-section {
-				background: var(--color-card);
-				padding: 60px 40px;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
-			}
-
-			.section-header {
-				margin-bottom: 40px;
-			}
-
-			.section-title {
-				font-size: 2.5rem;
-				font-weight: 600;
-				color: var(--color-title);
-				margin: 0 0 16px 0;
-				letter-spacing: 2px;
-				text-transform: uppercase;
-				font-family: "ThinRounded", sans-serif;
-			}
-
-			.section-divider {
-				height: 4px;
-				background: var(--pixel-border);
-				width: 100px;
-			}
-
-			.items-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-				gap: 32px;
-			}
-
-			.pixel-card {
-				background: #ffffff;
-				border: 4px solid var(--pixel-border);
-				box-shadow: var(--shadow);
-				text-decoration: none;
-				color: inherit;
-				display: flex;
-				flex-direction: column;
-				transition: all 0.1s ease;
-				cursor: pointer;
-			}
-
-			.pixel-card:hover {
-				box-shadow: var(--shadow-hover);
-				transform: translate(-2px, -2px);
-			}
-
-			.pixel-card:active {
-				box-shadow: 2px 2px 0 var(--pixel-shadow);
-				transform: translate(2px, 2px);
-			}
-
-			.pixel-card__image {
-				width: 100%;
-				height: 200px;
-				overflow: hidden;
-				background: #f0f0f0;
-				border-bottom: 3px solid var(--pixel-border);
-			}
-
-			.pixel-card__image img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				image-rendering: pixelated;
-				image-rendering: -moz-crisp-edges;
-				image-rendering: crisp-edges;
-			}
-
-			.pixel-card__content {
-				padding: 24px;
-				display: flex;
-				flex-direction: column;
-				gap: 12px;
-			}
-
-			.pixel-card__category {
-				font-size: 0.75rem;
-				letter-spacing: 2px;
-				text-transform: uppercase;
-				color: var(--color-accent);
-				font-weight: 600;
-			}
-
-			.pixel-card__title {
-				font-size: 1.4rem;
-				font-weight: 600;
-				margin: 0;
-				line-height: 1.3;
-				color: var(--color-title);
-				font-family: "ThinRounded", sans-serif;
-			}
-
-			.pixel-card__description {
-				font-size: 0.95rem;
-				line-height: 1.6;
-				color: var(--color-sub);
-				margin: 0;
-				flex: 1;
-				display: -webkit-box;
-				-webkit-line-clamp: 3;
-				-webkit-box-orient: vertical;
-				overflow: hidden;
-			}
-
-			.pixel-card__link {
-				color: var(--color-accent);
-				text-decoration: none;
-				font-size: 0.95rem;
-				font-weight: 600;
-				margin-top: 8px;
-				text-transform: uppercase;
-			}
-
-			.pixel-card:hover .pixel-card__link {
-				color: #ff5252;
-			}
-
-			@media (max-width: 900px) {
-				.portfolio-container {
-					padding: 60px 24px;
-				}
-
-				.portfolio-title {
-					font-size: 3rem;
-				}
-
-				.portfolio-subtitle {
-					font-size: 1rem;
-				}
-
-				.portfolio-section {
-					padding: 40px 24px;
-				}
-
-				.section-title {
-					font-size: 2rem;
-				}
-
-				.items-grid {
-					grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-					gap: 24px;
-				}
-			}
-
-			@media (max-width: 600px) {
-				.portfolio-container {
-					padding: 40px 16px;
-				}
-
-				.portfolio-title {
-					font-size: 2.5rem;
-					letter-spacing: 2px;
-				}
-
-				.portfolio-subtitle {
-					font-size: 0.9rem;
-				}
-
-				.portfolio-header {
-					margin-bottom: 60px;
-				}
-
-				.portfolio-content {
-					gap: 60px;
-				}
-
-				.portfolio-section {
-					padding: 32px 16px;
-				}
-
-				.section-title {
-					font-size: 1.8rem;
-				}
-
-				.items-grid {
-					grid-template-columns: 1fr;
-					gap: 20px;
-				}
-			}
-		</style>
 	</body>
 </html>
