@@ -2,7 +2,7 @@
 // Resume page with isolated styles - no global CSS imports
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 	<head>
 		<meta charset="utf-8" />
@@ -11,11 +11,12 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>전민지 - Product-Focused Frontend Engineer</title>
 		<style is:global>
-			@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-			@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+			@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+			@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap");
 
 			/* Reset all styles for resume page */
-			html, body {
+			html,
+			body {
 				margin: 0;
 				padding: 0;
 				width: 100%;
@@ -50,7 +51,12 @@
 			}
 
 			.resume-page {
-				font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+				font-family:
+					"Pretendard",
+					-apple-system,
+					BlinkMacSystemFont,
+					system-ui,
+					sans-serif !important;
 				font-weight: 400 !important;
 				line-height: 1.6 !important;
 				color: var(--ink) !important;
@@ -86,7 +92,7 @@
 
 			/* Minimal Pattern */
 			.resume-page .header-left::before {
-				content: '';
+				content: "";
 				position: absolute;
 				bottom: 40px;
 				right: 40px;
@@ -97,7 +103,7 @@
 			}
 
 			.resume-page .name {
-				font-family: 'Archivo', sans-serif;
+				font-family: "Archivo", sans-serif;
 				font-size: 48px;
 				font-weight: 800;
 				color: var(--white);
@@ -231,7 +237,7 @@
 			}
 
 			.resume-page .about-list li::before {
-				content: '•';
+				content: "•";
 				position: absolute;
 				left: 0;
 				color: var(--medium-gray);
@@ -264,7 +270,7 @@
 			}
 
 			.resume-page .section-title {
-				font-family: 'Archivo', sans-serif;
+				font-family: "Archivo", sans-serif;
 				font-size: 20px;
 				font-weight: 700;
 				color: var(--ink);
@@ -347,7 +353,7 @@
 			}
 
 			.resume-page .experience-list li::before {
-				content: '•';
+				content: "•";
 				position: absolute;
 				left: 0;
 				color: var(--medium-gray);
@@ -370,7 +376,7 @@
 			}
 
 			.resume-page .skill-card::before {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -544,7 +550,7 @@
 				right: 24px;
 				font-size: 48px;
 				color: var(--light-gray);
-				font-family: 'Archivo', sans-serif;
+				font-family: "Archivo", sans-serif;
 				line-height: 1;
 			}
 
@@ -605,21 +611,33 @@
 							<span class="years-text">3+ Years Experience</span>
 						</div>
 					</div>
-					
+
 					<div class="header-right">
 						<div class="contact-list">
 							<div class="contact-item">
 								<div class="contact-icon">
 									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="1.5"
+											d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+										></path>
 									</svg>
 								</div>
-								<a href="mailto:minji0214@gmail.com" class="contact-text">minji0214@gmail.com</a>
+								<a href="mailto:minji0214@gmail.com" class="contact-text"
+									>minji0214@gmail.com</a
+								>
 							</div>
 							<div class="contact-item">
 								<div class="contact-icon">
 									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="1.5"
+											d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+										></path>
 									</svg>
 								</div>
 								<span class="contact-text">010-4829-6952</span>
@@ -627,18 +645,38 @@
 							<div class="contact-item">
 								<div class="contact-icon">
 									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="1.5"
+											d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+										></path>
 									</svg>
 								</div>
-								<a href="https://github.com/minji0214" class="contact-text" target="_blank" rel="noopener noreferrer">github.com/minji0214</a>
+								<a
+									href="https://github.com/minji0214"
+									class="contact-text"
+									target="_blank"
+									rel="noopener noreferrer">github.com/minji0214</a
+								>
 							</div>
 							<div class="contact-item">
 								<div class="contact-icon">
 									<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="1.5"
+											d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+										></path>
 									</svg>
 								</div>
-								<a href="https://minji0214.github.io" class="contact-text" target="_blank" rel="noopener noreferrer">minji0214.github.io/blog</a>
+								<a
+									href="https://minji0214.github.io"
+									class="contact-text"
+									target="_blank"
+									rel="noopener noreferrer">minji0214.github.io/blog</a
+								>
 							</div>
 						</div>
 					</div>
@@ -648,15 +686,28 @@
 				<main class="content">
 					<!-- About & Values -->
 					<section class="about-section">
-						<p class="about-text">
-							프로덕트 엔지니어 전민지입니다.
-						</p>
+						<p class="about-text">프로덕트 엔지니어 전민지입니다.</p>
 						<ul class="about-list">
-							<li>한 가지 기술에 구애받지 않고, 프로젝트에 필요한 기술이라면 적극적으로 시도하고 완료합니다.</li>
-							<li>디자인·기획 단계부터 참여하며, 사용자 흐름과 비즈니스 목표를 함께 고려해 기능을 설계합니다.</li>
-							<li>사용자 행동을 분석하고 3개월간 20개의 기능 배포를 진행하며, 빠른 피드백과 실행력을 강점으로 삼고 있습니다.</li>
-							<li>한달만에 WYSIWYG Editor POC를 만들어 내어, 시리즈A 투자에 기여하였습니다.</li>
-							<li>mixpanel, GTM, sentry 등의 툴을 사용하여, 데이터 기반 개발 문화를 정착시켰습니다.</li>
+							<li>
+								한 가지 기술에 구애받지 않고, 프로젝트에 필요한 기술이라면
+								적극적으로 시도하고 완료합니다.
+							</li>
+							<li>
+								디자인·기획 단계부터 참여하며, 사용자 흐름과 비즈니스 목표를
+								함께 고려해 기능을 설계합니다.
+							</li>
+							<li>
+								사용자 행동을 분석하고 3개월간 20개의 기능 배포를 진행하며, 빠른
+								피드백과 실행력을 강점으로 삼고 있습니다.
+							</li>
+							<li>
+								한달만에 WYSIWYG Editor POC를 만들어 내어, 시리즈A 투자에
+								기여하였습니다.
+							</li>
+							<li>
+								mixpanel, GTM, sentry 등의 툴을 사용하여, 데이터 기반 개발
+								문화를 정착시켰습니다.
+							</li>
 						</ul>
 					</section>
 
@@ -666,10 +717,10 @@
 							<div class="section-number">01</div>
 							<h2 class="section-title">Experience</h2>
 						</div>
-						
+
 						<div class="experience-item">
 							<div class="experience-period">
-								<div class="experience-date">2024.01 - Present</div>
+								<div class="experience-date">2025.01 - Present</div>
 								<div class="experience-duration">1 year</div>
 							</div>
 							<div class="experience-content">
@@ -678,31 +729,54 @@
 									O2O 커머스 플랫폼 및 팝업스토어 예약 시스템 개발
 								</p>
 								<ul class="experience-list">
-									<li>삼성전자 F&B 팝업 사이렌오더 시스템 구축 및 운영</li>
-									<li>React Native 기반 매장 관리 앱 개발 (웹뷰, 실시간 푸시알림, 영수증 출력)</li>
-									<li>팝업 사전예약 기능 기획 및 개발, 대규모 트래픽 대응</li>
+									<li>F&B 팝업 사이렌오더 시스템 구축 및 운영</li>
+									<li>
+										React Native 기반 매장 관리 앱 개발 (웹뷰, 실시간 푸시알림,
+										블루투스 연동 영수증 출력)
+									</li>
+									<li>
+										팝업 사전예약 기능 기획 및 개발, 다중 트래픽을 대비한
+										예약시스템 구축
+									</li>
+									<li>
+										팝가 모바일 UI를 PC 반응형으로 확장하여 다양한 디바이스 지원
+									</li>
+									<li>
+										WebView와 네이티브 간 통신을 PostMessage로 구현하여 실시간성
+										향상
+									</li>
 									<li>Sentry 에러로깅 및 GTM 데이터 트래킹 시스템 구축</li>
-									<li>Core Web Vitals 개선 과정에서 main thread 병목을 분석하여
-										불필요한 JavaScript 실행을 줄이고 TBT/LCP를 개선</li>
-									<li>Naver Maps API 활용 지도 기능 및 개인화 추천 기능 개발</li>
+									<li>
+										Core Web Vitals 개선 과정에서 main thread 병목을 분석하여
+										불필요한 JavaScript 실행을 줄이고 TBT/LCP를 개선
+									</li>
+									<li>
+										Naver Maps API 활용 지도 기능 및 개인화 추천 기능 개발
+									</li>
 								</ul>
 							</div>
 						</div>
-						
+
 						<div class="experience-item">
 							<div class="experience-period">
 								<div class="experience-date">2022.11 - 2024.12</div>
 								<div class="experience-duration">2 years 2 months</div>
 							</div>
 							<div class="experience-content">
-								<div class="experience-company">북아이피스 · 마켓플레이스 스쿼드 / FE Chapter</div>
+								<div class="experience-company">
+									북아이피스 · 마켓플레이스 스쿼드 / FE Chapter
+								</div>
 								<p class="experience-description">
-									초중고 교재 저작권 중계 및 저자들이 직접 교재를 제작, 판매할 수 있는 B2C 마켓플레이스 플랫폼 개발
+									초중고 교재 저작권 중계 및 저자들이 직접 교재를 제작, 판매할
+									수 있는 B2C 마켓플레이스 플랫폼 개발
 								</p>
 								<ul class="experience-list">
 									<li>커머스 프로덕트 Next.js 마이그레이션</li>
-									<li>서버 상태를 단일 source of truth로 관리하기 위해
-										TanStack Query를 도입하고 검색 기능의 캐시 및 invalidation 구조를 개선 및 검색 기능 개편</li>
+									<li>
+										서버 상태를 단일 source of truth로 관리하기 위해 TanStack
+										Query를 도입하고 검색 기능의 캐시 및 invalidation 구조를
+										개선 및 검색 기능 개편
+									</li>
 									<li>Sentry 에러 트래킹 환경 구축</li>
 									<li>Mixpanel, GA 데이터 로깅 환경 구축</li>
 									<li>SSR을 이용한 SEO 개선</li>
@@ -710,7 +784,7 @@
 								</ul>
 							</div>
 						</div>
-						
+
 						<div class="experience-item">
 							<div class="experience-period">
 								<div class="experience-date">2019.09 - 2022.03</div>
@@ -736,43 +810,70 @@
 							<div class="section-number">02</div>
 							<h2 class="section-title">Key Projects</h2>
 						</div>
-						
+
 						<div class="project-item">
 							<div class="project-header">
-								<h3 class="project-title">팝가 - 팝업스토어 예약 기능</h3>
-								<span class="project-period">2024.07 - Present</span>
+								<h3 class="project-title">팝가 - 팝업스토어 예약 플랫폼</h3>
+								<span class="project-period">2025.07 - Present</span>
 							</div>
-							<span class="project-tech">Next.js · TanStack Query · Naver Maps API · GTM</span>
+							<span class="project-tech"
+								>Next.js · TanStack Query · Naver Maps API · GTM</span
+							>
 							<p class="project-description">
 								사용자 행동 데이터 분석 기반으로 3개월간 20번의 기능 배포 진행.
-								팝업 사전예약 기능 기획 및 개발로 대규모 트래픽 대응 시스템 구축.
-								Core Web Vitals 최적화로 TBT/LCP 개선, 재방문율 30% 상승 기여.
-								빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트 개선.
+								팝업 사전예약 기능 기획 및 개발로 대규모 트래픽 대응 시스템
+								구축. Core Web Vitals 최적화로 TBT/LCP 개선, 재방문율 30% 상승
+								기여. 빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트
+								개선.
 							</p>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
-								<h3 class="project-title">샵앳피소드 - 삼성전자 F&B 사이렌오더</h3>
-								<span class="project-period">2024.01 - 2024.06</span>
+								<h3 class="project-title">샵앳피소드 - 매장 관리 시스템</h3>
+								<span class="project-period">2025.01 - 2025.06</span>
 							</div>
-							<span class="project-tech">React Native · WebView · Expo · Push Notification</span>
+							<span class="project-tech"
+								>React Native · WebView · Bluetooth · Thermal Printer ·
+								PostMessage</span
+							>
 							<p class="project-description">
-								React Native를 새롭게 학습하여 모바일 앱 출시.
-								삼성전자 F&B 팝업스토어 사이렌오더 시스템 구축 및 운영.
-								실시간 주문 푸시알림, 영수증 출력 기능을 갖춘 매장 관리 앱 개발.
-								기술 제약에 구애받지 않고 최적의 솔루션을 구현한 사례.
+								실시간 주문 및 상품을 F&B 매장에서 관리할 수 있도록 매장 관리 앱 개발.
+								블루투스 연동을 통한 영수증 프린터 연결 및 thermal printer 기능 구현.
+								실시간 주문 업데이트를 위해 SSE와 polling 대신 PostMessage를 활용하여
+								WebView와 네이티브 간 통신 최적화. 실시간 푸시알림과 영수증 출력 기능을
+								갖춘 완전한 매장 운영 솔루션 제공.
 							</p>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
-								<h3 class="project-title">쏠북 스튜디오 - WYSIWYG Editor POC</h3>
+								<h3 class="project-title">샵앳피소드 - F&B 사이렌오더</h3>
+								<span class="project-period">2025.01 - 2025.06</span>
+							</div>
+							<span class="project-tech"
+								>React Native · WebView · Expo · Push Notification</span
+							>
+							<p class="project-description">
+								React Native를 새롭게 학습하여 모바일 앱 출시. 실시간으로 주문 및 결제하는
+								사이렌 오더 시스템 구축. 실시간 주문 푸시알림, 신메뉴 소개 및 영수증 이미지
+								저장 기능을 갖춘 앱 개발. 기술 제약에 구애받지 않고 최적의 솔루션을 구현한
+								사례.
+							</p>
+						</div>
+						<div class="project-item">
+							<div class="project-header">
+								<h3 class="project-title">
+									쏠북 스튜디오 - WYSIWYG Editor POC
+								</h3>
 								<span class="project-period">2023</span>
 							</div>
-							<span class="project-tech">React · HTML to PDF · Editor Library</span>
+							<span class="project-tech"
+								>React · HTML to PDF · Editor Library</span
+							>
 							<p class="project-description">
-								저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터 POC 제작. 
-								4주간의 짧은 기간에 편집부터 출력까지 필수기능을 모두 구현하여 시리즈A 투자유치에 기여.
-								Chromium 기반 서버사이드 HTML to PDF 변환으로 스타일링 한계 극복.
+								저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터 POC
+								제작. 4주간의 짧은 기간에 편집부터 출력까지 필수기능을 모두
+								구현하여 시리즈A 투자유치에 기여. Chromium 기반 서버사이드 HTML
+								to PDF 변환으로 스타일링 한계 극복.
 							</p>
 						</div>
 						<div class="project-item">
@@ -780,11 +881,13 @@
 								<h3 class="project-title">검색 기능 개편 및 성능 최적화</h3>
 								<span class="project-period">2023</span>
 							</div>
-							<span class="project-tech">TanStack Query · IntersectionObserver · RequestAnimationFrame</span>
+							<span class="project-tech"
+								>TanStack Query · IntersectionObserver · RequestAnimationFrame</span
+							>
 							<p class="project-description">
-								URLSearchParam 기반의 필터 핸들링 훅 개발로 재사용성 확보.
-								무한 스크롤 구현 및 requestAnimationFrame을 활용한 스크롤 이벤트 최적화.
-								뒤로가기 시에도 스크롤 위치 유지되도록 캐시 관리.
+								URLSearchParam 기반의 필터 핸들링 훅 개발로 재사용성 확보. 무한
+								스크롤 구현 및 requestAnimationFrame을 활용한 스크롤 이벤트
+								최적화. 뒤로가기 시에도 스크롤 위치 유지되도록 캐시 관리.
 							</p>
 						</div>
 						<div class="project-item">
@@ -794,21 +897,24 @@
 							</div>
 							<span class="project-tech">React · ErrorBoundary · Suspense</span>
 							<p class="project-description">
-								B2B 출판사 고객 대상 대시보드 서비스 초기세팅부터 배포까지 1주일 내 완성.
-								하나의 form 컴포넌트에서 CRUD 모두 가능하도록 추상화하여 개발 비용 최소화.
-								ErrorBoundary와 Suspense를 활용한 공통 에러/로딩 처리.
+								B2B 출판사 고객 대상 대시보드 서비스 초기세팅부터 배포까지 1주일
+								내 완성. 하나의 form 컴포넌트에서 CRUD 모두 가능하도록
+								추상화하여 개발 비용 최소화. ErrorBoundary와 Suspense를 활용한
+								공통 에러/로딩 처리.
 							</p>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
-								<h3 class="project-title">그로스 툴 도입 및 데이터 기반 개선</h3>
+								<h3 class="project-title">
+									그로스 툴 도입 및 데이터 기반 개선
+								</h3>
 								<span class="project-period">2024</span>
 							</div>
 							<span class="project-tech">Mixpanel · GA · GTM · Sentry</span>
 							<p class="project-description">
-								Mixpanel 구매 퍼널 구축으로 데이터 기반 의사결정 지원.
-								믹스패널 데이터 기반 홈 개편 후 구매 전환율 40%에서 60%로 향상.
-								Sentry 에러 트래킹으로 안정성 향상.
+								Mixpanel 구매 퍼널 구축으로 데이터 기반 의사결정 지원. 믹스패널
+								데이터 기반 홈 개편 후 구매 전환율 40%에서 60%로 향상. Sentry
+								에러 트래킹으로 안정성 향상.
 							</p>
 						</div>
 					</section>
@@ -819,7 +925,7 @@
 							<div class="section-number">03</div>
 							<h2 class="section-title">Skills</h2>
 						</div>
-						
+
 						<div class="skills-container">
 							<div class="skill-card">
 								<h3 class="skill-card-title">Frontend Core</h3>
@@ -831,7 +937,7 @@
 									<span class="skill-tag">JavaScript</span>
 								</div>
 							</div>
-							
+
 							<div class="skill-card">
 								<h3 class="skill-card-title">상태관리 & 데이터</h3>
 								<div class="skill-tags">
@@ -841,7 +947,7 @@
 									<span class="skill-tag">MobX</span>
 								</div>
 							</div>
-							
+
 							<div class="skill-card">
 								<h3 class="skill-card-title">스타일링 & UI</h3>
 								<div class="skill-tags">
@@ -889,11 +995,15 @@
 							<div class="section-number">04</div>
 							<h2 class="section-title">Activities</h2>
 						</div>
-						
+
 						<div class="activities-list">
-							<div class="activity-item">오픈소스 커뮤니티 기여 (antd korea 사이트)</div>
+							<div class="activity-item">
+								오픈소스 커뮤니티 기여 (antd korea 사이트)
+							</div>
 							<div class="activity-item">자바스크립트 딥다이브 스터디</div>
-							<div class="activity-item">사내 독서모임: 아이디어 불패의 법칙</div>
+							<div class="activity-item">
+								사내 독서모임: 아이디어 불패의 법칙
+							</div>
 							<div class="activity-item">프론트 시크릿: 프론트엔드 동아리</div>
 							<div class="activity-item">개발도서 학습: 타입스크립트</div>
 						</div>
@@ -905,11 +1015,15 @@
 							<div class="section-number">05</div>
 							<h2 class="section-title">Testimonials</h2>
 						</div>
-						
+
 						<div class="testimonial-grid">
 							<div class="testimonial-card">
 								<p class="testimonial-content">
-									"책임감이 강하고 동료를 이해하고 배려하는 분입니다. 기획 과정에서 놓치는 부분들에 대해 먼저 알려주시고, 이슈가 생길 때에도 침착하게 원인을 파악해주십니다. 기대하지 않았던 부가적인 기능들까지 고객에게 필요하다고 판단되면 빠르게 작업해주십니다."
+									"책임감이 강하고 동료를 이해하고 배려하는 분입니다. 기획
+									과정에서 놓치는 부분들에 대해 먼저 알려주시고, 이슈가 생길
+									때에도 침착하게 원인을 파악해주십니다. 기대하지 않았던
+									부가적인 기능들까지 고객에게 필요하다고 판단되면 빠르게
+									작업해주십니다."
 								</p>
 								<div class="testimonial-author">
 									<span class="testimonial-role">Product Owner</span>
@@ -917,10 +1031,13 @@
 									<span class="testimonial-company">북아이피스</span>
 								</div>
 							</div>
-							
+
 							<div class="testimonial-card">
 								<p class="testimonial-content">
-									"데드라인 준수에 매우 탁월합니다. 문제 발생시 투명하게 소통하며 적절한 솔루션을 함께 찾을 수 있는 동료입니다. 기획/디자인 단에서 미쳐 파악하지 못한 부분도 미리 찾아내시고 소통하여 리스크를 최소화할 수 있었습니다."
+									"데드라인 준수에 매우 탁월합니다. 문제 발생시 투명하게
+									소통하며 적절한 솔루션을 함께 찾을 수 있는 동료입니다.
+									기획/디자인 단에서 미쳐 파악하지 못한 부분도 미리 찾아내시고
+									소통하여 리스크를 최소화할 수 있었습니다."
 								</p>
 								<div class="testimonial-author">
 									<span class="testimonial-role">Designer</span>
@@ -928,10 +1045,13 @@
 									<span class="testimonial-company">북아이피스</span>
 								</div>
 							</div>
-							
+
 							<div class="testimonial-card">
 								<p class="testimonial-content">
-									"업무 파악이 빠르고, 빠르게 기능을 만들어내는 편입니다. 성장에 대한 욕구가 강해서 더 개발하기 좋은, 유지보수하기 좋은 코드를 위해 고민합니다. 묵묵하게 자기 일을 멋지게 소화해내는 동료입니다."
+									"업무 파악이 빠르고, 빠르게 기능을 만들어내는 편입니다. 성장에
+									대한 욕구가 강해서 더 개발하기 좋은, 유지보수하기 좋은 코드를
+									위해 고민합니다. 묵묵하게 자기 일을 멋지게 소화해내는
+									동료입니다."
 								</p>
 								<div class="testimonial-author">
 									<span class="testimonial-role">Frontend Developer</span>
@@ -939,10 +1059,14 @@
 									<span class="testimonial-company">북아이피스</span>
 								</div>
 							</div>
-							
+
 							<div class="testimonial-card">
 								<p class="testimonial-content">
-									"조용하지만 강합니다. 커뮤니케이션이 편한 개발자입니다. 새로운 피처를 개발하는데 있어서 기획과 디자인을 깊이 이해하고 철저히 분석합니다. 가장 오래 마켓을 유지보수해왔기 때문에 도메인 지식이 깊고, 문제가 발생했을 때 신속하게 원인을 파악하고 해결합니다."
+									"조용하지만 강합니다. 커뮤니케이션이 편한 개발자입니다. 새로운
+									피처를 개발하는데 있어서 기획과 디자인을 깊이 이해하고 철저히
+									분석합니다. 가장 오래 마켓을 유지보수해왔기 때문에 도메인
+									지식이 깊고, 문제가 발생했을 때 신속하게 원인을 파악하고
+									해결합니다."
 								</p>
 								<div class="testimonial-author">
 									<span class="testimonial-role">Backend Developer</span>
@@ -959,12 +1083,21 @@
 							<div class="section-number">06</div>
 							<h2 class="section-title">Education</h2>
 						</div>
-						
+
 						<div class="education-item">
 							<div class="education-icon">
 								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.5"
+										d="M12 14l9-5-9-5-9 5 9 5z"></path>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.5"
+										d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+									></path>
 								</svg>
 							</div>
 							<div class="education-content">
