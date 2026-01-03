@@ -1,10 +1,15 @@
 ---
-title: "양파같은 서버사이드렌더링 이슈 해결기"
-description: "seo meta에 오류가 발생하여 서버사이트렌더링을 디버깅하면서 이슈를 해결한 과정을 기록하였습니다. "
+title: "Next.js SSR에서 SEO 메타 태그가 적용되지 않는 문제 해결하기: AuthProvider와 NextSeo 디버깅"
+description: "Next.js에서 서버사이드 렌더링 시 SEO 메타 태그가 적용되지 않는 문제를 해결한 과정을 상세히 기록합니다. AuthProvider 하위에서 NextSeo가 렌더링되지 않는 원인, getInitialProps를 활용한 인증 정보 처리, useMediaQuery와 SSR 호환성 문제, useState/useEffect 대신 직접 props 전달 방식으로의 개선까지 실제 개발 경험을 공유합니다."
 pubDate: "11 18 2024"
+keywords: "Next.js SSR, Next.js 서버사이드 렌더링, SEO 메타 태그, NextSeo, AuthProvider, getInitialProps, useMediaQuery SSR, 서버사이드 렌더링 디버깅, Next.js SEO, React SSR, 프론트엔드, 웹 개발"
 tags: ["FE"]
 ---
 ---
+
+Next.js 프로젝트에서 **서버사이드 렌더링(SSR)**을 적용했지만 SEO 메타 태그가 검색 엔진에 제대로 노출되지 않는 문제가 발생했습니다. 상품 상세페이지와 엑스퍼트 메인 등 주요 페이지의 SEO가 전반적으로 작동하지 않았고, 원인을 파악하는 과정에서 **AuthProvider와 NextSeo 라이브러리의 조합 문제**, **useMediaQuery와 SSR 호환성 이슈**, 그리고 **useState/useEffect를 사용한 SEO 컴포넌트 구현의 문제점** 등 여러 레이어의 이슈가 얽혀 있음을 발견했습니다. 
+
+이 글에서는 문제를 해결하기 위해 시도한 여러 방법들과 최종 해결 과정을 단계별로 정리했습니다. Next.js에서 SSR과 SEO를 함께 구현해야 하는 개발자들에게 도움이 될 것입니다.
 
 ### TL;DR
 
@@ -243,11 +248,10 @@ const SEO = (props: SEOProps) => {
 
 ---
 
-참고자료 
+참고자료
 
-- https://develogger.kro.kr/blog/LKHcoding/133
-- [왜 getinitialprops를 사용했을까](https://velog.io/@suyeon9456/getInitialProps-vs-getServerSideProps)
-
-https://wnsdufdl.tistory.com/524
-
-https://davidhwang.netlify.app/TIL/(0320)nextjs에서-next-cookies-사용-이슈/
+- [왜 getInitialProps를 사용했을까](https://velog.io/@suyeon9456/getInitialProps-vs-getServerSideProps) - getInitialProps와 getServerSideProps의 차이점과 사용 시점
+- [Next.js에서 next-cookies 사용 이슈](https://davidhwang.netlify.app/TIL/(0320)nextjs에서-next-cookies-사용-이슈/) - Next.js에서 쿠키 처리 방법
+- [useMediaQuery hook that actually works with SSR](https://www.reddit.com/r/nextjs/comments/n98d8s/usemediaqueryhook_that_actually_works_with_ssr/) - Next.js에서 useMediaQuery와 SSR 호환성 논의
+- [How to implement server-side rendering for Material-UI's media queries in Next.js](https://dev.to/rakshitnayak/how-to-implement-server-side-rendering-for-material-uis-media-queries-in-nextjs-to-avoid-flash-jpi) - MUI useMediaQuery를 SSR에서 사용하는 방법
+- [Managing useMediaQuery Hydration Errors in Next.js](https://medium.com/@dwinTech/managing-usemediaquery-hydration-errors-in-next-js-9ecc555542c7) - Next.js에서 useMediaQuery 하이드레이션 오류 해결

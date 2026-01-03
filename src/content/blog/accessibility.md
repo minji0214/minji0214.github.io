@@ -1,13 +1,20 @@
 ---
-title: "접근성을 고려한 탭컴포넌트 만들기(feat. React)"
-description: "웹 접근성을 공부하면서  리액트에서 탭컴포넌트를 만들어보는 과정을 기록하였습니다"
+title: "접근성을 고려한 탭 컴포넌트 만들기: React에서 WAI-ARIA로 키보드 접근성 구현하기"
+description: "React에서 웹 접근성을 고려한 탭 컴포넌트를 만드는 방법을 상세히 설명합니다. WAI-ARIA 속성(aria-selected, aria-controls), 시맨틱 HTML, 키보드 네비게이션 구현까지 실제 코드 예제와 함께 배워보세요. 스크린 리더 사용자도 쉽게 사용할 수 있는 접근성 높은 탭 UI를 만들어봅니다."
 pubDate:  "11 04 2024"
+keywords: "웹 접근성, 탭 컴포넌트, React 탭, WAI-ARIA, 접근성, React 접근성, 탭 UI, 키보드 접근성, 스크린 리더, aria-selected, aria-controls, aria-labelledby, 시맨틱 HTML, 프론트엔드, 웹 개발"
 tags: ["FE"]
 ---
 
 # 접근성이 필요한 이유
 
-웹 접근성은 모두가 우리 사이트를 이용할 수 있도록 디자인, 개발하는것을 의미합니다. 또한 assistive technology 들이 웹페이지들을 해석할 수 있도록 접근성을 갖추는 것이 필요합니다. 
+웹 접근성은 **모두가 우리 사이트를 이용할 수 있도록** 디자인하고 개발하는 것을 의미합니다. 키보드만 사용하는 사용자, 스크린 리더를 사용하는 시각 장애인, 그리고 다양한 assistive technology(보조 기술)들이 웹페이지를 해석할 수 있도록 접근성을 갖추는 것이 필요합니다. 
+
+실제로 개발을 하다 보면 마우스 없이 키보드만으로도 모든 기능을 사용할 수 있어야 하는지, 스크린 리더가 내 컴포넌트를 제대로 읽어주는지 고민하게 됩니다. 최근 AI 기반 스크린 리더나 음성 인식 기술이 발전하면서 이런 보조 기술을 사용하는 사용자들이 늘어나고 있고, 접근성을 고려하지 않은 컴포넌트는 이들을 배제하게 됩니다. 
+
+또한 접근성을 높이면 SEO에도 도움이 됩니다. 시맨틱 HTML과 ARIA 속성은 검색 엔진이 페이지 구조를 더 잘 이해하도록 돕고, 키보드 접근성이 좋은 사이트는 사용자 경험 지표 개선에도 기여합니다.
+
+이번 글에서는 **React에서 접근성을 고려한 탭 컴포넌트**를 만들면서 WAI-ARIA 속성과 키보드 네비게이션을 구현하는 방법을 실제 코드 예제와 함께 알아보겠습니다. 
 
 # 1. 시맨틱 태그 사용하기
 
@@ -130,7 +137,8 @@ html에서 for은 react에서 htmlfor로 사용해야 합니다.
 
 # 키보드로 포커스 컨트롤하기
 
-![화면-기록-2024-11-05-오전-1 02 55_1](https://github.com/user-attachments/assets/ce4d7b77-974c-4f8c-8bec-e3ea1faa3615)
+![키보드로 탭 컴포넌트 접근하기 - 탭 키와 방향키를 사용한 네비게이션 화면](https://github.com/user-attachments/assets/ce4d7b77-974c-4f8c-8bec-e3ea1faa3615)
+
 마우스 없이 키보드 만으로도 탭에 접근이 자유로워야 합니다. 
 
 앞서 aria- 설정을 통해 방향키로 탭 이동이 가능해지고, 탭키를 통해 패널로 이동이 가능해졌습니다. 
@@ -181,7 +189,7 @@ import("@axe-core/react").then(
 );
 ```
 
-![image.png](../../contentsImgs/accessibility2.png)
+![React 접근성 테스트 도구 axe-core 실행 결과 화면 - 접근성 오류 진단](../../contentsImgs/accessibility2.png)
 
 - lint : 린트설정을 통해 개발단계에서 보완해나갈 수 있습니다.
 
@@ -197,8 +205,8 @@ https://github.com/infofarmer/eslint-plugin-jsx-a11y
 
 도움을 받은 자료들
 
-https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
-
-[CSS로 탭메뉴 기능 완성은 기본! 접근성까지 될수있을까?!](https://youtu.be/0iuTF-czN6I?si=YiyzWutK-OkO2gkI)
-
-https://ko.legacy.reactjs.org/docs/accessibility.html
+- [웹 접근성 향상을 위한 국가표준 기술 가이드라인](https://mois.go.kr/frt/bbs/type001/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000015&nttId=39886) - 행정안전부에서 제정한 한국의 웹 접근성 국가표준 기술 가이드라인
+- [웹 접근성 연구소 (WAH)](https://www.wah.or.kr/) - 과학기술정보통신부와 한국정보화진흥원이 운영하는 한국의 웹 접근성 표준 및 지침 제공 사이트
+- [W3C WAI ARIA Authoring Practices Guide - Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/)
+- [CSS로 탭메뉴 기능 완성은 기본! 접근성까지 될수있을까?!](https://youtu.be/0iuTF-czN6I?si=YiyzWutK-OkO2gkI)
+- [React 공식 문서 - Accessibility](https://ko.legacy.reactjs.org/docs/accessibility.html)
