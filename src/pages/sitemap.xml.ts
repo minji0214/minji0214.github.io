@@ -8,13 +8,14 @@ export async function GET() {
 <?xml version="1.0" encoding="UTF-8"?>  
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">  
   <url><loc>${siteUrl}/</loc></url>  
-  <url><loc>${siteUrl}/posts/</loc></url>  
+  <url><loc>${siteUrl}/blog/</loc></url>  
   ${posts
 		.map((post) => {
 			const lastMod = (
 				post.data.updatedDate ?? post.data.pubDate
 			).toISOString();
-			return `<url><loc>${siteUrl}${post.slug}/</loc><lastmod>${lastMod}</lastmod></url>`;
+			const postUrl = new URL(`/blog/${post.slug}/`, siteUrl);
+			return `<url><loc>${postUrl}</loc><lastmod>${lastMod}</lastmod></url>`;
 		})
 		.join("\n")}  
 </urlset>  
