@@ -1,8 +1,16 @@
 import type { APIRoute } from "astro";
 
-const getRobotsTxt = (sitemapURL: URL) => `
+export const GET: APIRoute = () => {
+	const robotsTxt = `
 User-agent: *
 Allow: /
 
-Sitemap: 'https://minji0214.github.io/sitemap.xml
-`;
+Sitemap: https://minji0214.github.io/sitemap-index.xml
+`.trim();
+
+	return new Response(robotsTxt, {
+		headers: {
+			"Content-Type": "text/plain",
+		},
+	});
+};
