@@ -5,7 +5,7 @@ export const GET: APIRoute = () => {
 User-agent: *
 Allow: /
 
-Sitemap: https://minji0214.github.io/sitemap-index.xml
+Sitemap: https://minji0214.github.io/sitemap.xml
 `.trim();
 
 	return new Response(robotsTxt, {
