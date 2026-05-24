@@ -198,6 +198,22 @@ function formatDate(date: Date): string {
 		</script>
 
 		<style is:global>
+			@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+			@font-face {
+				font-family: 'GounBatang';
+				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+				font-weight: normal;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: 'GounBatang';
+				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Bold.woff') format('woff');
+				font-weight: 700;
+				font-display: swap;
+			}
+
 			:root {
 				--color-bg: #ffffff;
 				--color-text: #000000;
@@ -244,6 +260,7 @@ function formatDate(date: Date): string {
 				letter-spacing: -0.5px;
 				word-break: keep-all;
 				overflow-wrap: break-word;
+				font-family: "NanumSquare", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-meta {
@@ -308,7 +325,7 @@ function formatDate(date: Date): string {
 				letter-spacing: -0.01em;
 				word-break: keep-all;
 				overflow-wrap: break-word;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			/* Content Title - h3 */
@@ -321,7 +338,7 @@ function formatDate(date: Date): string {
 				line-height: 1.6;
 				word-break: keep-all;
 				overflow-wrap: break-word;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body h4 {
@@ -333,12 +350,12 @@ function formatDate(date: Date): string {
 				line-height: 1.6;
 				word-break: keep-all;
 				overflow-wrap: break-word;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body {
 				font-size: 16px;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body p {
@@ -349,7 +366,7 @@ function formatDate(date: Date): string {
 				word-break: keep-all;
 				overflow-wrap: break-word;
 				hyphens: auto;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body ul,
@@ -365,7 +382,7 @@ function formatDate(date: Date): string {
 				overflow-wrap: break-word;
 				font-size: 16px;
 				color: #333333;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body ul li::marker {
@@ -379,7 +396,7 @@ function formatDate(date: Date): string {
 				background: transparent;
 				font-style: italic;
 				position: relative;
-				font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-family: "GounBatang", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 
 			.blog-post-body blockquote::before {
@@ -468,6 +485,12 @@ function formatDate(date: Date): string {
 
 			.blog-post-body strong {
 				font-weight: 600;
+			}
+
+			.blog-post-body mark {
+				background: linear-gradient(transparent 60%, #bbf7d0 60%);
+				color: inherit;
+				padding: 0 2px;
 			}
 
 			/* Images */

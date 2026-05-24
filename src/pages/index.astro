@@ -142,6 +142,8 @@ const posts = (await getCollection("blog"))
 			});
 		</script>
 		<style>
+			@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
 			:root {
 				--color-bg: #ffffff;
 				--color-text: #000000;
@@ -306,7 +308,7 @@ const posts = (await getCollection("blog"))
 			}
 			.recent-posts-section__title {
 				font-size: 1.5rem;
-				font-weight: 700;
+				font-weight: 800;
 				color: var(--color-text);
 				margin: 0;
 				letter-spacing: -0.5px;
@@ -314,6 +316,7 @@ const posts = (await getCollection("blog"))
 				overflow-wrap: break-word;
 				flex: 1;
 				min-width: 0;
+				font-family: "NanumSquare", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 			.recent-posts-section__view-all {
 				font-size: 0.9rem;
@@ -369,6 +372,7 @@ const posts = (await getCollection("blog"))
 				letter-spacing: -0.2px;
 				word-break: keep-all;
 				overflow-wrap: break-word;
+				font-family: "NanumSquare", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 			}
 			@media (max-width: 900px) {
 				.main-content {
