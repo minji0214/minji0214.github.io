@@ -78,11 +78,11 @@
 			.resume-page .header {
 				display: grid;
 				grid-template-columns: 1fr 270px;
-				min-height: 280px;
+				min-height: 180px;
 			}
 
 			.resume-page .header-left {
-				padding: 60px;
+				padding: 10px 60px;
 				background: var(--ink);
 				position: relative;
 				display: flex;
@@ -148,7 +148,7 @@
 			}
 
 			.resume-page .header-right {
-				padding: 60px 40px;
+				padding: 10px 40px;
 				background: var(--pale-gray);
 				display: flex;
 				flex-direction: column;
@@ -215,37 +215,69 @@
 			}
 
 			.resume-page .about-text {
-				font-size: 15px;
-				line-height: 1.8;
-				color: var(--charcoal);
+				font-size: 17px;
+				line-height: 1.5;
+				color: var(--ink);
+				font-weight: 600;
 				position: relative;
 				z-index: 1;
+				margin: 0;
+				letter-spacing: -0.01em;
+			}
+
+			.resume-page .about-text strong {
+				font-weight: 700;
+				color: var(--ink);
+			}
+
+			.resume-page .about-body {
+				font-size: 14px;
+				line-height: 1.75;
+				color: var(--charcoal);
+				margin-top: 14px;
 			}
 
 			.resume-page .about-list {
 				list-style: none;
 				padding: 0;
-				margin-top: 16px;
+				margin: 18px 0 0 0;
 			}
 
 			.resume-page .about-list li {
 				position: relative;
-				padding-left: 20px;
-				margin-bottom: 8px;
+				padding-left: 14px;
+				margin-bottom: 6px;
 				font-size: 14px;
+				line-height: 1.65;
 				color: var(--charcoal);
 			}
 
+			.resume-page .about-list li:last-child {
+				margin-bottom: 0;
+			}
+
 			.resume-page .about-list li::before {
-				content: "•";
+				content: "·";
 				position: absolute;
-				left: 0;
+				left: 2px;
+				top: -2px;
 				color: var(--medium-gray);
+				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.resume-page .about-list strong {
+				font-weight: 700;
+				color: var(--ink);
 			}
 
 			/* Section Headers */
 			.resume-page .section {
 				margin-bottom: 56px;
+			}
+
+			.resume-page .section--projects {
+				margin-top: 20px;
 			}
 
 			.resume-page .section-header {
@@ -302,9 +334,8 @@
 			.resume-page .experience-date {
 				font-size: 13px;
 				font-weight: 600;
-				color: var(--medium-gray);
-				letter-spacing: 0.02em;
-				text-transform: uppercase;
+				color: var(--ink);
+				letter-spacing: 0;
 			}
 
 			.resume-page .experience-duration {
@@ -333,31 +364,44 @@
 
 			.resume-page .experience-description {
 				font-size: 14px;
-				color: var(--charcoal);
-				margin-bottom: 12px;
+				color: var(--stone);
+				margin-bottom: 14px;
 				line-height: 1.6;
+				font-style: italic;
 			}
 
 			.resume-page .experience-list {
 				list-style: none;
 				padding: 0;
+				margin: 0;
 			}
 
 			.resume-page .experience-list li {
 				position: relative;
-				padding-left: 20px;
-				margin-bottom: 10px;
+				padding-left: 14px;
+				margin-bottom: 6px;
 				font-size: 14px;
-				line-height: 1.7;
+				line-height: 1.65;
 				color: var(--charcoal);
 			}
 
+			.resume-page .experience-list li:last-child {
+				margin-bottom: 0;
+			}
+
 			.resume-page .experience-list li::before {
-				content: "•";
+				content: "·";
 				position: absolute;
-				left: 0;
+				left: 2px;
+				top: -2px;
 				color: var(--medium-gray);
 				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.resume-page .experience-list strong {
+				font-weight: 700;
+				color: var(--ink);
 			}
 
 			/* Skills Grid with Monochrome */
@@ -445,19 +489,56 @@
 			}
 
 			.resume-page .project-tech {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 6px;
+				margin-bottom: 14px;
+			}
+
+			.resume-page .tech-chip {
 				display: inline-block;
 				font-size: 12px;
-				color: var(--medium-gray);
-				font-weight: 600;
-				text-transform: uppercase;
-				letter-spacing: 0.02em;
-				margin-bottom: 12px;
+				color: var(--charcoal);
+				font-weight: 500;
+				background: var(--white);
+				border: 1px solid var(--light-gray);
+				padding: 3px 10px;
+				border-radius: 4px;
+				letter-spacing: 0;
 			}
 
 			.resume-page .project-description {
 				font-size: 14px;
 				color: var(--charcoal);
-				line-height: 1.7;
+				line-height: 1.65;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.resume-page .project-description li {
+				position: relative;
+				padding-left: 14px;
+				margin-bottom: 6px;
+			}
+
+			.resume-page .project-description li:last-child {
+				margin-bottom: 0;
+			}
+
+			.resume-page .project-description li::before {
+				content: "·";
+				position: absolute;
+				left: 2px;
+				top: -2px;
+				color: var(--medium-gray);
+				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.resume-page .project-description strong {
+				font-weight: 700;
+				color: var(--ink);
 			}
 
 			/* Education */
@@ -686,29 +767,17 @@
 				<main class="content">
 					<!-- About & Values -->
 					<section class="about-section">
-						<p class="about-text">프론트엔드 엔지니어 전민지입니다.</p>
-						<ul class="about-list">
-							<li>
-								한 가지 기술에 구애받지 않고, 프로젝트에 필요한 기술이라면
-								적극적으로 시도하고 완료합니다.
-							</li>
-							<li>
-								디자인·기획 단계부터 참여하며, 사용자 흐름과 비즈니스 목표를
-								함께 고려해 기능을 설계합니다.
-							</li>
-							<li>
-								사용자 행동을 분석하고 3개월간 20개의 기능 배포를 진행하며, 빠른
-								피드백과 실행력을 강점으로 삼고 있습니다.
-							</li>
-							<li>
-								한달만에 WYSIWYG Editor POC를 만들어 내어, 시리즈A 투자에
-								기여하였습니다.
-							</li>
-							<li>
-								mixpanel, GTM, sentry 등의 툴을 사용하여, 데이터 기반 개발
-								문화를 정착시켰습니다.
-							</li>
-						</ul>
+						<p class="about-text">
+							사용자 가치와 비즈니스 목표를 연결하며,<br />빠른 실험과 개선을
+							통해 유저경험을 발전시키는 프론트엔드 엔지니어입니다.
+						</p>
+						<p class="about-body">
+							예약·주문·결제·운영 시스템 등 실제 서비스 전반을 구축하고
+							운영했으며,<br />사용자 행동 데이터 기반으로 문제를 분석하고
+							개선해왔습니다.	<br />기술 구현을 넘어 사용자 흐름과 운영 효율, 비즈니스 임팩트를 함께
+							고민합니다.
+						</p>
+					
 					</section>
 
 					<!-- Experience -->
@@ -729,29 +798,39 @@
 									O2O 커머스 플랫폼 및 팝업스토어 예약 시스템 개발
 								</p>
 								<ul class="experience-list">
-									<li>F&B 팝업 사이렌오더 시스템 구축 및 운영</li>
 									<li>
-										React Native 기반 매장 관리 앱 개발 (웹뷰, 실시간 푸시알림,
-										블루투스 연동 영수증 출력)
+										<strong>F&B 팝업 사이렌오더 시스템</strong> 구축 및 운영
 									</li>
 									<li>
-										팝업 사전예약 기능 기획 및 개발, 다중 트래픽을 대비한
-										예약시스템 구축
+										<strong>React Native 기반 매장 관리 앱</strong> 개발 (웹뷰, 실시간
+										푸시알림, 블루투스 연동 영수증 출력)
 									</li>
 									<li>
-										팝가 모바일 UI를 PC 반응형으로 확장하여 다양한 디바이스 지원
+										팝업 사전예약 기능 기획·개발, <strong
+											>대규모 트래픽 대비 예약시스템</strong
+										> 구축
 									</li>
 									<li>
-										WebView와 네이티브 간 통신을 PostMessage로 구현하여 실시간성
-										향상
-									</li>
-									<li>Sentry 에러로깅 및 GTM 데이터 트래킹 시스템 구축</li>
-									<li>
-										Core Web Vitals 개선 과정에서 main thread 병목을 분석하여
-										불필요한 JavaScript 실행을 줄이고 TBT/LCP를 개선
+										모바일 UI를 <strong>PC 반응형으로 확장</strong>하여 다양한
+										디바이스 지원
 									</li>
 									<li>
-										Naver Maps API 활용 지도 기능 및 개인화 추천 기능 개발
+										WebView ↔ 네이티브 통신을 <strong>PostMessage</strong>로
+										구현해 실시간성 향상
+									</li>
+									<li>
+										<strong>Sentry 에러로깅</strong> 및 <strong
+											>GTM 데이터 트래킹</strong
+										> 시스템 구축
+									</li>
+									<li>
+										Core Web Vitals 개선 — main thread 병목 분석으로 불필요한 JS
+										실행을 줄이고 <strong>TBT/LCP 개선</strong>
+									</li>
+									<li>
+										<strong>Naver Maps API</strong> 활용 지도 기능 및 <strong
+											>개인화 추천</strong
+										> 기능 개발
 									</li>
 								</ul>
 							</div>
@@ -764,23 +843,25 @@
 							</div>
 							<div class="experience-content">
 								<div class="experience-company">
-									북아이피스 · 마켓플레이스 스쿼드 / FE Chapter
+									북아이피스 · 마켓플레이스 스쿼드
 								</div>
 								<p class="experience-description">
 									초중고 교재 저작권 중계 및 저자들이 직접 교재를 제작, 판매할
 									수 있는 B2C 마켓플레이스 플랫폼 개발
 								</p>
 								<ul class="experience-list">
-									<li>커머스 프로덕트 Next.js 마이그레이션</li>
+									<li>커머스 프로덕트 <strong>Next.js 마이그레이션</strong></li>
 									<li>
-										서버 상태를 단일 source of truth로 관리하기 위해 TanStack
-										Query를 도입하고 검색 기능의 캐시 및 invalidation 구조를
-										개선 및 검색 기능 개편
+										서버 상태를 단일상태로 관리하기 위해 <strong
+											>TanStack Query 도입</strong
+										>, 검색 기능의 캐시·invalidation 구조 개선 및 검색 기능 개편
 									</li>
-									<li>Sentry 에러 트래킹 환경 구축</li>
-									<li>Mixpanel, GA 데이터 로깅 환경 구축</li>
-									<li>SSR을 이용한 SEO 개선</li>
-									<li>디자인 시스템 개발 및 npm 배포를 통한 버전관리</li>
+									<li><strong>Sentry 에러 트래킹</strong> 환경 구축</li>
+									<li><strong>Mixpanel데이터 로깅</strong> 환경 구축</li>
+									<li><stronㄴg>SSR로 SEO 개선</stronㄴg></li>
+									<li>
+										<strong>디자인 시스템 개발</strong> 및 npm 배포를 통한 버전관리
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -797,7 +878,6 @@
 								</p>
 								<ul class="experience-list">
 									<li>금융 상품 상담 및 고객 서비스 업무 수행</li>
-									<li>정확한 데이터 처리와 규정 준수를 통한 업무 처리</li>
 									<li>다양한 고객과의 소통 경험으로 커뮤니케이션 능력 향상</li>
 								</ul>
 							</div>
@@ -805,7 +885,7 @@
 					</section>
 
 					<!-- Projects -->
-					<section class="section">
+					<section class="section section--projects">
 						<div class="section-header">
 							<div class="section-number">02</div>
 							<h2 class="section-title">Key Projects</h2>
@@ -816,48 +896,82 @@
 								<h3 class="project-title">팝가 - 팝업스토어 플랫폼</h3>
 								<span class="project-period">2025.05 - Present</span>
 							</div>
-							<span class="project-tech"
-								>Next.js · TanStack Query · Naver Maps API · GTM</span
-							>
-							<p class="project-description">
-								사용자 행동 데이터 분석 기반으로 3개월간 20번의 기능 배포 진행.
-								팝업 사전예약 기능 기획 및 개발로 대규모 트래픽 대응 시스템
-								구축. Core Web Vitals 최적화로 TBT/LCP 개선, 재방문율 30% 상승
-								기여. 빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트
-								개선.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">Next.js</span>
+								<span class="tech-chip">TanStack Query</span>
+								<span class="tech-chip">Naver Maps API</span>
+								<span class="tech-chip">GTM</span>
+							</div>
+							<ul class="project-description">
+								<li>
+									사용자 행동 데이터 분석 기반으로 3개월간 <strong
+										>20번의 기능 배포</strong
+									> 진행
+								</li>
+								<li>
+									팝업 사전예약 기능 기획·개발로 <strong
+										>대규모 트래픽 대응 시스템</strong
+									> 구축
+								</li>
+								<li>
+									Core Web Vitals 최적화로 TBT/LCP 개선, <strong
+										>재방문율 30% 상승</strong
+									> 기여
+								</li>
+								<li>
+									빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트 개선
+								</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
 								<h3 class="project-title">샵앳피소드 - 매장 관리 시스템</h3>
 								<span class="project-period">2025.01 - 2025.06</span>
 							</div>
-							<span class="project-tech"
-								>React Native · WebView · Bluetooth · Thermal Printer ·
-								PostMessage</span
-							>
-							<p class="project-description">
-								실시간 주문 및 상품을 F&B 매장에서 관리할 수 있도록 매장 관리 앱
-								개발. 블루투스 연동을 통한 영수증 프린터 연결 및 thermal printer
-								기능 구현. 실시간 주문 업데이트를 위해 SSE와 polling 대신
-								PostMessage를 활용하여 WebView와 네이티브 간 통신 최적화. 실시간
-								푸시알림과 영수증 출력 기능을 갖춘 완전한 매장 운영 솔루션 제공.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">React Native</span>
+								<span class="tech-chip">WebView</span>
+								<span class="tech-chip">Bluetooth</span>
+								<span class="tech-chip">Thermal Printer</span>
+								<span class="tech-chip">PostMessage</span>
+							</div>
+							<ul class="project-description">
+								<li>
+									F&B 매장에서 실시간 주문·상품 관리가 가능한 매장 관리 앱 개발
+								</li>
+								<li>
+									블루투스 연동으로 영수증 프린터(thermal printer) 기능 구현
+								</li>
+								<li>
+									SSE/polling 대신 <strong>PostMessage 활용</strong>해 WebView ↔
+									네이티브 통신 최적화
+								</li>
+								<li>
+									실시간 푸시알림·영수증 출력을 갖춘 완전한 매장 운영 솔루션
+									제공
+								</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
 								<h3 class="project-title">샵앳피소드 - F&B 사이렌오더</h3>
 								<span class="project-period">2025.01 - 2025.06</span>
 							</div>
-							<span class="project-tech"
-								>React Native · WebView · Expo · Push Notification</span
-							>
-							<p class="project-description">
-								React Native를 새롭게 학습하여 모바일 앱 출시. 실시간으로 주문
-								및 결제하는 사이렌 오더 시스템 구축. 실시간 주문 푸시알림,
-								신메뉴 소개 및 영수증 이미지 저장 기능을 갖춘 앱 개발. 기술
-								제약에 구애받지 않고 최적의 솔루션을 구현한 사례.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">React Native</span>
+								<span class="tech-chip">WebView</span>
+								<span class="tech-chip">Expo</span>
+								<span class="tech-chip">Push Notification</span>
+							</div>
+							<ul class="project-description">
+								<li>React Native를 새롭게 학습하여 모바일 앱 출시</li>
+								<li>실시간으로 주문·결제하는 사이렌 오더 시스템 구축</li>
+								<li>
+									실시간 주문 푸시알림, 신메뉴 소개, 영수증 이미지 저장 기능
+									구현
+								</li>
+								<li>기술 제약에 구애받지 않고 최적의 솔루션을 구현한 사례</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
@@ -866,42 +980,66 @@
 								</h3>
 								<span class="project-period">2023</span>
 							</div>
-							<span class="project-tech"
-								>React · HTML to PDF · Editor Library</span
-							>
-							<p class="project-description">
-								저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터 POC
-								제작. 4주간의 짧은 기간에 편집부터 출력까지 필수기능을 모두
-								구현하여 시리즈A 투자유치에 기여. Chromium 기반 서버사이드 HTML
-								to PDF 변환으로 스타일링 한계 극복.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">React</span>
+								<span class="tech-chip">HTML to PDF</span>
+								<span class="tech-chip">Editor Library</span>
+							</div>
+							<ul class="project-description">
+								<li>
+									저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터
+									POC 제작
+								</li>
+								<li>
+									<strong>4주 만에</strong> 편집부터 출력까지 필수기능 모두 구현,
+									<strong>시리즈A 투자유치 기여</strong>
+								</li>
+								<li>
+									Chromium 기반 서버사이드 HTML to PDF 변환으로 스타일링 한계
+									극복
+								</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
 								<h3 class="project-title">검색 기능 개편 및 성능 최적화</h3>
 								<span class="project-period">2023</span>
 							</div>
-							<span class="project-tech"
-								>TanStack Query · IntersectionObserver · RequestAnimationFrame</span
-							>
-							<p class="project-description">
-								URLSearchParam 기반의 필터 핸들링 훅 개발로 재사용성 확보. 무한
-								스크롤 구현 및 requestAnimationFrame을 활용한 스크롤 이벤트
-								최적화. 뒤로가기 시에도 스크롤 위치 유지되도록 캐시 관리.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">TanStack Query</span>
+								<span class="tech-chip">IntersectionObserver</span>
+								<span class="tech-chip">RequestAnimationFrame</span>
+							</div>
+							<ul class="project-description">
+								<li>URLSearchParam 기반 필터 핸들링 훅 개발로 재사용성 확보</li>
+								<li>
+									무한 스크롤 구현 및 requestAnimationFrame 활용한 스크롤 이벤트
+									최적화
+								</li>
+								<li>뒤로가기 시에도 스크롤 위치 유지되도록 캐시 관리</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
 								<h3 class="project-title">쏠북 대시보드</h3>
 								<span class="project-period">2023</span>
 							</div>
-							<span class="project-tech">React · ErrorBoundary · Suspense</span>
-							<p class="project-description">
-								B2B 출판사 고객 대상 대시보드 서비스 초기세팅부터 배포까지 1주일
-								내 완성. 하나의 form 컴포넌트에서 CRUD 모두 가능하도록
-								추상화하여 개발 비용 최소화. ErrorBoundary와 Suspense를 활용한
-								공통 에러/로딩 처리.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">React</span>
+								<span class="tech-chip">ErrorBoundary</span>
+								<span class="tech-chip">Suspense</span>
+							</div>
+							<ul class="project-description">
+								<li>
+									B2B 출판사 고객 대상 대시보드 서비스, 초기세팅부터 배포까지 <strong
+										>1주일 내 완성</strong>
+								</li>
+								<li>
+									하나의 form 컴포넌트에서 CRUD 모두 가능하도록 추상화하여 개발
+									비용 최소화
+								</li>
+								<li>ErrorBoundary와 Suspense 활용한 공통 에러/로딩 처리</li>
+							</ul>
 						</div>
 						<div class="project-item">
 							<div class="project-header">
@@ -910,12 +1048,21 @@
 								</h3>
 								<span class="project-period">2024</span>
 							</div>
-							<span class="project-tech">Mixpanel · GA · GTM · Sentry</span>
-							<p class="project-description">
-								Mixpanel 구매 퍼널 구축으로 데이터 기반 의사결정 지원. 믹스패널
-								데이터 기반 홈 개편 후 구매 전환율 40%에서 60%로 향상. Sentry
-								에러 트래킹으로 안정성 향상.
-							</p>
+							<div class="project-tech">
+								<span class="tech-chip">Mixpanel</span>
+								<span class="tech-chip">GA</span>
+								<span class="tech-chip">GTM</span>
+								<span class="tech-chip">Sentry</span>
+							</div>
+							<ul class="project-description">
+								<li>Mixpanel 구매 퍼널 구축으로 데이터 기반 의사결정 지원</li>
+								<li>
+									믹스패널 데이터 기반 홈 개편 후 <strong
+										>구매 전환율 40% → 60%</strong
+									> 향상
+								</li>
+								<li>Sentry 에러 트래킹으로 안정성 향상</li>
+							</ul>
 						</div>
 					</section>
 
@@ -968,16 +1115,6 @@
 								</div>
 							</div>
 							<div class="skill-card">
-								<h3 class="skill-card-title">도구 & DevOps</h3>
-								<div class="skill-tags">
-									<span class="skill-tag">Git</span>
-									<span class="skill-tag">pnpm</span>
-									<span class="skill-tag">Monorepo</span>
-									<span class="skill-tag">Azure DevOps</span>
-									<span class="skill-tag">Vercel</span>
-								</div>
-							</div>
-							<div class="skill-card">
 								<h3 class="skill-card-title">분석 & 모니터링</h3>
 								<div class="skill-tags">
 									<span class="skill-tag">Sentry</span>
@@ -989,31 +1126,10 @@
 						</div>
 					</section>
 
-					<!-- Activities -->
-					<section class="section">
-						<div class="section-header">
-							<div class="section-number">04</div>
-							<h2 class="section-title">Activities</h2>
-						</div>
-
-						<div class="activities-list">
-							<div class="activity-item">
-								SIPE : 개발 동아리 / 오픈소스 디자인 시스템 기여
-							</div>
-							<div class="activity-item">
-								오픈소스 커뮤니티 기여 (ant design korea)
-							</div>
-							<div class="activity-item">
-								사내 독서모임: 아이디어 불패의 법칙
-							</div>
-							<div class="activity-item">프론트 시크릿: 프론트엔드 동아리</div>
-						</div>
-					</section>
-
 					<!-- Testimonials -->
 					<section class="section testimonials-section">
 						<div class="section-header">
-							<div class="section-number">05</div>
+							<div class="section-number">04</div>
 							<h2 class="section-title">Testimonials</h2>
 						</div>
 
@@ -1075,6 +1191,24 @@
 									<span class="testimonial-company">북아이피스</span>
 								</div>
 							</div>
+						</div>
+					</section>
+
+					<!-- Activities -->
+					<section class="section">
+						<div class="section-header">
+							<div class="section-number">05</div>
+							<h2 class="section-title">Activities</h2>
+						</div>
+
+						<div class="activities-list">
+							<div class="activity-item">
+								SIPE : 개발 동아리 / 오픈소스 디자인 시스템 기여
+							</div>
+							<div class="activity-item">
+								오픈소스 커뮤니티 기여 (ant design korea)
+							</div>
+							<div class="activity-item">프론트 시크릿: 프론트엔드 동아리</div>
 						</div>
 					</section>
 
