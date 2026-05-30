@@ -32,7 +32,8 @@
 				--light-gray: #e5e5e5;
 				--pale-gray: #f5f5f5;
 				--white: #ffffff;
-				--accent: #000000;
+				--accent: #ff6f0f;
+				--accent-dark: #e55f0e;
 				--border: #e0e0e0;
 			}
 
@@ -83,7 +84,7 @@
 
 			.resume-page .header-left {
 				padding: 10px 60px;
-				background: var(--ink);
+				background: var(--accent);
 				position: relative;
 				display: flex;
 				flex-direction: column;
@@ -210,7 +211,7 @@
 				margin-bottom: 56px;
 				padding: 32px;
 				background: var(--pale-gray);
-				border-left: 3px solid var(--ink);
+				border-left: 3px solid var(--accent);
 				position: relative;
 			}
 
@@ -290,7 +291,7 @@
 			.resume-page .section-number {
 				width: 40px;
 				height: 40px;
-				background: var(--ink);
+				background: var(--accent);
 				color: var(--white);
 				border-radius: 50%;
 				display: flex;
@@ -426,7 +427,7 @@
 				left: 0;
 				right: 0;
 				height: 3px;
-				background: var(--ink);
+				background: var(--accent);
 			}
 
 			.resume-page .skill-card-title {
@@ -455,7 +456,7 @@
 			}
 
 			.resume-page .skill-tag:hover {
-				background: var(--ink);
+				background: var(--accent);
 				color: var(--white);
 				transform: translateY(-2px);
 			}
@@ -466,7 +467,7 @@
 				background: var(--pale-gray);
 				margin-bottom: 20px;
 				position: relative;
-				border-left: 3px solid var(--ink);
+				border-left: 3px solid var(--accent);
 			}
 
 			.resume-page .project-header {
@@ -554,7 +555,7 @@
 			.resume-page .education-icon {
 				width: 56px;
 				height: 56px;
-				background: var(--ink);
+				background: var(--accent);
 				border-radius: 8px;
 				display: flex;
 				align-items: center;
@@ -600,9 +601,36 @@
 			.resume-page .activity-item {
 				padding: 16px;
 				background: var(--pale-gray);
-				border-left: 2px solid var(--ink);
+				border-left: 2px solid var(--accent);
 				font-size: 14px;
 				color: var(--charcoal);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				text-decoration: none;
+				transition:
+					background 0.2s ease,
+					transform 0.2s ease;
+			}
+
+			.resume-page a.activity-item::after {
+				content: "↗";
+				flex-shrink: 0;
+				color: var(--accent);
+				font-size: 16px;
+				font-weight: 700;
+				transition: transform 0.2s ease;
+			}
+
+			.resume-page a.activity-item:hover {
+				background: #fff4ec;
+				color: var(--accent-dark);
+				transform: translateX(2px);
+			}
+
+			.resume-page a.activity-item:hover::after {
+				transform: translate(2px, -2px);
 			}
 
 			/* Testimonials Section */
@@ -620,19 +648,8 @@
 				padding: 24px;
 				background: var(--white);
 				border: 1px solid var(--light-gray);
-				border-left: 3px solid var(--ink);
+				border-left: 3px solid var(--accent);
 				position: relative;
-			}
-
-			.resume-page .testimonial-card::before {
-				content: '"';
-				position: absolute;
-				top: 16px;
-				right: 24px;
-				font-size: 48px;
-				color: var(--light-gray);
-				font-family: "Archivo", sans-serif;
-				line-height: 1;
 			}
 
 			.resume-page .testimonial-content {
@@ -675,6 +692,156 @@
 
 				.resume-page .skills-container {
 					grid-template-columns: 1fr;
+				}
+			}
+
+			/* Mobile (small phones, 360px~480px) */
+			@media (max-width: 480px) {
+				.resume-page .container {
+					box-shadow: none;
+				}
+
+				/* Header: stack vertically */
+				.resume-page .header {
+					grid-template-columns: 1fr;
+					min-height: auto;
+				}
+				.resume-page .header-left {
+					padding: 28px 20px;
+				}
+				.resume-page .header-left::before {
+					display: none;
+				}
+				.resume-page .name {
+					font-size: 32px;
+					margin-bottom: 8px;
+				}
+				.resume-page .title {
+					font-size: 14px;
+				}
+				.resume-page .years-indicator {
+					margin-top: 16px;
+				}
+				.resume-page .header-right {
+					padding: 24px 20px;
+				}
+				.resume-page .contact-list {
+					gap: 14px;
+				}
+				.resume-page .contact-text {
+					font-size: 13px;
+					word-break: break-all;
+				}
+
+				/* Content */
+				.resume-page .content {
+					padding: 24px 16px;
+				}
+
+				/* About */
+				.resume-page .about-section {
+					padding: 20px;
+					margin-bottom: 36px;
+				}
+				.resume-page .about-text {
+					font-size: 15px;
+					line-height: 1.55;
+				}
+				.resume-page .about-text br {
+					display: none;
+				}
+				.resume-page .about-body {
+					font-size: 13px;
+					line-height: 1.7;
+				}
+				.resume-page .about-body br {
+					display: none;
+				}
+
+				/* Section */
+				.resume-page .section {
+					margin-bottom: 36px;
+				}
+				.resume-page .section-header {
+					margin-bottom: 24px;
+				}
+				.resume-page .section-number {
+					width: 32px;
+					height: 32px;
+					font-size: 13px;
+					margin-right: 12px;
+				}
+				.resume-page .section-title {
+					font-size: 17px;
+				}
+
+				/* Experience */
+				.resume-page .experience-item {
+					padding: 18px;
+					gap: 12px;
+					margin-bottom: 20px;
+				}
+				.resume-page .experience-item:hover {
+					transform: none;
+				}
+				.resume-page .experience-period {
+					display: flex;
+					align-items: baseline;
+					gap: 12px;
+					padding-top: 0;
+					flex-wrap: wrap;
+				}
+				.resume-page .experience-duration {
+					margin-top: 0;
+				}
+				.resume-page .experience-title,
+				.resume-page .experience-company {
+					font-size: 16px;
+				}
+
+				/* Project */
+				.resume-page .project-item {
+					padding: 18px;
+				}
+				.resume-page .project-header {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 4px;
+				}
+				.resume-page .project-title {
+					font-size: 16px;
+				}
+
+				/* Skills */
+				.resume-page .skill-card {
+					padding: 18px;
+				}
+
+				/* Education */
+				.resume-page .education-item {
+					gap: 16px;
+					padding: 18px;
+				}
+				.resume-page .education-icon {
+					width: 48px;
+					height: 48px;
+				}
+				.resume-page .education-icon svg {
+					width: 24px;
+					height: 24px;
+				}
+
+				/* Activities */
+				.resume-page .activities-list {
+					grid-template-columns: 1fr;
+				}
+
+				/* Testimonials */
+				.resume-page .testimonial-grid {
+					grid-template-columns: 1fr;
+				}
+				.resume-page .testimonial-card {
+					padding: 18px;
 				}
 			}
 		</style>
@@ -774,10 +941,9 @@
 						<p class="about-body">
 							예약·주문·결제·운영 시스템 등 실제 서비스 전반을 구축하고
 							운영했으며,<br />사용자 행동 데이터 기반으로 문제를 분석하고
-							개선해왔습니다.	<br />기술 구현을 넘어 사용자 흐름과 운영 효율, 비즈니스 임팩트를 함께
-							고민합니다.
+							개선해왔습니다. <br />기술 구현을 넘어 사용자 흐름과 운영 효율,
+							비즈니스 임팩트를 함께 고민합니다.
 						</p>
-					
 					</section>
 
 					<!-- Experience -->
@@ -799,38 +965,28 @@
 								</p>
 								<ul class="experience-list">
 									<li>
-										<strong>F&B 팝업 사이렌오더 시스템</strong> 구축 및 운영
+										F&B 팝업스토어 운영 전반(<strong
+											>예약·주문·결제·매장 관리</strong
+										>)을 위한 프론트엔드 시스템 구축
 									</li>
 									<li>
-										<strong>React Native 기반 매장 관리 앱</strong> 개발 (웹뷰, 실시간
-										푸시알림, 블루투스 연동 영수증 출력)
+										React Native 기반 모바일 솔루션(매장 관리 앱·사이렌오더)
+										개발
 									</li>
 									<li>
-										팝업 사전예약 기능 기획·개발, <strong
-											>대규모 트래픽 대비 예약시스템</strong
-										> 구축
+										대규모 트래픽 대응 사전예약 시스템 기획·개발 및 PC 반응형
+										확장
 									</li>
 									<li>
-										모바일 UI를 <strong>PC 반응형으로 확장</strong>하여 다양한
-										디바이스 지원
+										WebView ↔ 네이티브 통신(<strong>PostMessage</strong>),
+										Bluetooth 영수증 출력 등 기술 제약을 넘어선 솔루션 구현
 									</li>
 									<li>
-										WebView ↔ 네이티브 통신을 <strong>PostMessage</strong>로
-										구현해 실시간성 향상
+										<strong>Sentry·GTM</strong> 기반 모니터링·트래킹 인프라 구축,
+										Core Web Vitals(<strong>TBT/LCP</strong>) 개선
 									</li>
 									<li>
-										<strong>Sentry 에러로깅</strong> 및 <strong
-											>GTM 데이터 트래킹</strong
-										> 시스템 구축
-									</li>
-									<li>
-										Core Web Vitals 개선 — main thread 병목 분석으로 불필요한 JS
-										실행을 줄이고 <strong>TBT/LCP 개선</strong>
-									</li>
-									<li>
-										<strong>Naver Maps API</strong> 활용 지도 기능 및 <strong
-											>개인화 추천</strong
-										> 기능 개발
+										<strong>Naver Maps</strong> 지도 기능 및 개인화 추천 기능 개발
 									</li>
 								</ul>
 							</div>
@@ -852,15 +1008,16 @@
 								<ul class="experience-list">
 									<li>커머스 프로덕트 <strong>Next.js 마이그레이션</strong></li>
 									<li>
-										서버 상태를 단일상태로 관리하기 위해 <strong
-											>TanStack Query 도입</strong
-										>, 검색 기능의 캐시·invalidation 구조 개선 및 검색 기능 개편
+										<strong>TanStack Query 도입</strong>으로 서버 상태 관리·검색
+										캐시·invalidation 구조 개선
 									</li>
-									<li><strong>Sentry 에러 트래킹</strong> 환경 구축</li>
-									<li><strong>Mixpanel데이터 로깅</strong> 환경 구축</li>
-									<li><stronㄴg>SSR로 SEO 개선</stronㄴg></li>
 									<li>
-										<strong>디자인 시스템 개발</strong> 및 npm 배포를 통한 버전관리
+										<strong>Sentry·Mixpanel</strong> 기반 모니터링·데이터 트래킹 인프라
+										구축
+									</li>
+									<li>SSR 기반 <strong>SEO 개선</strong></li>
+									<li>
+										<strong>디자인 시스템 개발</strong> 및 npm 배포를 통한 버전 관리
 									</li>
 								</ul>
 							</div>
@@ -913,14 +1070,9 @@
 										>대규모 트래픽 대응 시스템</strong
 									> 구축
 								</li>
-								<li>
-									Core Web Vitals 최적화로 TBT/LCP 개선, <strong
-										>재방문율 30% 상승</strong
-									> 기여
-								</li>
-								<li>
-									빠른 피드백 사이클로 사용자 니즈를 즉각 반영하는 프로덕트 개선
-								</li>
+								<li>TBT/LCP 개선으로 라이트하우스 점수 80점 달성</li>
+								<li>네이버 지도 API 활용 지도 기능 및 개인화 추천 기능 개발</li>
+								<li>GTM 데이터 트래킹 및 BigQuery 활용 데이터 분석</li>
 							</ul>
 						</div>
 						<div class="project-item">
@@ -946,10 +1098,6 @@
 									SSE/polling 대신 <strong>PostMessage 활용</strong>해 WebView ↔
 									네이티브 통신 최적화
 								</li>
-								<li>
-									실시간 푸시알림·영수증 출력을 갖춘 완전한 매장 운영 솔루션
-									제공
-								</li>
 							</ul>
 						</div>
 						<div class="project-item">
@@ -960,17 +1108,16 @@
 							<div class="project-tech">
 								<span class="tech-chip">React Native</span>
 								<span class="tech-chip">WebView</span>
-								<span class="tech-chip">Expo</span>
+								<span class="tech-chip">canvas</span>
 								<span class="tech-chip">Push Notification</span>
 							</div>
 							<ul class="project-description">
-								<li>React Native를 새롭게 학습하여 모바일 앱 출시</li>
 								<li>실시간으로 주문·결제하는 사이렌 오더 시스템 구축</li>
 								<li>
-									실시간 주문 푸시알림, 신메뉴 소개, 영수증 이미지 저장 기능
-									구현
+									Firebase messaging을 활용한 실시간 주문 푸시알림, canvas 기반
+									영수증 이미지 저장 기능 구현
 								</li>
-								<li>기술 제약에 구애받지 않고 최적의 솔루션을 구현한 사례</li>
+								<li>구매 시간 단축을 위한 퍼널 개선 및 결제 프로세스 개선</li>
 							</ul>
 						</div>
 						<div class="project-item">
@@ -987,11 +1134,11 @@
 							</div>
 							<ul class="project-description">
 								<li>
-									저자들이 문제집을 직접 만들고 출력/PDF 판매가 가능한 에디터
-									POC 제작
+									WYSIWYG Editor library를 커스텀 하여 저자들이 문제집을 직접
+									만들고 출력/PDF 판매가 가능한 에디터 POC 제작
 								</li>
 								<li>
-									<strong>4주 만에</strong> 편집부터 출력까지 필수기능 모두 구현,
+									<strong>4주 만에</strong> 편집부터 출력까지 필수기능 구현,
 									<strong>시리즈A 투자유치 기여</strong>
 								</li>
 								<li>
@@ -1032,7 +1179,8 @@
 							<ul class="project-description">
 								<li>
 									B2B 출판사 고객 대상 대시보드 서비스, 초기세팅부터 배포까지 <strong
-										>1주일 내 완성</strong>
+										>1주일 내 완성</strong
+									>
 								</li>
 								<li>
 									하나의 form 컴포넌트에서 CRUD 모두 가능하도록 추상화하여 개발
@@ -1044,7 +1192,7 @@
 						<div class="project-item">
 							<div class="project-header">
 								<h3 class="project-title">
-									그로스 툴 도입 및 데이터 기반 개선
+									그로스 툴 도입 및 데이터 기반 홈 개선
 								</h3>
 								<span class="project-period">2024</span>
 							</div>
@@ -1061,7 +1209,6 @@
 										>구매 전환율 40% → 60%</strong
 									> 향상
 								</li>
-								<li>Sentry 에러 트래킹으로 안정성 향상</li>
 							</ul>
 						</div>
 					</section>
@@ -1202,12 +1349,22 @@
 						</div>
 
 						<div class="activities-list">
-							<div class="activity-item">
+							<a
+								class="activity-item"
+								href="https://github.com/sipe-team/side"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								SIPE : 개발 동아리 / 오픈소스 디자인 시스템 기여
-							</div>
-							<div class="activity-item">
+							</a>
+							<a
+								class="activity-item"
+								href="https://github.com/ant-design-korea/ant-design/pull/52"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								오픈소스 커뮤니티 기여 (ant design korea)
-							</div>
+							</a>
 							<div class="activity-item">프론트 시크릿: 프론트엔드 동아리</div>
 						</div>
 					</section>
