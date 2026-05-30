@@ -648,17 +648,17 @@
 
 			/* Testimonials Section */
 			.resume-page .testimonials-section {
-				margin-bottom: 56px;
+				margin-bottom: 0;
 			}
 
 			.resume-page .testimonial-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-				gap: 20px;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 10px;
 			}
 
 			.resume-page .testimonial-card {
-				padding: 24px;
+				padding: 12px 14px;
 				background: var(--white);
 				border: 1px solid var(--light-gray);
 				border-left: 3px solid var(--accent);
@@ -666,32 +666,32 @@
 			}
 
 			.resume-page .testimonial-content {
-				font-size: 13px;
-				line-height: 1.7;
+				font-size: 10.5px;
+				line-height: 1.6;
 				color: var(--charcoal);
-				margin-bottom: 16px;
+				margin-bottom: 8px;
 				font-style: italic;
 			}
 
 			.resume-page .testimonial-author {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				gap: 6px;
 			}
 
 			.resume-page .testimonial-role {
-				font-size: 13px;
+				font-size: 10px;
 				font-weight: 700;
 				color: var(--ink);
 			}
 
 			.resume-page .testimonial-company {
-				font-size: 12px;
+				font-size: 10px;
 				color: var(--stone);
 			}
 
 			.resume-page .testimonial-divider {
-				width: 20px;
+				width: 14px;
 				height: 1px;
 				background: var(--light-gray);
 			}
@@ -1004,10 +1004,10 @@
 								</div>
 								<p class="experience-description">
 									초중고 교재 저작권 중계 및 저자가 직접 제작·판매하는 B2C
-									마켓플레이스 '쏠북' 개발
+									마켓플레이스 개발
 								</p>
 								<ul class="experience-list">
-									<li><strong>쏠북</strong> 커머스 프로덕트 Next.js 마이그레이션</li>
+									<li><strong>커머스 프로덕트(쏠북)</strong> Next.js 마이그레이션</li>
 									<li>
 										검색·카테고리·결제·쿠폰 등 <strong>커머스 핵심 기능 개발</strong>
 										및 데이터 기반 UI 개선 사이클 진행
@@ -1018,7 +1018,7 @@
 										>) 등 신규 프로덕트 개발
 									</li>
 									<li>
-										<strong>디자인 시스템(SDS)</strong> 개발 — npm 배포로 사내 <strong>3개 스쿼드</strong>가 채택한 UI 표준 정립
+										<strong>디자인 시스템(SDS)</strong> 개발 — npm 배포로 사내 <strong>3개 스쿼드</strong>에서 공통으로 사용 중
 									</li>
 								</ul>
 							</div>
@@ -1027,12 +1027,12 @@
 						<div class="experience-item">
 							<div class="experience-period">
 								<div class="experience-date">2019.09 - 2022.03</div>
-								<div class="experience-duration">2y 7m</div>
+								<div class="experience-duration">2 years 7 months</div>
 							</div>
 							<div class="experience-content">
 								<div class="experience-company">천안북부신협 · 은행원</div>
 								<p class="experience-description">
-									금융 서비스 운영 및 고객 상담 — 도메인 외 비개발 경력
+									금융 서비스 운영 및 고객 상담
 								</p>
 							</div>
 						</div>
@@ -1058,9 +1058,7 @@
 							</div>
 							<ul class="project-description">
 								<li>
-									사용자 행동 데이터 분석 기반으로 3개월간 <strong
-										>20번의 기능 배포</strong
-									> 진행
+									Firebase A/B Testing 기반 실험 운영 및 데이터 분석으로 3개월간 <strong>20번의 기능 배포</strong> 진행
 								</li>
 								<li>
 									<strong>대규모 트래픽을 고려한 사전예약 시스템</strong> 기획·개발
@@ -1070,7 +1068,12 @@
 									<strong>팝업 상세 페이지 번들 121KB → 38.5KB (68% 감소)</strong>
 								</li>
 								<li>네이버 지도 API 활용 지도 기능 및 개인화 추천 기능 개발</li>
-								<li>GTM 데이터 트래킹 및 BigQuery 활용 데이터 분석</li>
+								<li>
+										Google Apps Script로 <strong>GTM 이벤트 자동 배포 파이프라인</strong> 구축 - dev/prd 배포시 휴먼 에러 제거
+									</li>
+									<li>
+										<strong>Figma MCP + Claude Skill</strong> 활용 UI 개발 효율화
+									</li>
 							</ul>
 						</div>
 						<div class="project-item">
@@ -1131,12 +1134,10 @@
 									기반 SEO 개선
 								</li>
 								<li>
-									<strong>TanStack Query 도입</strong>으로 서버 상태 관리·검색
-									캐시·invalidation 구조 개선
+									클라이언트/서버 상태 분리를 위해 <strong>TanStack Query 도입</strong> - 불필요한 요청 최소화
 								</li>
 								<li>
-									URLSearchParam 기반 필터 훅 개발, requestAnimationFrame 활용한
-									무한 스크롤 최적화로 검색 UX 개선
+									공유 가능한 필터 상태를 위해 URLSearchParam 기반 필터 훅 개발, requestAnimationFrame 활용 무한 스크롤 최적화로 검색 UX 개선
 								</li>
 							</ul>
 						</div>
@@ -1279,10 +1280,78 @@
 						</div>
 					</section>
 
+					<!-- Testimonials -->
+					<section class="section testimonials-section">
+						<div class="section-header">
+							<div class="section-number">05</div>
+							<h2 class="section-title">Testimonials</h2>
+						</div>
+
+						<div class="testimonial-grid">
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"책임감이 강하고 동료를 이해하고 배려하는 분입니다. 기획
+									과정에서 놓치는 부분들에 대해 먼저 알려주시고, 이슈가 생길
+									때에도 침착하게 원인을 파악해주십니다. 기대하지 않았던
+									부가적인 기능들까지 고객에게 필요하다고 판단되면 빠르게
+									작업해주십니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Product Owner</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"데드라인 준수에 매우 탁월합니다. 문제 발생시 투명하게
+									소통하며 적절한 솔루션을 함께 찾을 수 있는 동료입니다.
+									기획/디자인 단에서 미쳐 파악하지 못한 부분도 미리 찾아내시고
+									소통하여 리스크를 최소화할 수 있었습니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Designer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"업무 파악이 빠르고, 빠르게 기능을 만들어내는 편입니다. 성장에
+									대한 욕구가 강해서 더 개발하기 좋은, 유지보수하기 좋은 코드를
+									위해 고민합니다. 묵묵하게 자기 일을 멋지게 소화해내는
+									동료입니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Frontend Developer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+
+							<div class="testimonial-card">
+								<p class="testimonial-content">
+									"조용하지만 강합니다. 커뮤니케이션이 편한 개발자입니다. 새로운
+									피처를 개발하는데 있어서 기획과 디자인을 깊이 이해하고 철저히
+									분석합니다. 가장 오래 마켓을 유지보수해왔기 때문에 도메인
+									지식이 깊고, 문제가 발생했을 때 신속하게 원인을 파악하고
+									해결합니다."
+								</p>
+								<div class="testimonial-author">
+									<span class="testimonial-role">Backend Developer</span>
+									<div class="testimonial-divider"></div>
+									<span class="testimonial-company">북아이피스</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
 					<!-- Education -->
 					<section class="section">
 						<div class="section-header">
-							<div class="section-number">05</div>
+							<div class="section-number">06</div>
 							<h2 class="section-title">Education</h2>
 						</div>
 
